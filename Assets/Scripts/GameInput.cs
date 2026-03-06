@@ -9,9 +9,12 @@ public class GameInput : MonoBehaviour
 
 
     public event EventHandler OnShootInputPressed;
+    public event EventHandler OnShootInputReleased;
+    public event EventHandler OnSwapWeaponInputPressed;
 
     [SerializeField] InputActionReference moveInput;
     [SerializeField] InputActionReference shootInput;
+    [SerializeField] InputActionReference swapWeaponInput;
 
     //[SerializeField] InputActionReference shoot;
 
@@ -24,12 +27,26 @@ public class GameInput : MonoBehaviour
     private void OnEnable()
     {
         shootInput.action.started += ShootInput_started;
+        shootInput.action.canceled += ShootInput_canceled;
+        swapWeaponInput.action.started += Action_started;
+    }
+
+    private void ShootInput_canceled(InputAction.CallbackContext obj)
+    {
+        OnShootInputReleased?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void Action_started(InputAction.CallbackContext obj)
+    {
+        OnSwapWeaponInputPressed?.Invoke(this, EventArgs.Empty);
     }
 
     private void ShootInput_started(InputAction.CallbackContext obj)
     {
         OnShootInputPressed?.Invoke(this, EventArgs.Empty);
     }
+
+
 
     public Vector2 GetMovement()
     {

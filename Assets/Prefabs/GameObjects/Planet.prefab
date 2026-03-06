@@ -286,8 +286,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Planet
   gravityScalar: 1.5
-  atmosphereRadius: 0
   planetName: Earth
+  planetRadius: 2
+  atmosphereRadius: 3
+  planetAtmosphere: {fileID: 7031666206171900058}
 --- !u!1 &8575931479670837379
 GameObject:
   m_ObjectHideFlags: 0

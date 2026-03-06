@@ -9,11 +9,6 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
 
-    private int IS_IDLE = 0;
-    private int IS_WALKING = 1;
-    private int IS_FLYING = 2;
-    private int IS_FALLING = 3;
-
 
     public static PlayerMovement Instance { get; private set; }
     public event EventHandler<OnPlayerMovedArgs> OnPlayerMoved;
@@ -28,7 +23,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     
     private Planet currentPlanet;
-    
+    private float jetPackActivationTimer;
+    private bool canUseJetPack = true;
+
     private float standardGravity = 3;
     private Rigidbody2D rigidBody;
     private bool canJump = false;
@@ -70,16 +67,34 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+        if (jetPackActivationTimer > 0)
+        {
+            jetPackActivationTimer -= Time.deltaTime;
+            if (jetPackActivationTimer <= 0)
+            {
+                canUseJetPack = true;
+            }
+        }
+
+        SetCameraEffects(playerMovement);
+        
+
+        lastMovement = playerMovement;
+
+
+
+    }
+
+    
+    private void SetCameraEffects(Vector2 playerMovement)
+    {
         if (playerMovement.y > 0)
         {
             CameraManager.Instance.SetShakeCamera(0.35f);
         }
         else if (playerMovement.y == 0 && lastMovement.y > 0) {
             CameraManager.Instance.SetShakeCamera(0.0f);
-
         }
-
-        lastMovement = playerMovement;
 
     }
 
@@ -98,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
         {
             playerDirection = transform.up;
         }
-        transform.position += playerDirection * Time.deltaTime;
+        transform.position += playerDirection * jumpForce * Time.deltaTime;
         // not on planet movement
 
     }
@@ -122,8 +137,9 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position += toPlanetDirection * currentPlanet.GetGravityScalar() * Time.deltaTime;
         }
+        
 
-        if (playerMovement.y > 0)
+        if (playerMovement.y > 0 && canUseJetPack)
         {
             transform.position += toPlayerDirection * jumpForce * Time.deltaTime;
         }
@@ -144,8 +160,14 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 GetNewPlanetPosition(float horizontalMovement, Vector2 currentDir, float distanceFromPlanet)
     {
         float angle = Mathf.Atan2(currentDir.y, currentDir.x);
+        Debug.Log(angle);
 
-        float rotationAmount = horizontalMovement * speed * Time.deltaTime;
+        // This is the standard planet radius
+        float radiusEffect = (4 * Mathf.PI) / (2 * Mathf.PI * currentPlanet.GetPlanetRadius());
+
+        float rotationAmount = horizontalMovement * speed * radiusEffect* Time.deltaTime;
+
+
         angle += rotationAmount;
 
         float positionRadius = Mathf.Clamp(distanceFromPlanet, currentPlanet.GetComponent<CircleCollider2D>().radius, 100 + circleRadius);
@@ -171,6 +193,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("exited: " + currentPlanet.GetPlanetName());
             currentPlanet = null;
+            canUseJetPack = false;
+            jetPackActivationTimer = .5f;
         }
     }
     private bool OnGround()

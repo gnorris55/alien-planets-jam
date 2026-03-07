@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed = .1f;
     [SerializeField] private float jumpForce = 20f;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private ParticleSystem jetPackFireParticleSystem;
     
     private Planet currentPlanet;
     private float jetPackActivationTimer;
@@ -76,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        SetCameraEffects(playerMovement);
+        SetJetPackEffects(playerMovement);
         
 
         lastMovement = playerMovement;
@@ -86,14 +87,18 @@ public class PlayerMovement : MonoBehaviour
     }
 
     
-    private void SetCameraEffects(Vector2 playerMovement)
+    private void SetJetPackEffects(Vector2 playerMovement)
     {
         if (playerMovement.y > 0)
         {
             CameraManager.Instance.SetShakeCamera(0.35f);
+            jetPackFireParticleSystem.gameObject.SetActive(true);
+            jetPackFireParticleSystem.Play();
         }
         else if (playerMovement.y == 0 && lastMovement.y > 0) {
             CameraManager.Instance.SetShakeCamera(0.0f);
+            jetPackFireParticleSystem.gameObject.SetActive(false);
+            jetPackFireParticleSystem.Pause();
         }
 
     }
@@ -160,7 +165,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 GetNewPlanetPosition(float horizontalMovement, Vector2 currentDir, float distanceFromPlanet)
     {
         float angle = Mathf.Atan2(currentDir.y, currentDir.x);
-        Debug.Log(angle);
 
         // This is the standard planet radius
         float radiusEffect = (4 * Mathf.PI) / (2 * Mathf.PI * currentPlanet.GetPlanetRadius());

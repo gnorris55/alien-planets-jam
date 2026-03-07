@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] private float speed = 2f;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private ParticleSystem groundExplosionParticleSystem;
 
     private float damageAmount;
     private Rigidbody2D rb;
@@ -51,7 +52,6 @@ public class Bullet : MonoBehaviour
         {
             PlanetAtmosphere planetAtmosphere = collision.gameObject.GetComponent<PlanetAtmosphere>();
             currentPlanet = planetAtmosphere.GetPlanet();
-            Debug.Log("entering: " + currentPlanet.GetPlanetName());
 
         }
     }
@@ -67,11 +67,11 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.layer);
-        Debug.Log(groundLayer.value);
         if ((groundLayer.value & (1 << collision.gameObject.layer)) != 0)
         {
-            Debug.Log("hit ground");
+            Vector3 planetHitDirection = (transform.position - currentPlanet.transform.position).normalized;
+            float planetAngle = Mathf.Atan2(planetHitDirection.y, planetHitDirection.x) * Mathf.Rad2Deg;
+            Instantiate(groundExplosionParticleSystem, transform.position, Quaternion.Euler(0, 0, planetAngle));
             Destroy(gameObject);
         }
     }

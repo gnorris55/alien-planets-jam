@@ -142,6 +142,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  groundExplosionParticleSystem: {fileID: 1855568903275695687, guid: 4f6ca6caaa0c7d846922bb9fe6f5555d, type: 3}
 --- !u!50 &2670738228610745619
 Rigidbody2D:
   serializedVersion: 5

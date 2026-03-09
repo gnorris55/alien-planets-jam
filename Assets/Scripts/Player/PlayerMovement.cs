@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 20f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private ParticleSystem jetPackFireParticleSystem;
-    [SerializeField] private Light2D jetPackLight;
     
     private Planet currentPlanet;
     private float jetPackActivationTimer;
@@ -93,13 +92,11 @@ public class PlayerMovement : MonoBehaviour
             CameraManager.Instance.SetShakeCamera(0.35f);
             jetPackFireParticleSystem.gameObject.SetActive(true);
             jetPackFireParticleSystem.Play();
-            jetPackLight.intensity = 10;
         }
         else if (playerMovement.y == 0 && lastMovement.y > 0) {
             CameraManager.Instance.SetShakeCamera(0.0f);
             jetPackFireParticleSystem.gameObject.SetActive(false);
             jetPackFireParticleSystem.Pause();
-            jetPackLight.intensity = 0;
         }
 
     }

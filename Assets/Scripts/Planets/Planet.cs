@@ -9,6 +9,7 @@ public class Planet : MonoBehaviour
     [SerializeField] private string planetName;
     [SerializeField] private float planetRadius;
     [SerializeField] private float atmosphereRadius;
+    [SerializeField] private Transform miniMapVisual;
 
     [SerializeField] PlanetAtmosphere planetAtmosphere;
 
@@ -21,6 +22,7 @@ public class Planet : MonoBehaviour
         planetAtmosphere.SetAtmosphereRadius(atmosphereRadius);
 
         planetVisual.localScale *= planetRadius;
+        miniMapVisual.localScale *= planetRadius;
     }
 
     public void PlaceObjectOnPlanet(PlanetObject planetObject, Vector3 objectPosition, Vector3 objectDirection)

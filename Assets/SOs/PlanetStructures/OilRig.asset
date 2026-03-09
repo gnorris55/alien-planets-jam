@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6588ca47b61de3428494777f8e4fc3f, type: 3}
+  m_Name: OilRig
+  m_EditorClassIdentifier: Assembly-CSharp::PlanetStructureSO
+  structureName: 
+  structureGameObject: {fileID: 5563090197499670405, guid: 241746f824182164e90a0658e59485a3, type: 3}
+  structureOutline: {fileID: 2465774899367047564, guid: 17f788ac8406fd147b8073100024d3a0, type: 3}
+  size: 0.5

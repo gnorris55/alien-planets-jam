@@ -16,8 +16,17 @@ public class PlayerBuilding : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GameInput.Instance.OnPlayerInteractPressed += GameInput_OnPlayerInteractPressed;
+        GameInput.Instance.OnShootInputPressed += GameInput_OnShootInputPressed;
         Player.Instance.OnPlayerStateChanged += Player_OnPlayerStateChanged;
+        
+    }
+
+    private void GameInput_OnShootInputPressed(object sender, System.EventArgs e)
+    {
+        if (isBuilding && canPlaceObject)
+        {
+            buildCurrentStructure(); 
+        }
     }
 
     private void Player_OnPlayerStateChanged(object sender, Player.OnPlayerStateChangedArgs e)
@@ -39,14 +48,6 @@ public class PlayerBuilding : MonoBehaviour
             {
                 Destroy(planetStructurePlacementVisualTransform.gameObject);
             }
-        }
-    }
-
-    private void GameInput_OnPlayerInteractPressed(object sender, System.EventArgs e)
-    {
-        if (isBuilding && canPlaceObject)
-        {
-            buildCurrentStructure(); 
         }
     }
 

@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void SetJetPackEffects(Vector2 playerMovement)
     {
-        if (playerMovement.y > 0)
+        if (playerMovement.y > 0 && Player.Instance.hasFuel())
         {
             CameraManager.Instance.SetShakeCamera(0.35f);
             jetPackFireParticleSystem.gameObject.SetActive(true);
@@ -118,6 +118,8 @@ public class PlayerMovement : MonoBehaviour
         if (playerMovement.y > 0)
         {
             playerDirection = transform.up;
+            Player.Instance.UseFuel();
+
         }
         transform.position += playerDirection * jumpForce * Time.deltaTime;
         // not on planet movement
@@ -132,7 +134,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 toPlanetDirection = toPlanet.normalized;
         Vector3 toPlayerDirection = -toPlanetDirection;
 
-        Debug.Log("Player Position: " + transform.position);
         if (OnGround())
         {
             //Debug.Log("on ground");
@@ -145,9 +146,10 @@ public class PlayerMovement : MonoBehaviour
         }
         
 
-        if (playerMovement.y > 0 && canUseJetPack)
+        if (playerMovement.y > 0 && canUseJetPack && Player.Instance.hasFuel())
         {
             transform.position += toPlayerDirection * jumpForce * Time.deltaTime;
+            Player.Instance.UseFuel();
         }
 
         float distanceFromPlanet = (transform.position - currentPlanet.transform.position).magnitude;

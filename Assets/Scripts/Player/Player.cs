@@ -2,6 +2,7 @@ using System;
 using Unity.Hierarchy;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class Player : MonoBehaviour
         combat,
         building
     }
+
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float maxOilAmount;
+    [SerializeField] private float fuelBurnRate;
+    [SerializeField] private LayerMask interactableObjectsLayer;
+
 
 
     public static Player Instance { get; private set; }
@@ -29,34 +36,46 @@ public class Player : MonoBehaviour
     }
 
 
-    public event EventHandler<OnFuelUpdatedArgs> OnFuelUpdated;
-    public class OnFuelUpdatedArgs : EventArgs
+    public event EventHandler<OnOilUpdatedArgs> OnOilUpdated;
+    public class OnOilUpdatedArgs : EventArgs
     {
         public float updatedFuel;
         public float maxFuel;
     }
 
 
-    [SerializeField] private float maxHealth;
-    [SerializeField] private float maxFuelAmount;
 
     private float health;
-    private float fuelAmount;
+    private float currentOilAmount;
     private PlayerStates currentPlayerState = PlayerStates.combat;
-
 
     private void Awake()
     {
         Instance = this;
         health = maxHealth;
-        fuelAmount = maxFuelAmount;
+        currentOilAmount = maxOilAmount / 3f;
     }
 
     private void Start()
     {
         OnHealthUpdated?.Invoke(this, new OnHealthUpdatedArgs { maxHealth = maxHealth, updatedHealth = health });
         OnPlayerStateChanged?.Invoke(this, new OnPlayerStateChangedArgs { playerState = currentPlayerState });
+
         GameInput.Instance.OnChangePlayerStatePressed += GameInput_OnChangePlayerStatePressed;
+        GameInput.Instance.OnPlayerInteractPressed += GameInput_OnPlayerInteractPressed;
+    }
+
+    private void GameInput_OnPlayerInteractPressed(object sender, EventArgs e)
+    {
+        float circleRadius = GetComponent<CircleCollider2D>().radius * 1.5f;
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, circleRadius, Vector2.right, 0, interactableObjectsLayer);
+        if (hit)
+        {
+            hit.collider.GetComponent<PlanetObject>().Interact(this);
+        }
+
+        // TODO: Shoot out ray or something to detect shit
+
     }
 
     private void GameInput_OnChangePlayerStatePressed(object sender, EventArgs e)
@@ -80,13 +99,27 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Player has died");
         }
+    }
 
+    public void UseFuel()
+    {
+        currentOilAmount -= Time.deltaTime * fuelBurnRate;
+        if (currentOilAmount < 0 ) 
+        {
+            currentOilAmount = 0;
+        }
     }
 
     public void SetState(PlayerStates playerState)
     {
         currentPlayerState = playerState;
         OnPlayerStateChanged?.Invoke(this, new OnPlayerStateChangedArgs { playerState = currentPlayerState });
+    }
+
+    public void AddOil(float oilAmount)
+    {
+        currentOilAmount += oilAmount;
+        print("Player oil amount:" + currentOilAmount);
     }
 
     public float GetHealth()
@@ -99,15 +132,19 @@ public class Player : MonoBehaviour
         return maxHealth;
     }
 
-    public float GetFuelAmount()
+    public float GetOilAmount()
     {
-        return fuelAmount;
+        return currentOilAmount;
+    }
+    public float GetMaxOilAmount()
+    {
+        return maxOilAmount;
     }
 
-    public float GetMaxFuelAmount()
+    public bool hasFuel()
     {
-        return maxFuelAmount;
+        return currentOilAmount > 0;
     }
 
-
+ 
 }

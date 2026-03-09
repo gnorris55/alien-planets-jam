@@ -23,6 +23,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private WeaponType currentWeapon = WeaponType.pistol;
     private bool isShooting = false;
+    private bool inCombat = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,6 +31,8 @@ public class PlayerWeapon : MonoBehaviour
         GameInput.Instance.OnShootInputPressed += GameInput_OnShootInputPressed;
         GameInput.Instance.OnShootInputReleased += GameInput_OnShootInputReleased;
         GameInput.Instance.OnSwapWeaponInputPressed += GameInput_OnSwapWeaponInputPressed;
+
+        Player.Instance.OnPlayerStateChanged += Player_OnPlayerStateChanged;
 
         SetUpWeaponUnlockList();
 
@@ -42,21 +45,37 @@ public class PlayerWeapon : MonoBehaviour
 
     }
 
+    private void Player_OnPlayerStateChanged(object sender, Player.OnPlayerStateChangedArgs e)
+    {
+        if (e.playerState == Player.PlayerStates.combat)
+        {
+            inCombat = true;
+        }
+        else
+        {
+            inCombat = false;
+        }
+    }
+
     private void GameInput_OnSwapWeaponInputPressed(object sender, EventArgs e)
     {
-
-        int weaponIndex = ((int)currentWeapon + 1) % weaponIsUnlockedList.Count;
-        while(true)
+        if (inCombat)
         {
-            if (weaponIsUnlockedList[weaponIndex])
-            {
-                currentWeapon = (WeaponType)weaponIndex;
-                break;
-            }
-            weaponIndex = (weaponIndex + 1) % weaponIsUnlockedList.Count;
-        }
 
-        Debug.Log(currentWeapon);
+
+            int weaponIndex = ((int)currentWeapon + 1) % weaponIsUnlockedList.Count;
+            while (true)
+            {
+                if (weaponIsUnlockedList[weaponIndex])
+                {
+                    currentWeapon = (WeaponType)weaponIndex;
+                    break;
+                }
+                weaponIndex = (weaponIndex + 1) % weaponIsUnlockedList.Count;
+            }
+
+            Debug.Log(currentWeapon);
+        }
     }
 
     private void GameInput_OnShootInputReleased(object sender, EventArgs e)
@@ -67,36 +86,40 @@ public class PlayerWeapon : MonoBehaviour
 
     private void GameInput_OnShootInputPressed(object sender, System.EventArgs e)
     {
-        
-        isShooting = true;
-
-        if (currentWeapon == WeaponType.pistol)
-        {
-            Vector3 shootDirection = (bulletSpawnTransform.position - transform.position).normalized;
-            SpawnBullet(shootDirection, 1f, 5f);
-
-            CameraManager.Instance.ShakeCamera(1f, 0.1f);
-        }
-        else if (currentWeapon == WeaponType.shotgun)
+        if (inCombat)
         {
 
-           
-            int numShotGunBullets = 5;
-            float shotgunSpreadAngle = 2.5f;
 
-            Vector3 shootDirection = (bulletSpawnTransform.position - transform.position).normalized;
+            isShooting = true;
 
-            for (int i = -(numShotGunBullets/2); i < (numShotGunBullets / 2) + 1; i++)
-            { 
-                float spreadAngle = shotgunSpreadAngle * ((float)i / (numShotGunBullets / 2));
-                Quaternion shotgunSpread = Quaternion.Euler(0, 0, spreadAngle);
+            if (currentWeapon == WeaponType.pistol)
+            {
+                Vector3 shootDirection = (bulletSpawnTransform.position - transform.position).normalized;
+                SpawnBullet(shootDirection, 1f, 6f);
 
-                Vector3 angledShootDirection = shotgunSpread * shootDirection;
-                SpawnBullet(angledShootDirection, 1f, 3f, 1f);
+                CameraManager.Instance.ShakeCamera(1f, 0.1f);
             }
+            else if (currentWeapon == WeaponType.shotgun)
+            {
 
 
-            CameraManager.Instance.ShakeCamera(1f, 0.1f);
+                int numShotGunBullets = 5;
+                float shotgunSpreadAngle = 2.5f;
+
+                Vector3 shootDirection = (bulletSpawnTransform.position - transform.position).normalized;
+
+                for (int i = -(numShotGunBullets / 2); i < (numShotGunBullets / 2) + 1; i++)
+                {
+                    float spreadAngle = shotgunSpreadAngle * ((float)i / (numShotGunBullets / 2));
+                    Quaternion shotgunSpread = Quaternion.Euler(0, 0, spreadAngle);
+
+                    Vector3 angledShootDirection = shotgunSpread * shootDirection;
+                    SpawnBullet(angledShootDirection, 1f, 4f, 0.5f);
+                }
+
+
+                CameraManager.Instance.ShakeCamera(1f, 0.1f);
+            }
         }
 
 
@@ -113,15 +136,6 @@ public class PlayerWeapon : MonoBehaviour
     {
         weaponIsUnlockedList[(int)unlockedWeapon] = true;
         currentWeapon = unlockedWeapon;
-    }
-
-
-    private void SwapWeapon(WeaponType weaponType)
-    {
-        if (weaponIsUnlockedList[(int)weaponType])
-        {
-            currentWeapon = weaponType;
-        }
     }
 
     // Update is called once per frame

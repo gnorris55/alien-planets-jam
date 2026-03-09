@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 6067612338517623266, guid: 8341907ee0cfc294391dd2c3761c6b1f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 5704210298252384231}
   - component: {fileID: 2670738228610745619}
   - component: {fileID: 7289851852700827390}
+  - component: {fileID: -5880877707079759423}
   m_Layer: 7
   m_Name: Bullet
   m_TagString: Untagged
@@ -216,3 +217,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.020281792, y: 0.010183334}
   m_EdgeRadius: 0
+--- !u!114 &-5880877707079759423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7337260627379456849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Postprocessing.Runtime::UnityEngine.Rendering.PostProcessing.PostProcessVolume
+  sharedProfile: {fileID: 11400000, guid: c3e5c5ab3c4b2ef4781e59fdff585b7a, type: 2}
+  isGlobal: 0
+  blendDistance: 0
+  weight: 1
+  priority: 0

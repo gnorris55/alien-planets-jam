@@ -1,9 +1,17 @@
 using System;
 using Unity.Hierarchy;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    public enum PlayerStates
+    {
+        combat,
+        building
+    }
+
 
     public static Player Instance { get; private set; }
 
@@ -13,6 +21,13 @@ public class Player : MonoBehaviour
         public float updatedHealth;
         public float maxHealth;
     }
+
+    public event EventHandler<OnPlayerStateChangedArgs> OnPlayerStateChanged;
+    public class OnPlayerStateChangedArgs : EventArgs
+    {
+        public PlayerStates playerState;
+    }
+
 
     public event EventHandler<OnFuelUpdatedArgs> OnFuelUpdated;
     public class OnFuelUpdatedArgs : EventArgs
@@ -27,6 +42,7 @@ public class Player : MonoBehaviour
 
     private float health;
     private float fuelAmount;
+    private PlayerStates currentPlayerState = PlayerStates.combat;
 
 
     private void Awake()
@@ -39,6 +55,22 @@ public class Player : MonoBehaviour
     private void Start()
     {
         OnHealthUpdated?.Invoke(this, new OnHealthUpdatedArgs { maxHealth = maxHealth, updatedHealth = health });
+        OnPlayerStateChanged?.Invoke(this, new OnPlayerStateChangedArgs { playerState = currentPlayerState });
+        GameInput.Instance.OnChangePlayerStatePressed += GameInput_OnChangePlayerStatePressed;
+    }
+
+    private void GameInput_OnChangePlayerStatePressed(object sender, EventArgs e)
+    {
+
+        if (gameObject.GetComponent<PlayerMovement>().GetCurrentPlanet() != null)
+        {
+            int numPlayerStates = Enum.GetNames(typeof(PlayerStates)).Length;
+            int nextState = ((int)currentPlayerState + 1) % numPlayerStates;
+
+            currentPlayerState = (PlayerStates)nextState;
+            OnPlayerStateChanged?.Invoke(this, new OnPlayerStateChangedArgs { playerState = currentPlayerState });
+            Debug.Log(currentPlayerState.ToString());
+        }
     }
 
     private void TakeDamage(float damageAmount)
@@ -50,6 +82,13 @@ public class Player : MonoBehaviour
         }
 
     }
+
+    public void SetState(PlayerStates playerState)
+    {
+        currentPlayerState = playerState;
+        OnPlayerStateChanged?.Invoke(this, new OnPlayerStateChangedArgs { playerState = currentPlayerState });
+    }
+
     public float GetHealth()
     {
         return health;
@@ -69,5 +108,6 @@ public class Player : MonoBehaviour
     {
         return maxFuelAmount;
     }
+
 
 }

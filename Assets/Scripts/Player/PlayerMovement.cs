@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 //using UnityEngine.Windows;
 
 public class PlayerMovement : MonoBehaviour
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 20f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private ParticleSystem jetPackFireParticleSystem;
+    [SerializeField] private Light2D jetPackLight;
     
     private Planet currentPlanet;
     private float jetPackActivationTimer;
@@ -81,9 +83,6 @@ public class PlayerMovement : MonoBehaviour
         
 
         lastMovement = playerMovement;
-
-
-
     }
 
     
@@ -94,11 +93,13 @@ public class PlayerMovement : MonoBehaviour
             CameraManager.Instance.SetShakeCamera(0.35f);
             jetPackFireParticleSystem.gameObject.SetActive(true);
             jetPackFireParticleSystem.Play();
+            jetPackLight.intensity = 10;
         }
         else if (playerMovement.y == 0 && lastMovement.y > 0) {
             CameraManager.Instance.SetShakeCamera(0.0f);
             jetPackFireParticleSystem.gameObject.SetActive(false);
             jetPackFireParticleSystem.Pause();
+            jetPackLight.intensity = 0;
         }
 
     }
@@ -131,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 toPlanetDirection = toPlanet.normalized;
         Vector3 toPlayerDirection = -toPlanetDirection;
 
-
+        Debug.Log("Player Position: " + transform.position);
         if (OnGround())
         {
             //Debug.Log("on ground");
@@ -153,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         // if the player moves it will rotate them around the planet
-        transform.position = GetNewPlanetPosition(-playerMovement.x, toPlayerDirection, distanceFromPlanet) + currentPlanet.transform.position;
+        transform.position = GetNewPlanetPosition(-playerMovement.x, toPlayerDirection, distanceFromPlanet);
 
         // rotate the player
         float angle = Mathf.Atan2(toPlayerDirection.y, toPlanetDirection.x) * Mathf.Rad2Deg - 90;
@@ -162,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private Vector3 GetNewPlanetPosition(float horizontalMovement, Vector2 currentDir, float distanceFromPlanet)
+    public Vector3 GetNewPlanetPosition(float horizontalMovement, Vector2 currentDir, float distanceFromPlanet)
     {
         float angle = Mathf.Atan2(currentDir.y, currentDir.x);
 
@@ -171,12 +172,11 @@ public class PlayerMovement : MonoBehaviour
 
         float rotationAmount = horizontalMovement * speed * radiusEffect* Time.deltaTime;
 
-
         angle += rotationAmount;
 
         float positionRadius = Mathf.Clamp(distanceFromPlanet, currentPlanet.GetComponent<CircleCollider2D>().radius, 100 + circleRadius);
         
-        return new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * positionRadius;
+        return new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * positionRadius + currentPlanet.transform.position;
     }
 
 
@@ -195,6 +195,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "PlanetAtmosphere")
         {
+            gameObject.GetComponent<Player>().SetState(Player.PlayerStates.combat);
             Debug.Log("exited: " + currentPlanet.GetPlanetName());
             currentPlanet = null;
             canUseJetPack = false;
@@ -211,6 +212,11 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 GetMovementVector()
     {
         return lastMovement;
+    }
+
+    public Planet GetCurrentPlanet()
+    {
+        return currentPlanet;
     }
     
 }

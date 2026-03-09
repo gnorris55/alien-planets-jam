@@ -11,10 +11,14 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnShootInputPressed;
     public event EventHandler OnShootInputReleased;
     public event EventHandler OnSwapWeaponInputPressed;
+    public event EventHandler OnPlayerInteractPressed;
+    public event EventHandler OnChangePlayerStatePressed;
 
     [SerializeField] InputActionReference moveInput;
     [SerializeField] InputActionReference shootInput;
     [SerializeField] InputActionReference swapWeaponInput;
+    [SerializeField] InputActionReference playerInteractInput;
+    [SerializeField] InputActionReference changePlayerStateInput;
 
     //[SerializeField] InputActionReference shoot;
 
@@ -28,7 +32,19 @@ public class GameInput : MonoBehaviour
     {
         shootInput.action.started += ShootInput_started;
         shootInput.action.canceled += ShootInput_canceled;
-        swapWeaponInput.action.started += Action_started;
+        swapWeaponInput.action.started += SwapWeaponInput_started;
+        playerInteractInput.action.started += PlayerInput_started;
+        changePlayerStateInput.action.started += ChangePlayerStateInput_started;
+    }
+
+    private void ChangePlayerStateInput_started(InputAction.CallbackContext obj)
+    {
+        OnChangePlayerStatePressed?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void PlayerInput_started(InputAction.CallbackContext obj)
+    {
+        OnPlayerInteractPressed?.Invoke(this, EventArgs.Empty);
     }
 
     private void ShootInput_canceled(InputAction.CallbackContext obj)
@@ -36,7 +52,7 @@ public class GameInput : MonoBehaviour
         OnShootInputReleased?.Invoke(this, EventArgs.Empty);
     }
 
-    private void Action_started(InputAction.CallbackContext obj)
+    private void SwapWeaponInput_started(InputAction.CallbackContext obj)
     {
         OnSwapWeaponInputPressed?.Invoke(this, EventArgs.Empty);
     }

@@ -65,6 +65,23 @@ public class Planet : MonoBehaviour
 
     }
 
+    public List<OilStorage> GetOilStorageStructuresOnPlanet()
+    {
+        List<OilStorage> oilStorageStructures = new List<OilStorage>();
+        foreach (PlanetObject planetStructure in planetStructures)
+        {
+            if (planetStructure is OilStorage)
+            {
+                oilStorageStructures.Add((OilStorage)planetStructure);
+                
+            }
+
+
+        }
+
+        return oilStorageStructures;
+    } 
+
     public void PlanetHit(Vector3 location, float hitAngle)
     {
         planetVisuals.CreatePlanetHitEffect(location, hitAngle);

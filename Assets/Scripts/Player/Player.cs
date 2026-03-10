@@ -133,7 +133,6 @@ public class Player : MonoBehaviour
                     closestInteractablePlanetObject = planetObject;
                 }
             }
-            print(planetObject);
 
         }
 
@@ -151,7 +150,6 @@ public class Player : MonoBehaviour
 
             currentPlayerState = (PlayerStates)nextState;
             OnPlayerStateChanged?.Invoke(this, new OnPlayerStateChangedArgs { playerState = currentPlayerState });
-            Debug.Log(currentPlayerState.ToString());
         }
     }
 

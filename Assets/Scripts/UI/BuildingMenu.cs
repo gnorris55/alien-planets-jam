@@ -42,11 +42,9 @@ public class BuildingMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         GameInput.Instance.ToggleShootInput(false);
         // Put your logic here (e.g., showing a tooltip or changing color)
-        Debug.Log("Mouse entered the building menu!");
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("Mouse left the building menu!");
         GameInput.Instance.ToggleShootInput(true);
     }
 

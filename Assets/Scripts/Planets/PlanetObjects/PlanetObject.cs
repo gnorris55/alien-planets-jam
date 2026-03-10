@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class PlanetObject: MonoBehaviour
@@ -7,6 +8,14 @@ public class PlanetObject: MonoBehaviour
 
 
     protected bool isInteractable = true;
+
+    private void Start()
+    {
+        Sequence mySequence = DOTween.Sequence();
+        mySequence.Append(transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.15f));
+        mySequence.Append(transform.DOScale(new Vector3(1f, 1f, 1f), 0.25f));
+    }
+
     public virtual void Interact(Player player)
     {
 

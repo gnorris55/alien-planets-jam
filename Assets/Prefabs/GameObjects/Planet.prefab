@@ -378,14 +378,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1299fc2516276e948b6e6b07ff3f7ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Planet
-  planetVisual: {fileID: 1767106221343017551}
   gravityScalar: 1.5
   planetName: Earth
   planetRadius: 2
   atmosphereRadius: 3
-  miniMapVisual: {fileID: 1082174633363432124}
   buildingParticleSystem: {fileID: 4017512891986059246, guid: 805df9546e243e440b55a174711c1692, type: 3}
   planetAtmosphere: {fileID: 7031666206171900058}
+  planetVisuals: {fileID: 3353497964771147189}
 --- !u!1 &8575931479670837379
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,6 +395,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1767106221343017551}
   - component: {fileID: 162992858431263527}
+  - component: {fileID: 3353497964771147189}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -477,3 +477,19 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &3353497964771147189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8575931479670837379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3b366cd0135004b91c41e978226d6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlanetVisuals
+  planet: {fileID: 8275285212673470864}
+  planetColor: {r: 0.32983267, g: 0.6415094, b: 0.45201522, a: 0}
+  miniMapVisual: {fileID: 1082174633363432124}
+  planetHitParticleEffect: {fileID: 1855568903275695687, guid: 4f6ca6caaa0c7d846922bb9fe6f5555d, type: 3}

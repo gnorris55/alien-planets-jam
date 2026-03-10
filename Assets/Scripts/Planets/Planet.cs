@@ -4,15 +4,14 @@ using System.Collections.Generic;
 public class Planet : MonoBehaviour
 {
 
-    [SerializeField] private Transform planetVisual;
     [SerializeField] private float gravityScalar;
     [SerializeField] private string planetName;
     [SerializeField] private float planetRadius;
     [SerializeField] private float atmosphereRadius;
-    [SerializeField] private Transform miniMapVisual;
+    
     [SerializeField] private ParticleSystem buildingParticleSystem;
-
     [SerializeField] PlanetAtmosphere planetAtmosphere;
+    [SerializeField] PlanetVisuals planetVisuals;
 
     private List<PlanetObject> planetStructures = new List<PlanetObject>();
 
@@ -22,8 +21,26 @@ public class Planet : MonoBehaviour
         GetComponent<CircleCollider2D>().radius = planetRadius;
         planetAtmosphere.SetAtmosphereRadius(atmosphereRadius);
 
-        planetVisual.localScale *= planetRadius;
-        miniMapVisual.localScale *= planetRadius;
+    }
+
+    // Gets the position on the planet so that objects obey laws of gravity for each planet, i.e. moving around it
+    public Vector3 GetPlanetPosition(float horizontalMovement, Vector2 currentDir, Vector3 position, float objectRadius, float objectSpeed)
+    {
+
+        float distanceFromPlanet = Vector3.Distance(position, transform.position);
+
+        float angle = Mathf.Atan2(currentDir.y, currentDir.x);
+
+        // This is the standard planet radius
+        float radiusEffect = (4 * Mathf.PI) / (2 * Mathf.PI * planetRadius);
+
+        float rotationAmount = horizontalMovement * objectSpeed * radiusEffect* Time.deltaTime;
+
+        angle += rotationAmount;
+
+        float positionRadius = Mathf.Clamp(distanceFromPlanet, planetRadius, 100 + objectRadius);
+        
+        return new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * positionRadius + transform.position;
     }
 
     public void PlaceObjectOnPlanet(PlanetObject planetObject, Vector3 objectPosition, Vector3 objectDirection)
@@ -48,6 +65,11 @@ public class Planet : MonoBehaviour
 
     }
 
+    public void PlanetHit(Vector3 location, float hitAngle)
+    {
+        planetVisuals.CreatePlanetHitEffect(location, hitAngle);
+    }
+
     public float GetPlanetRadius()
     {
         return planetRadius;
@@ -67,5 +89,7 @@ public class Planet : MonoBehaviour
     {
         return planetStructures;
     }
+
+   
 }
 

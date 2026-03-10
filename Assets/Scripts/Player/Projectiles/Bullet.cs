@@ -67,11 +67,13 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((groundLayer.value & (1 << collision.gameObject.layer)) != 0)
+        if (collision.gameObject.TryGetComponent(out Planet planetHit))
         {
+
             Vector3 planetHitDirection = (transform.position - currentPlanet.transform.position).normalized;
-            float planetAngle = Mathf.Atan2(planetHitDirection.y, planetHitDirection.x) * Mathf.Rad2Deg;
-            Instantiate(groundExplosionParticleSystem, transform.position, Quaternion.Euler(0, 0, planetAngle));
+            float planetHitAngle = Mathf.Atan2(planetHitDirection.y, planetHitDirection.x) * Mathf.Rad2Deg;
+            planetHit.PlanetHit(transform.position, planetHitAngle);
+
             Destroy(gameObject);
         }
     }

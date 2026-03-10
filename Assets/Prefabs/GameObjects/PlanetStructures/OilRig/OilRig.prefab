@@ -124,7 +124,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OilRig
   width: 0
   maxOilAmount: 100
-  oilAccumulationSpeed: 2
+  oilAccumulationSpeed: 25
+  oilHarvestSpeed: 100
 --- !u!61 &925096294506189575
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -159,7 +160,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0008504391, y: 0.030094862}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -373,7 +374,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7483132229640780612}
-  - component: {fileID: 2154320234401145825}
+  - component: {fileID: 1491133918377815616}
   m_Layer: 0
   m_Name: OilAmountProgressBar
   m_TagString: Untagged
@@ -402,7 +403,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2154320234401145825
+--- !u!114 &1491133918377815616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -415,7 +416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OilProgressBar
   oilProgressFill: {fileID: 1423920634099717496}
-  oilRig: {fileID: 5563090197499670405}
+  oilStorageDeviceGameObject: {fileID: 2818738100870576445}
 --- !u!1 &7344931838548412457
 GameObject:
   m_ObjectHideFlags: 0

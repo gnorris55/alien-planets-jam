@@ -7,7 +7,6 @@ public class PlayerBuilding : MonoBehaviour
 
     public static PlayerBuilding Instance { get; private set; }
     [SerializeField] PlanetStructureSO currentPlanetStructureSO;
-    [SerializeField] GameObject playerParent;
 
 
 
@@ -15,7 +14,8 @@ public class PlayerBuilding : MonoBehaviour
     private bool canPlaceObject = true;
     private float placementDistance = -1.1f;
     private Transform planetStructurePlacementVisualTransform;
-
+    private Player player;
+        
     private void Awake()
     {
         Instance = this;
@@ -23,7 +23,7 @@ public class PlayerBuilding : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        player = Player.Instance;
         GameInput.Instance.OnShootInputPressed += GameInput_OnShootInputPressed;
         Player.Instance.OnPlayerStateChanged += Player_OnPlayerStateChanged;
        
@@ -62,7 +62,7 @@ public class PlayerBuilding : MonoBehaviour
     private void buildCurrentStructure()
     {
 
-        Planet currentPlanet = playerParent.GetComponent<PlayerMovement>().GetCurrentPlanet();
+        Planet currentPlanet = player.GetCurrentPlanet();
         GetObjectPlacement(out Vector3 placementLocation, out Vector3 placementDirection);
         currentPlanet.PlaceObjectOnPlanet(currentPlanetStructureSO.structureGameObject, placementLocation, placementDirection);
         
@@ -72,12 +72,10 @@ public class PlayerBuilding : MonoBehaviour
 
     private void GetObjectPlacement(out Vector3 placementLocation,  out Vector3 placementDirection)
     {
-        PlayerMovement playerMovement = playerParent.GetComponent<PlayerMovement>();
-        Planet currentPlanet = playerMovement.GetCurrentPlanet();
-        placementLocation = playerMovement.GetNewPlanetPosition(placementDistance, playerMovement.transform.up, currentPlanet.GetPlanetRadius());
-        placementDirection = (placementLocation - currentPlanet.transform.position).normalized;
-        
+        Planet currentPlanet = player.GetCurrentPlanet();
 
+        placementLocation = currentPlanet.GetPlanetPosition(placementDistance, player.transform.up, player.transform.position, 0, 0.75f);
+        placementDirection = (placementLocation - currentPlanet.transform.position).normalized;
     }
 
     private void SetColorOverlayForObjectPlacement(Vector4 colorOverlay)
@@ -95,7 +93,7 @@ public class PlayerBuilding : MonoBehaviour
             planetStructurePlacementVisualTransform.position = placementLocation;
             planetStructurePlacementVisualTransform.up = placementDirection;
 
-            Planet currentPlanet = playerParent.GetComponent<PlayerMovement>().GetCurrentPlanet();
+            Planet currentPlanet = player.GetCurrentPlanet();
 
             canPlaceObject = currentPlanet.CanPlaceObjectOnPlanet(currentPlanetStructureSO.size, planetStructurePlacementVisualTransform.position);
             

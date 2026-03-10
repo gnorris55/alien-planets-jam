@@ -9,13 +9,7 @@ public class PlayerAnimator : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        PlayerMovement.Instance.OnPlayerMoved += PlayerMovement_OnPlayerMoved;
 
-    }
-
-    private void PlayerMovement_OnPlayerMoved(object sender, PlayerMovement.OnPlayerMovedArgs e)
-    {
-        Debug.Log("Player has moved");
     }
 
     // Update is called once per frame

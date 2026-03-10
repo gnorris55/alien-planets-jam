@@ -731,6 +731,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mars
       objectReference: {fileID: 0}
+    - target: {fileID: 3353497964771147189, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: planetColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3353497964771147189, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: planetColor.g
+      value: 0.3918121
+      objectReference: {fileID: 0}
+    - target: {fileID: 3353497964771147189, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: planetColor.r
+      value: 0.9339623
+      objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: planetName
       value: Mars
@@ -742,6 +754,22 @@ PrefabInstance:
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: gravityScalar
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: planetColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: planetColor.b
+      value: 0.13510147
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: planetColor.g
+      value: 0.3686385
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: planetColor.r
+      value: 0.8679245
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: atmosphereRadius
@@ -2311,7 +2339,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBuilding
   currentPlanetStructureSO: {fileID: 11400000, guid: b286e1e814865394c9fe299867abf07c, type: 2}
-  playerParent: {fileID: 624801647}
 --- !u!1 &1088082407
 GameObject:
   m_ObjectHideFlags: 0
@@ -2693,6 +2720,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Saturn
       objectReference: {fileID: 0}
+    - target: {fileID: 3353497964771147189, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: planetColor.b
+      value: 0.029859383
+      objectReference: {fileID: 0}
+    - target: {fileID: 3353497964771147189, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: planetColor.g
+      value: 0.43338498
+      objectReference: {fileID: 0}
+    - target: {fileID: 3353497964771147189, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: planetColor.r
+      value: 0.5754717
+      objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: planetName
       value: Saturn
@@ -2704,6 +2743,22 @@ PrefabInstance:
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: gravityScalar
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: planetColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: planetColor.b
+      value: 0.20572266
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: planetColor.g
+      value: 0.4630336
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: planetColor.r
+      value: 0.6509434
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: atmosphereRadius
@@ -8549,6 +8604,22 @@ PrefabInstance:
     - target: {fileID: 3157754451680293103, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: m_Name
       value: Earth
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: planetColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: planetColor.b
+      value: 0.41998932
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: planetColor.g
+      value: 0.6226415
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: planetColor.r
+      value: 0.43295902
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: atmosphereRadius

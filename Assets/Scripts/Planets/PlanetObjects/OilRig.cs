@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class OilRig : PlanetObject
+public class OilRig : PlanetObject, IOilStorageDevice
 {
     [SerializeField] private float maxOilAmount = 100.0f;
     [SerializeField] private float oilAccumulationSpeed = 0.05f;
@@ -18,9 +18,9 @@ public class OilRig : PlanetObject
         playerIsHarvestingOil = true;
     }
 
-    public override void InteractStopped(Player player)
+    public override void InteractStopped()
     {
-        playerIsHarvestingOil=false;
+        playerIsHarvestingOil = false;
     }
 
     public override void ShowInteractable()
@@ -33,6 +33,10 @@ public class OilRig : PlanetObject
         if (currentOilAmount < maxOilAmount)
         {
             fillOil();
+            if (!isInteractable && (currentOilAmount / maxOilAmount) > 0.1)
+            {
+                isInteractable = true;
+            }
         }
         if (playerIsHarvestingOil && currentOilAmount > 0)
         {
@@ -46,12 +50,9 @@ public class OilRig : PlanetObject
 
     private void fillOil()
     {
-        currentOilAmount += oilAccumulationSpeed * Time.deltaTime;
+        float oilProduced = oilAccumulationSpeed * Time.deltaTime;
 
-        if (currentOilAmount > maxOilAmount)
-        {
-            currentOilAmount = maxOilAmount;
-        }
+        AddOil(oilProduced);
     }
     private void TransferOilToPlayer()
     {
@@ -59,27 +60,21 @@ public class OilRig : PlanetObject
         Player player = Player.Instance;
         
         float oilTransferAmount = Time.deltaTime * oilHarvestSpeed;
-        if ((player.GetOilAmount() + oilTransferAmount) > player.GetMaxOilAmount())
+        
+        float leftOverOil = player.AddOil(oilTransferAmount);
+
+        currentOilAmount = currentOilAmount - oilTransferAmount + leftOverOil;
+
+        if ((currentOilAmount / maxOilAmount) < 0.05)
         {
-            float oilTankRoomLeft = player.GetMaxOilAmount() - player.GetOilAmount();
-            player.AddOil(oilTankRoomLeft);
-            currentOilAmount -= oilTankRoomLeft;
-            playerIsHarvestingOil = false;
+            isInteractable = false;
         }
-        else
+
+        if ((currentOilAmount / maxOilAmount) < 0.01)
         {
-            if (currentOilAmount < oilTransferAmount)
-            {
-                player.AddOil(currentOilAmount);
-                currentOilAmount = 0;
-                playerIsHarvestingOil = false;
-            }
-            else
-            {
-                player.AddOil(oilTransferAmount);    
-                currentOilAmount -= oilTransferAmount;
-            }
+            InteractStopped();
         }
+
     }
 
     public float GetOilAmount()
@@ -90,5 +85,19 @@ public class OilRig : PlanetObject
     public float GetMaxOilAmount()
     {
         return maxOilAmount;
+    }
+
+    public float AddOil(float oilAmount)
+    {
+        currentOilAmount += oilAmount;
+
+        float leftOverOil = Mathf.Clamp(currentOilAmount - maxOilAmount, 0, maxOilAmount);
+        if (leftOverOil > 0)
+        {
+            currentOilAmount = maxOilAmount;
+        }
+
+        return leftOverOil;
+
     }
 }

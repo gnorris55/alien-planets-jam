@@ -257,7 +257,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.047058824, g: 0.96862745, b: 0.9764706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -384,6 +384,7 @@ MonoBehaviour:
   planetRadius: 2
   atmosphereRadius: 3
   miniMapVisual: {fileID: 1082174633363432124}
+  buildingParticleSystem: {fileID: 4017512891986059246, guid: 805df9546e243e440b55a174711c1692, type: 3}
   planetAtmosphere: {fileID: 7031666206171900058}
 --- !u!1 &8575931479670837379
 GameObject:

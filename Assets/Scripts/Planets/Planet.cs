@@ -10,6 +10,7 @@ public class Planet : MonoBehaviour
     [SerializeField] private float planetRadius;
     [SerializeField] private float atmosphereRadius;
     [SerializeField] private Transform miniMapVisual;
+    [SerializeField] private ParticleSystem buildingParticleSystem;
 
     [SerializeField] PlanetAtmosphere planetAtmosphere;
 
@@ -30,6 +31,7 @@ public class Planet : MonoBehaviour
         Vector3 positionOnPlanet = (objectPosition - transform.position).normalized * planetRadius;
         GameObject planetStructure = Instantiate(planetObject.gameObject, objectPosition, Quaternion.identity);
         planetStructure.transform.up = objectDirection;
+        Instantiate(buildingParticleSystem, objectPosition, Quaternion.identity);
 
         planetStructures.Add(planetStructure.GetComponent<PlanetObject>());
     }

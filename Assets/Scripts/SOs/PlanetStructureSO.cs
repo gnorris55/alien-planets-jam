@@ -7,4 +7,5 @@ public class PlanetStructureSO : ScriptableObject
     public PlanetObject structureGameObject;
     public GameObject structureOutline;
     public float size;
+    public Sprite sprite;
 }

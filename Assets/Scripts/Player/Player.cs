@@ -2,6 +2,7 @@ using System;
 using Unity.Hierarchy;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Splines.Interpolators;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class Player : MonoBehaviour
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour
 
     private float health;
     private float currentOilAmount;
+    private PlanetObject currentInteractablePlanetObject;
     private PlayerStates currentPlayerState = PlayerStates.combat;
 
     private void Awake()
@@ -58,25 +60,69 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        OnHealthUpdated?.Invoke(this, new OnHealthUpdatedArgs { maxHealth = maxHealth, updatedHealth = health });
-        OnPlayerStateChanged?.Invoke(this, new OnPlayerStateChangedArgs { playerState = currentPlayerState });
 
         GameInput.Instance.OnChangePlayerStatePressed += GameInput_OnChangePlayerStatePressed;
         GameInput.Instance.OnPlayerInteractPressed += GameInput_OnPlayerInteractPressed;
+        GameInput.Instance.OnPlayerInteractReleased += GameInput_OnPlayerInteractReleased;
+
+        OnHealthUpdated?.Invoke(this, new OnHealthUpdatedArgs { maxHealth = maxHealth, updatedHealth = health });
+        OnPlayerStateChanged?.Invoke(this, new OnPlayerStateChangedArgs { playerState = currentPlayerState });
+
+    }
+
+    private void GameInput_OnPlayerInteractReleased(object sender, EventArgs e)
+    {
+        if (currentInteractablePlanetObject)
+        {
+            currentInteractablePlanetObject.InteractStopped(this);
+        }
+        
     }
 
     private void GameInput_OnPlayerInteractPressed(object sender, EventArgs e)
+    {
+        if (currentInteractablePlanetObject)
+        {
+            currentInteractablePlanetObject.Interact(this);
+        }
+        
+
+        // TODO: Shoot out ray or something to detect shit
+
+    }
+    private void Update()
+    {
+        
+        Collider2D collider = GetInteractableObjects();
+        if (collider != null && collider.TryGetComponent(out PlanetObject planetObject))
+        {
+            if (currentInteractablePlanetObject != planetObject)
+            {
+                currentInteractablePlanetObject = planetObject;
+                currentInteractablePlanetObject.ShowInteractable();
+            }
+        }
+        else
+        {
+            if (currentInteractablePlanetObject != null)
+            {
+                currentInteractablePlanetObject.HideInteractable();
+            }
+            currentInteractablePlanetObject = null;
+        }
+    }
+
+    private Collider2D GetInteractableObjects()
     {
         float circleRadius = GetComponent<CircleCollider2D>().radius * 1.5f;
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, circleRadius, Vector2.right, 0, interactableObjectsLayer);
         if (hit)
         {
-            hit.collider.GetComponent<PlanetObject>().Interact(this);
+            //hit.collider.GetComponent<PlanetObject>().Interact(this);
+            return hit.collider;
         }
-
-        // TODO: Shoot out ray or something to detect shit
-
-    }
+        return null;
+    } 
 
     private void GameInput_OnChangePlayerStatePressed(object sender, EventArgs e)
     {
@@ -119,7 +165,6 @@ public class Player : MonoBehaviour
     public void AddOil(float oilAmount)
     {
         currentOilAmount += oilAmount;
-        print("Player oil amount:" + currentOilAmount);
     }
 
     public float GetHealth()

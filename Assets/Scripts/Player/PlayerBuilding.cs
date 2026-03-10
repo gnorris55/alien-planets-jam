@@ -4,6 +4,8 @@ using System.Collections.Generic;
 public class PlayerBuilding : MonoBehaviour
 {
 
+
+    public static PlayerBuilding Instance { get; private set; }
     [SerializeField] PlanetStructureSO currentPlanetStructureSO;
     [SerializeField] GameObject playerParent;
 
@@ -13,12 +15,18 @@ public class PlayerBuilding : MonoBehaviour
     private bool canPlaceObject = true;
     private float placementDistance = -1.1f;
     private Transform planetStructurePlacementVisualTransform;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
         GameInput.Instance.OnShootInputPressed += GameInput_OnShootInputPressed;
         Player.Instance.OnPlayerStateChanged += Player_OnPlayerStateChanged;
-        
+       
     }
 
     private void GameInput_OnShootInputPressed(object sender, System.EventArgs e)
@@ -57,6 +65,8 @@ public class PlayerBuilding : MonoBehaviour
         Planet currentPlanet = playerParent.GetComponent<PlayerMovement>().GetCurrentPlanet();
         GetObjectPlacement(out Vector3 placementLocation, out Vector3 placementDirection);
         currentPlanet.PlaceObjectOnPlanet(currentPlanetStructureSO.structureGameObject, placementLocation, placementDirection);
+        
+        CameraManager.Instance.ShakeCamera(1f, 0.1f);
     }
 
 
@@ -98,5 +108,15 @@ public class PlayerBuilding : MonoBehaviour
                 SetColorOverlayForObjectPlacement(new Vector4(1, 0, 0, 1));
             }
         }
+    }
+
+
+    public void SetPlanetStructureSO(PlanetStructureSO planetStructureSO)
+    {
+        currentPlanetStructureSO = planetStructureSO;
+        if (planetStructurePlacementVisualTransform != null)
+            Destroy(planetStructurePlacementVisualTransform.gameObject);
+
+        planetStructurePlacementVisualTransform = Instantiate(currentPlanetStructureSO.structureOutline, transform.position, Quaternion.identity).transform;
     }
 }

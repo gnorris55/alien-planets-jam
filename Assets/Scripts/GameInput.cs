@@ -12,7 +12,9 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnShootInputReleased;
     public event EventHandler OnSwapWeaponInputPressed;
     public event EventHandler OnPlayerInteractPressed;
+    public event EventHandler OnPlayerInteractReleased;
     public event EventHandler OnChangePlayerStatePressed;
+ 
 
     [SerializeField] InputActionReference moveInput;
     [SerializeField] InputActionReference shootInput;
@@ -22,6 +24,8 @@ public class GameInput : MonoBehaviour
 
     //[SerializeField] InputActionReference shoot;
 
+
+    private bool canShoot = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -34,7 +38,13 @@ public class GameInput : MonoBehaviour
         shootInput.action.canceled += ShootInput_canceled;
         swapWeaponInput.action.started += SwapWeaponInput_started;
         playerInteractInput.action.started += PlayerInput_started;
+        playerInteractInput.action.canceled += PlayerInput_canceled;
         changePlayerStateInput.action.started += ChangePlayerStateInput_started;
+    }
+
+    private void PlayerInput_canceled(InputAction.CallbackContext obj)
+    {
+        OnPlayerInteractReleased?.Invoke(this, EventArgs.Empty);
     }
 
     private void ChangePlayerStateInput_started(InputAction.CallbackContext obj)
@@ -59,10 +69,14 @@ public class GameInput : MonoBehaviour
 
     private void ShootInput_started(InputAction.CallbackContext obj)
     {
-        OnShootInputPressed?.Invoke(this, EventArgs.Empty);
+        if (canShoot)
+            OnShootInputPressed?.Invoke(this, EventArgs.Empty);
     }
 
-
+    public void ToggleShootInput(bool canShoot)
+    {
+        this.canShoot = canShoot;
+    }
 
     public Vector2 GetMovement()
     {

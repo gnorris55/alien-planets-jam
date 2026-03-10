@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.46226418, g: 0.41647387, b: 0.41647387, a: 1}
+  m_Color: {r: 0.39607844, g: 0.3137255, b: 0.40784314, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -85,7 +85,6 @@ GameObject:
   m_Component:
   - component: {fileID: 870860913864248830}
   - component: {fileID: 5563090197499670405}
-  - component: {fileID: 1760802979236581663}
   - component: {fileID: 925096294506189575}
   m_Layer: 9
   m_Name: OilRig
@@ -125,22 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OilRig
   width: 0
   maxOilAmount: 100
-  oilAccumulationSpeed: 20
---- !u!114 &1760802979236581663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2818738100870576445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e002564f80faa5d43bea09f06ef718a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OilRig
-  width: 0
-  maxOilAmount: 100
-  oilAccumulationSpeed: 0.05
+  oilAccumulationSpeed: 2
 --- !u!61 &925096294506189575
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -490,7 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9056604, g: 0.7784524, b: 0.03844783, a: 1}
+  m_Color: {r: 1, g: 0.8862745, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

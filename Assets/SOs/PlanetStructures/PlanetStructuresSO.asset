@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 844d54c5f4f43f1428ee83e0ff758062, type: 3}
+  m_Name: PlanetStructuresSO
+  m_EditorClassIdentifier: Assembly-CSharp::PlanetStructuresSO
+  planetStructures:
+  - {fileID: 11400000, guid: 0ea18d059dc1f614daf33d6bd3ede83f, type: 2}
+  - {fileID: 11400000, guid: b286e1e814865394c9fe299867abf07c, type: 2}

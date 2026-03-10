@@ -50,8 +50,6 @@ public class PlayerMovement : MonoBehaviour
         circleRadius = GetComponent<CircleCollider2D>().radius;
 
     }
-
-
     
     // Update is called once per frame
     void Update()

@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 964366951290038078}
   - component: {fileID: 7411875127919582058}
   - component: {fileID: -1404326509560355942}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8497884972536377543}
@@ -138,8 +138,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   width: 0.2
-  isInteractable: 1
-  enemyType: {fileID: 0}
+  maxHealth: 100
+  isInteractable: 0
+  enemyType: {fileID: 1558741938453036389, guid: bf2b8002cdfa24044a1f16f7162ba784, type: 3}
+  spawnRate: 2.5
 --- !u!61 &-1404326509560355942
 BoxCollider2D:
   m_ObjectHideFlags: 0

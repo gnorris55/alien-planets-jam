@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6588ca47b61de3428494777f8e4fc3f, type: 3}
-  m_Name: OilStorageSO
+  m_Name: SmallTurretSO
   m_EditorClassIdentifier: Assembly-CSharp::PlanetStructureSO
-  structureName: OilStorage
-  structureGameObject: {fileID: 7793103899278457270, guid: 3efa6ce54340f0345b1242bcc02bf2e3, type: 3}
-  structureOutline: {fileID: 7539599734396319184, guid: 2d29c4cfaa87ca54787f2a9ce349a2cc, type: 3}
-  size: 0.2
-  sprite: {fileID: 5479187839429905252, guid: 19e356fd14b55d74a8d0368e72b717d9, type: 3}
+  structureName: Turret
+  structureGameObject: {fileID: 4393620507254654959, guid: 19ea1fe8506c4eb48b7c82297ddd598a, type: 3}
+  structureOutline: {fileID: 8473977712307215924, guid: 6c7ea6589c3ad7a4e9e19e75870ab7e4, type: 3}
+  size: 0.5
+  sprite: {fileID: -3682299261698216172, guid: 5645f2c2b91efb049b359f9ad4f70434, type: 3}

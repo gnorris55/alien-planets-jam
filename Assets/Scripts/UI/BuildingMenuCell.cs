@@ -25,6 +25,7 @@ public class BuildingMenuCell : MonoBehaviour
     public void SetUp(PlanetStructureSO planetStructureSO)
     {
         this.planetStructureSO = planetStructureSO;
+        //button.image.sprite = planetStructureSO.sprite;
     }
 
     private void ButtonActivated()

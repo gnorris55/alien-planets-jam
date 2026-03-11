@@ -7,12 +7,12 @@ public class PlayerBuilding : MonoBehaviour
 
     public static PlayerBuilding Instance { get; private set; }
     [SerializeField] PlanetStructureSO currentPlanetStructureSO;
+    [SerializeField] private float placementDistance = -1.1f;
 
 
 
     private bool isBuilding = false;
     private bool canPlaceObject = true;
-    private float placementDistance = -1.1f;
     private Transform planetStructurePlacementVisualTransform;
     private Player player;
         
@@ -64,7 +64,7 @@ public class PlayerBuilding : MonoBehaviour
 
         Planet currentPlanet = player.GetCurrentPlanet();
         GetObjectPlacement(out Vector3 placementLocation, out Vector3 placementDirection);
-        currentPlanet.PlaceObjectOnPlanet(currentPlanetStructureSO.structureGameObject, placementLocation, placementDirection);
+        currentPlanet.AddObjectOnPlanet(currentPlanetStructureSO.structureGameObject, placementLocation, placementDirection);
         
         CameraManager.Instance.ShakeCamera(1f, 0.1f);
     }
@@ -74,7 +74,7 @@ public class PlayerBuilding : MonoBehaviour
     {
         Planet currentPlanet = player.GetCurrentPlanet();
 
-        placementLocation = currentPlanet.GetPlanetPosition(placementDistance, player.transform.up, player.transform.position, 0, 0.75f);
+        placementLocation = currentPlanet.GetPlanetPosition(placementDistance, player.transform.position, 0.1f, 0.75f, 0, Player.Instance.transform.up);
         placementDirection = (placementLocation - currentPlanet.transform.position).normalized;
     }
 

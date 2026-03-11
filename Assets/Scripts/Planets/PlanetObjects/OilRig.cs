@@ -72,7 +72,8 @@ public class OilRig : PlanetObject, IOilStorageDevice
         // now we look to oil storage structures and see if they are full
         if  (leftOverOil > 0)
         {
-            List<OilStorage> oilStorageStructures = player.GetCurrentPlanet().GetOilStorageStructuresOnPlanet();
+            List<OilStorage> oilStorageStructures = homePlanet.GetOilStorageStructuresOnPlanet();
+
             foreach(OilStorage oilStorageStructure in oilStorageStructures)
             {
                 if (oilStorageStructure.GetOilAmount() < oilStorageStructure.GetMaxOilAmount())

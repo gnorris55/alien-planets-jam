@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         // if the player moves it will rotate them around the planet
-        transform.position = player.GetCurrentPlanet().GetPlanetPosition(-playerMovement.x, toPlayerDirection, transform.position, circleRadius, speed);
+        transform.position = player.GetCurrentPlanet().GetPlanetPosition(-playerMovement.x, transform.position, circleRadius, speed);
 
         transform.up = Vector3.Slerp(transform.up,  toPlayerDirection, Time.deltaTime * 5f);
     }

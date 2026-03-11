@@ -20,13 +20,16 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
+
     }
     public void Setup(Vector3 shootDir, float damageAmount, float speed, float despawnTime = 2f)
     {
         this.speed = speed;
+        this.damageAmount = damageAmount;
+
         transform.right = shootDir;
         shootDirection = shootDir;
-        this.damageAmount = damageAmount;
+
         Destroy(gameObject, despawnTime);
     }
 
@@ -67,6 +70,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.TryGetComponent(out Planet planetHit))
         {
 
@@ -76,5 +80,11 @@ public class Bullet : MonoBehaviour
 
             Destroy(gameObject);
         }
+        else if (collision.gameObject.TryGetComponent(out Enemy enemy))
+        {
+            enemy.TakeDamage(20);
+            Destroy(gameObject);
+        }
+        
     }
 }

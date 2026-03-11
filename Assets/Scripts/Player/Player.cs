@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float maxHealth;
     [SerializeField] private float maxOilAmount;
     [SerializeField] private float fuelBurnRate;
-    [SerializeField] private LayerMask interactableObjectsLayer;
+    [SerializeField] private LayerMask playerPlanetObjectsLayer;
 
     private float health;
     private float currentOilAmount;
@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
     {
         
         float circleRadius = GetComponent<CircleCollider2D>().radius * 1.5f;
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, circleRadius, Vector2.right, 0, interactableObjectsLayer);
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, circleRadius, Vector2.right, 0, playerPlanetObjectsLayer);
         
         PlanetObject closestInteractablePlanetObject = null;
         float distanceFromClosestInteractablePlanetObject = float.MaxValue;

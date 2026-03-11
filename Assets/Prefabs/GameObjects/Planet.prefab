@@ -382,6 +382,7 @@ MonoBehaviour:
   planetName: Earth
   planetRadius: 2
   atmosphereRadius: 3
+  maxAmountEnemies: 5
   buildingParticleSystem: {fileID: 4017512891986059246, guid: 805df9546e243e440b55a174711c1692, type: 3}
   planetAtmosphere: {fileID: 7031666206171900058}
   planetVisuals: {fileID: 3353497964771147189}

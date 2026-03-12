@@ -21,6 +21,7 @@ public class GameInput : MonoBehaviour
     [SerializeField] InputActionReference swapWeaponInput;
     [SerializeField] InputActionReference playerInteractInput;
     [SerializeField] InputActionReference changePlayerStateInput;
+    [SerializeField] InputActionReference scrollingInput;
 
     //[SerializeField] InputActionReference shoot;
 
@@ -30,6 +31,11 @@ public class GameInput : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Update()
+    {
+        print(GetScroll());
     }
 
     private void OnEnable()
@@ -81,5 +87,10 @@ public class GameInput : MonoBehaviour
     public Vector2 GetMovement()
     {
         return moveInput.action.ReadValue<Vector2>();
+    }
+
+    public Vector2 GetScroll()
+    {
+        return scrollingInput.action.ReadValue<Vector2>();
     }
 }

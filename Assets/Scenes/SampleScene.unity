@@ -979,6 +979,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d15a58dadb42c4c902ea613bf2e8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraManager
+  maxZoom: 3
+  minZoom: 0.7
 --- !u!114 &283408566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1069,7 +1071,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 1.5
+    OrthographicSize: 2.04
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -1543,7 +1545,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.5
+  orthographic size: 2.04
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1686,6 +1688,7 @@ MonoBehaviour:
   swapWeaponInput: {fileID: 1210678429}
   playerInteractInput: {fileID: 948585517}
   changePlayerStateInput: {fileID: 422988652}
+  scrollingInput: {fileID: 1759573745}
 --- !u!4 &605814264
 Transform:
   m_ObjectHideFlags: 0
@@ -3187,6 +3190,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 560480225347302856, guid: 95b68708ac04c0640be061913b865efb, type: 3}
   m_PrefabInstance: {fileID: 145914360}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1759573745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: Keyboard/Zooming
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 2beb72fa43e9818498a2c4b531dc95f8, type: 3}
+  m_ActionId: e88776d1-ceb4-4b71-8cf9-a93bbb843c24
 --- !u!1 &1769790831
 GameObject:
   m_ObjectHideFlags: 0
@@ -8719,7 +8736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: maxAmountEnemies
-      value: 5
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

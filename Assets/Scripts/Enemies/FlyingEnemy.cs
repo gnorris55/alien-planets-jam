@@ -26,13 +26,13 @@ public class FlyingEnemy : Enemy
 
             if (distanceFromPlanet >= flightHeight)
             {
-                transform.position = homePlanet.GetPlanetPosition(movementDirection, transform.position, 1, speed, 100);
+                transform.position = homePlanet.GetPlanetPosition(movementDirection, transform.position, 0.1f, speed, 100);
             }
             else
             {
                 Vector3 planetUpDirection = (transform.position - homePlanet.transform.position);
                 transform.position += planetUpDirection * Time.deltaTime*speed;
-                transform.position = homePlanet.GetPlanetPosition(0, transform.position, 1, speed, 100);
+                transform.position = homePlanet.GetPlanetPosition(0, transform.position, 0.1f, speed, 100);
             }
 
         }

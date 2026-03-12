@@ -15,5 +15,6 @@ MonoBehaviour:
   structureName: EnemySpawner
   structureGameObject: {fileID: 7411875127919582058, guid: 96ce35d134bc33f4b8a45c897da19372, type: 3}
   structureOutline: {fileID: 2417424981015295488, guid: c542b1d7bfc712c468022414d1596a69, type: 3}
-  size: 0.2
+  width: 0.32
+  height: 0.05
   sprite: {fileID: -3682299261698216172, guid: 5645f2c2b91efb049b359f9ad4f70434, type: 3}

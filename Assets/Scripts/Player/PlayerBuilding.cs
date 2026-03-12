@@ -73,8 +73,8 @@ public class PlayerBuilding : MonoBehaviour
     private void GetObjectPlacement(out Vector3 placementLocation,  out Vector3 placementDirection)
     {
         Planet currentPlanet = player.GetCurrentPlanet();
-
-        placementLocation = currentPlanet.GetPlanetPosition(placementDistance, player.transform.position, 0.1f, 0.75f, 0, Player.Instance.transform.up);
+        float planetStructureSize = currentPlanetStructureSO.height / 2.0f - 0.02f;
+        placementLocation = currentPlanet.GetPlanetPosition(placementDistance, player.transform.position, planetStructureSize , 0.75f, 0, Player.Instance.transform.up);
         placementDirection = (placementLocation - currentPlanet.transform.position).normalized;
     }
 
@@ -95,7 +95,7 @@ public class PlayerBuilding : MonoBehaviour
 
             Planet currentPlanet = player.GetCurrentPlanet();
 
-            canPlaceObject = currentPlanet.CanPlaceObjectOnPlanet(currentPlanetStructureSO.size, planetStructurePlacementVisualTransform.position);
+            canPlaceObject = currentPlanet.CanPlaceObjectOnPlanet(currentPlanetStructureSO.width, planetStructurePlacementVisualTransform.position);
             
             if (canPlaceObject)
             {

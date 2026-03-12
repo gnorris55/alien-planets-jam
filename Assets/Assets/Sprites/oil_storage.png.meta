@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2783ef5fb25fd2945b8eaf59638c765b
+guid: d36f79c9c9781fb4496b5415afdb15a5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4887139858338267651
-    second: oil_rig_0
+      213: 4430060604676338546
+    second: oil_storage_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: oil_rig_0
+      name: oil_storage_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 3
         y: 0
-        width: 62
-        height: 55
+        width: 26
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 302c7e7decb92d340800000000000000
-      internalID: 4887139858338267651
+      spriteID: 2737f2306acba7d30800000000000000
+      internalID: 4430060604676338546
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      oil_rig_0: 4887139858338267651
+      oil_storage_0: 4430060604676338546
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

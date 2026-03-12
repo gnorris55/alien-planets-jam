@@ -28,7 +28,9 @@ public class Turret : PlanetObject
         if (targetedEnemy) 
         {
             Vector3 directionToEnemy = (targetedEnemy.transform.position - turretGun.position).normalized;
-            turretGun.right = directionToEnemy;
+
+
+            turretGun.right = Vector3.Slerp(turretGun.right, directionToEnemy, Time.deltaTime * 5f);
 
             turretShootTimer -= Time.deltaTime;
             if (turretShootTimer <= 0)

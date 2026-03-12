@@ -15,5 +15,6 @@ MonoBehaviour:
   structureName: Turret
   structureGameObject: {fileID: 4393620507254654959, guid: 19ea1fe8506c4eb48b7c82297ddd598a, type: 3}
   structureOutline: {fileID: 8473977712307215924, guid: 6c7ea6589c3ad7a4e9e19e75870ab7e4, type: 3}
-  size: 0.5
+  width: 0.2
+  height: 0.29
   sprite: {fileID: -3682299261698216172, guid: 5645f2c2b91efb049b359f9ad4f70434, type: 3}

@@ -4,28 +4,31 @@ public class PlanetVisuals : MonoBehaviour
 {
     [SerializeField] private Planet planet;
     [SerializeField] private Color planetColor;
+    [SerializeField] private Color atmospshereColor;
     [SerializeField] private Transform miniMapVisual;
     [SerializeField] private ParticleSystem planetHitParticleEffect;
+    [SerializeField] private GameObject atmosphereVisual;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
         float planetRadius = planet.GetPlanetRadius();
         transform.localScale *= planetRadius;
         miniMapVisual.localScale *= planetRadius;
 
         Material planetShaderMaterial = GetComponent<SpriteRenderer>().material;
-
+        Material atmosphereShaderMaterial = atmosphereVisual.GetComponent<SpriteRenderer>().material;
+        
         planetShaderMaterial.SetColor("_PlanetColor", planetColor);
+        atmosphereShaderMaterial.SetColor("_SkyColor", atmospshereColor);
         
         float planetPixelSize = planetShaderMaterial.GetFloat("_PixelSize");
         float adjustedPixelSize = planetPixelSize * planetRadius;
 
         planetShaderMaterial.SetFloat("_PixelSize", adjustedPixelSize);
-        planetShaderMaterial.SetVector("_UVOffset", new Vector2(Random.Range(0, 11), Random.Range(0, 11)));
+        atmosphereShaderMaterial.SetFloat("_PixelSize", adjustedPixelSize);
 
-         
-        
+        planetShaderMaterial.SetVector("_UVOffset", new Vector2(Random.Range(0, 11), Random.Range(0, 11)));
     }
 
     public void CreatePlanetHitEffect(Vector3 location, float hitAngle)

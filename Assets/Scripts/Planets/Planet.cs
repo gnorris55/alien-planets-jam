@@ -52,7 +52,7 @@ public class Planet : MonoBehaviour
 
         angle += rotationAmount;
 
-        float positionRadius = Mathf.Clamp(distanceFromPlanet, planetRadius, planetRadius + allowableRange + objectRadius);
+        float positionRadius = Mathf.Clamp(distanceFromPlanet, planetRadius + objectRadius, planetRadius + allowableRange + objectRadius);
         
         return new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * positionRadius + transform.position;
     }

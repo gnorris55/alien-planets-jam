@@ -28,12 +28,13 @@ Transform:
   m_GameObject: {fileID: 1558741938453036389}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.352, y: 1.698, z: 0}
+  m_LocalPosition: {x: 3.352, y: 0.007, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2617547611254784961}
   - {fileID: 3875753061521578827}
+  - {fileID: 7660837954137054656}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &3417015636530276611
@@ -111,10 +112,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b453198c2b95cf54a80348798c409378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlyingEnemy
-  maxHealth: 100
   speed: 0.1
+  attackRange: 1
+  attackFrequencyTime: 1
+  maxHealth: 100
+  bullet: {fileID: -4233094135127121287, guid: 4554fea25af99ee498f8a7452a335659, type: 3}
   flightHeight: 3
   speedRange: 0.05
+--- !u!1 &3592284185599257397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7660837954137054656}
+  - component: {fileID: 8162831366621116101}
+  m_Layer: 0
+  m_Name: EnemyRadar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7660837954137054656
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3592284185599257397}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2675501574571001116}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8162831366621116101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3592284185599257397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10d7849b04e74cb4a88011c596ab6c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyRadar
+  enemy: {fileID: 163782735484187005}
+  radarRadius: 1.5
+  playerPlanetObjectsLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &8960145128644029143
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1613562200991186926, guid: 60143789552b4ae4fbd3cd03ab8570df, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.1344
+      value: 0.0844
       objectReference: {fileID: 0}
     - target: {fileID: 1613562200991186926, guid: 60143789552b4ae4fbd3cd03ab8570df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

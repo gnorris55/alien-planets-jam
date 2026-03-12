@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     private float damageAmount;
     private Rigidbody2D rb;
     private Vector3 shootDirection;
-    private Planet currentPlanet;
+    protected Planet currentPlanet;
     
 
     public void Awake()
@@ -68,7 +68,7 @@ public class Bullet : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
 
         if (collision.gameObject.TryGetComponent(out Planet planetHit))

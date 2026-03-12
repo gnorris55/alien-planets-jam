@@ -126,13 +126,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e0c8099ec0f5a4783d31bfae06504f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Turret
-  width: 0
+  width: 0.2
   maxHealth: 175
   isInteractable: 0
   turretGun: {fileID: 2511572551169992822}
   turretProjectileSpawnLocation: {fileID: 7094341136537213319}
   projectile: {fileID: 5704210298252384231, guid: a970b1e3a9cc98e44ad3760be19cc107, type: 3}
-  projectileSpeed: 6
+  projectileSpeed: 10
   projectileDamage: 5
   turretShootTime: 0.5
 --- !u!1 &4415993675507895427

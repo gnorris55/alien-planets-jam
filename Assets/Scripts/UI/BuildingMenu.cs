@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
+using DG.Tweening;
 
 public class BuildingMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -21,15 +22,27 @@ public class BuildingMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         }
     }
 
+    public void Show()
+    {
+        gameObject.SetActive(true);
+        //transform.DOScale(new Vector3(1f, 1f, 1f), 0.25f).SetEase(Ease.OutBack); ;
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+        //transform.DOScale(new Vector3(0.1f, 1f, 1f), 0.25f).SetEase(Ease.InQuad);
+    }
+
     private void Player_OnPlayerStateChanged(object sender, Player.OnPlayerStateChangedArgs e)
     {
         if (e.playerState == Player.PlayerStates.building)
         {
-            gameObject.SetActive(true);
+            Show();
         }
         else
         {
-            gameObject.SetActive(false);
+            Hide();
         }
     }
 

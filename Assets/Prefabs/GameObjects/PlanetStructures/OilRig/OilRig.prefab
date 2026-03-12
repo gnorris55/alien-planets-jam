@@ -48,11 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e002564f80faa5d43bea09f06ef718a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OilRig
-  width: 0
+  width: 0.61
   maxHealth: 250
   isInteractable: 1
   maxOilAmount: 100
-  oilAccumulationSpeed: 25
+  oilAccumulationSpeed: 5
   oilHarvestSpeed: 100
   oilGlobVisual: {fileID: 4933926180698475067, guid: 0ec23a2cb484da14286fa8b14c532a79, type: 3}
 --- !u!61 &925096294506189575

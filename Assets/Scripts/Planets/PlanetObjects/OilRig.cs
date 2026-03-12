@@ -72,7 +72,7 @@ public class OilRig : PlanetObject, IOilStorageDevice
         // now we look to oil storage structures and see if they are full
         if  (leftOverOil > 0)
         {
-            List<OilStorage> oilStorageStructures = homePlanet.GetOilStorageStructuresOnPlanet();
+            List<OilStorage> oilStorageStructures = homePlanet.GetSpecificPlanetObject<OilStorage>();
 
             foreach(OilStorage oilStorageStructure in oilStorageStructures)
             {

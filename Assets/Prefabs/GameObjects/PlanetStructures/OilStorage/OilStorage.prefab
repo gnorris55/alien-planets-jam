@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a2bf03e2a9cfab49801b8ce7029f4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OilStorage
-  width: 0
+  width: 0.24
   maxHealth: 500
   isInteractable: 1
   maxOilAmount: 100

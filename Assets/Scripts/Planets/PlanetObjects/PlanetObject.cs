@@ -63,6 +63,7 @@ public class PlanetObject: MonoBehaviour, IDamagable
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
+        OnHealthUpdated?.Invoke(this, EventArgs.Empty);
         if (currentHealth <= 0)
         {
             Debug.Log("should destroy object");
@@ -73,12 +74,12 @@ public class PlanetObject: MonoBehaviour, IDamagable
 
     public float GetCurrentHealth()
     {
-        return maxHealth;
+        return currentHealth;
     }
 
     public float GetMaxHealth()
     {
-        return currentHealth;
+        return maxHealth;
     }
 
     public float GetWidth()

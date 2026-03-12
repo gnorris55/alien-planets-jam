@@ -4,23 +4,38 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDamagable
 {
 
-    public event EventHandler OnHealthUpdated;
+    public enum EnemyState
+    {
+        noTarget,
+        targetFound,
+        targetInAttackRange
+    }
 
+    public event EventHandler OnHealthUpdated;
     public event EventHandler <OnEnemyDestroyedArgs>OnEnemyDestroyed;
     public class OnEnemyDestroyedArgs : EventArgs
     {
         public Enemy enemy;
     }
 
-    [SerializeField] private float maxHealth = 100;
-    [SerializeField] protected float speed = 0.2f;
 
+    [SerializeField] protected float speed = 0.2f;
+    [SerializeField] protected float attackRange = 1f;
+    [SerializeField] protected float attackFrequencyTime = 1f;
+
+    protected float attackFrequencyTimer;
+    protected EnemyState currentState;
+    protected PlanetObject planetObjectTarget;
+
+    [SerializeField] private float maxHealth = 100;
     private float currentHealth;
+
 
     protected virtual void Start()
     {
         currentHealth = maxHealth;
     }
+
     public virtual void SetUp(float speed, Vector3 direction)
     {
         this.speed = speed;
@@ -39,6 +54,7 @@ public class Enemy : MonoBehaviour, IDamagable
     }
 
 
+
     public float GetCurrentHealth() 
     {
         return currentHealth;
@@ -46,5 +62,25 @@ public class Enemy : MonoBehaviour, IDamagable
     public float GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    public void SetTarget(PlanetObject planetObject)
+    {
+        this.planetObjectTarget = planetObject;
+        planetObjectTarget.OnPlanetObjectDestroyed += PlanetObjectTarget_OnPlanetObjectDestroyed;
+
+    }
+
+    private void PlanetObjectTarget_OnPlanetObjectDestroyed(object sender, PlanetObject.OnPlanetObjectDestroyedArgs e)
+    {
+        planetObjectTarget.OnPlanetObjectDestroyed -= PlanetObjectTarget_OnPlanetObjectDestroyed;
+        planetObjectTarget = null;
+        currentState = EnemyState.noTarget;
+    }
+
+
+    public bool HasTarget()
+    {
+        return planetObjectTarget != null;
     }
 }

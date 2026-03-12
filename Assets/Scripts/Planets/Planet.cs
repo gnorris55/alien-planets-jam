@@ -16,12 +16,16 @@ public class Planet : MonoBehaviour
     [SerializeField] private string planetName;
     [SerializeField] private float planetRadius;
     [SerializeField] private float atmosphereRadius;
-    [SerializeField] private int maxAmountEnemies = 10;
 
+    [SerializeField] private bool hasEnemies = false;
+    [SerializeField] private PlanetStructureSO enemySpawnerStructureSO;
+    [SerializeField] private int maxAmountEnemies = 10;
     
     [SerializeField] private ParticleSystem buildingParticleSystem;
     [SerializeField] PlanetAtmosphere planetAtmosphere;
     [SerializeField] PlanetVisuals planetVisuals;
+
+
 
 
     private List<PlanetObject> planetStructures = new List<PlanetObject>();
@@ -32,6 +36,14 @@ public class Planet : MonoBehaviour
     {
         GetComponent<CircleCollider2D>().radius = planetRadius;
         planetAtmosphere.SetAtmosphereRadius(atmosphereRadius);
+
+        if (hasEnemies)
+        {
+            Vector3 positionOnPlanet = UnityEngine.Random.insideUnitCircle.normalized * planetRadius;
+            Vector3 enemySpawnerPlanetPosition = GetPlanetPosition(0, positionOnPlanet, (enemySpawnerStructureSO.height / 2.0f) - 0.02f, 0, 0);
+            Vector3 enemyStructureDirection = (positionOnPlanet - transform.position).normalized;
+            AddObjectOnPlanet(enemySpawnerStructureSO.structureGameObject, enemySpawnerPlanetPosition, enemyStructureDirection);
+        }
 
     }
 
@@ -99,9 +111,11 @@ public class Planet : MonoBehaviour
 
     public bool CanPlaceObjectOnPlanet(float size, Vector3 position)
     {
+        float allowablePlacementDistance = 0.05f;
         foreach (PlanetObject planetStructure in planetStructures)
         {
-            if (Vector3.Distance(planetStructure.transform.position, position) < (size / 2) + (planetStructure.GetWidth() / 2))
+            float combinedStructurePlacementWidth = (size / 2f) + (planetStructure.GetWidth() / 2f) + allowablePlacementDistance;
+            if (Vector3.Distance(planetStructure.transform.position, position) < combinedStructurePlacementWidth)
                 return false;
         }
 
@@ -109,21 +123,21 @@ public class Planet : MonoBehaviour
 
     }
 
-    public List<OilStorage> GetOilStorageStructuresOnPlanet()
+    public List<PlanetObjectChild> GetSpecificPlanetObject<PlanetObjectChild>() where PlanetObjectChild : PlanetObject
     {
-        List<OilStorage> oilStorageStructures = new List<OilStorage>();
+        List<PlanetObjectChild> planetObjectChildList = new List<PlanetObjectChild>();
         foreach (PlanetObject planetStructure in planetStructures)
         {
-            if (planetStructure is OilStorage)
+            if (planetStructure is PlanetObjectChild)
             {
-                oilStorageStructures.Add((OilStorage)planetStructure);
+                planetObjectChildList.Add((PlanetObjectChild)planetStructure);
                 
             }
 
 
         }
 
-        return oilStorageStructures;
+        return planetObjectChildList;
     } 
 
     public void PlanetHit(Vector3 location, float hitAngle)

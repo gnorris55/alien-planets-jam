@@ -33,7 +33,7 @@ public class OilStorage : PlanetObject, IOilStorageDevice
 
     public void Update()
     {   
-        if (playerIsHarvestingOil)
+        if (playerIsHarvestingOil && currentOilAmount > 0)
         {
             TransferOilToPlayer();
         }

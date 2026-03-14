@@ -33,11 +33,6 @@ public class GameInput : MonoBehaviour
         Instance = this;
     }
 
-    private void Update()
-    {
-        print(GetScroll());
-    }
-
     private void OnEnable()
     {
         shootInput.action.started += ShootInput_started;

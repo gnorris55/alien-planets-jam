@@ -19,6 +19,7 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private Transform testTriangle;
     [SerializeField] private Transform bulletPrefab;
     [SerializeField] private Transform bulletSpawnTransform;
+    [SerializeField] private float playerDamage;
 
 
     private WeaponType currentWeapon = WeaponType.pistol;
@@ -95,7 +96,7 @@ public class PlayerWeapon : MonoBehaviour
             if (currentWeapon == WeaponType.pistol)
             {
                 Vector3 shootDirection = (bulletSpawnTransform.position - transform.position).normalized;
-                SpawnBullet(shootDirection, 1f, 6f);
+                SpawnBullet(shootDirection, playerDamage, 6f);
 
                 CameraManager.Instance.ShakeCamera(1f, 0.1f);
             }
@@ -114,7 +115,7 @@ public class PlayerWeapon : MonoBehaviour
                     Quaternion shotgunSpread = Quaternion.Euler(0, 0, spreadAngle);
 
                     Vector3 angledShootDirection = shotgunSpread * shootDirection;
-                    SpawnBullet(angledShootDirection, 1f, 4f, 0.5f);
+                    SpawnBullet(angledShootDirection, playerDamage / 3f, 4f, 0.5f);
                 }
 
 

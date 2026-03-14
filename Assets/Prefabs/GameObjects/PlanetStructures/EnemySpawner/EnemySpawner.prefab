@@ -141,7 +141,7 @@ MonoBehaviour:
   maxHealth: 100
   isInteractable: 0
   enemyType: {fileID: 1558741938453036389, guid: bf2b8002cdfa24044a1f16f7162ba784, type: 3}
-  spawnRate: 2.5
+  spawnRate: 10
 --- !u!61 &-1404326509560355942
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -18,6 +18,25 @@ public class Turret : PlanetObject
 
 
     
+    protected override void Start()
+    {
+        base.Start();
+        StatsManager.Instance.GetGameObjectStats(StatsManager.ObjectType.smallTurret);
+        SetHealth(GetMaxHealth());
+    }
+    
+    protected override void StatsManager_OnGameObjectStatsUpdated(object sender, StatsManager.OnGameObjectStatsUpgradedArgs e)
+    {
+        if (e.objectType == StatsManager.ObjectType.smallTurret)
+        {
+            float updatedMaxHealthAmount = e.upgradeValues.healthUpgradeValues[e.currentLevel];
+            float updatedDamageAmount = e.upgradeValues.damageUpgradeValues[e.currentLevel];
+            projectileDamage = updatedDamageAmount;
+            SetMaxHealth(updatedMaxHealthAmount);
+
+        }
+    }
+
     public void SetEnemyTarget(Enemy enemy)
     {
         targetedEnemy = enemy;

@@ -15,7 +15,7 @@ public class EnemyBullet : Bullet
         }
         else if (collision.gameObject.TryGetComponent(out PlanetObject planetObject))
         {
-            planetObject.TakeDamage(20);
+            planetObject.TakeDamage(damageAmount);
             Destroy(gameObject);
         }
         

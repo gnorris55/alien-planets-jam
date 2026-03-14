@@ -117,7 +117,7 @@ public class FlyingEnemy : Enemy
     {
         Vector3 directionToPlanetObject = (planetObjectTarget.transform.position - transform.position).normalized;
         EnemyBullet bulletInstance = Instantiate(bullet, transform.position, Quaternion.identity);
-        bulletInstance.Setup(directionToPlanetObject, 20f, 3);
+        bulletInstance.Setup(directionToPlanetObject, damage, 3);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

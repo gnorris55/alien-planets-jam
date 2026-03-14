@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class OilStorage : PlanetObject, IOilStorageDevice
 {
+
+    public event EventHandler OnOilUpdatedInStorageDevice;
 
     [SerializeField] private float maxOilAmount = 100.0f;
     [SerializeField] private float oilHarvestSpeed = 25;
@@ -11,6 +14,28 @@ public class OilStorage : PlanetObject, IOilStorageDevice
     private bool playerIsHarvestingOil = false;
 
     private float oilTransferedCount = 0;
+
+
+    protected override void Start()
+    {
+        base.Start();
+        StatsManager.Instance.GetGameObjectStats(StatsManager.ObjectType.oilStorage);
+        SetHealth(GetMaxHealth());
+    }
+
+
+    protected override void StatsManager_OnGameObjectStatsUpdated(object sender, StatsManager.OnGameObjectStatsUpgradedArgs e)
+    {
+        if (e.objectType == StatsManager.ObjectType.oilStorage)
+        {
+            float updatedMaxOilAmount = e.upgradeValues.storageUpgradeValues[e.currentLevel];
+            float updatedMaxHealthAmount = e.upgradeValues.healthUpgradeValues[e.currentLevel];
+            maxOilAmount = updatedMaxOilAmount;
+            SetMaxHealth(updatedMaxHealthAmount);
+
+        }
+    }
+
     public override void Interact(Player player)
     {
         playerIsHarvestingOil = true;
@@ -59,6 +84,8 @@ public class OilStorage : PlanetObject, IOilStorageDevice
         {
             currentOilAmount = maxOilAmount;
         }
+
+        OnOilUpdatedInStorageDevice?.Invoke(this, EventArgs.Empty);
         
         
 
@@ -82,6 +109,7 @@ public class OilStorage : PlanetObject, IOilStorageDevice
         }
 
 
+        OnOilUpdatedInStorageDevice?.Invoke(this, EventArgs.Empty);
         currentOilAmount = currentOilAmount - oilTransferAmount + leftOverOil;
 
 
@@ -107,5 +135,17 @@ public class OilStorage : PlanetObject, IOilStorageDevice
             oilTransferedCount = 0;
         }
 
+    }
+
+    public override void TakeDamage(float damageAmount)
+    {
+        DamageStructure(damageAmount);
+        if (IsDestroyed())
+        {
+            currentOilAmount = 0;
+            OnOilUpdatedInStorageDevice?.Invoke(this, EventArgs.Empty);
+
+            DestoryPlanetObject();
+        }
     }
 }

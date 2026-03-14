@@ -22,10 +22,12 @@ public class Enemy : MonoBehaviour, IDamagable
     [SerializeField] protected float speed = 0.2f;
     [SerializeField] protected float attackRange = 1f;
     [SerializeField] protected float attackFrequencyTime = 1f;
+    [SerializeField] protected float damage;
 
     protected float attackFrequencyTimer;
     protected EnemyState currentState;
     protected PlanetObject planetObjectTarget;
+   
 
     [SerializeField] private float maxHealth = 100;
     private float currentHealth;
@@ -52,8 +54,10 @@ public class Enemy : MonoBehaviour, IDamagable
             Destroy(gameObject);
         }
     }
+    public void AddHealth(float healthAmount)
+    {
 
-
+    }
 
     public float GetCurrentHealth() 
     {
@@ -62,6 +66,15 @@ public class Enemy : MonoBehaviour, IDamagable
     public float GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    public void SetMaxHealth(float maxHealth)
+    {
+        this.maxHealth = maxHealth;
+    }
+    public void SetHealth(float healthAmount)
+    {
+        this.currentHealth = healthAmount;
     }
 
     public void SetTarget(PlanetObject planetObject)

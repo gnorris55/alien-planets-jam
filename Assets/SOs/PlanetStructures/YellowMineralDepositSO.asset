@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6588ca47b61de3428494777f8e4fc3f, type: 3}
+  m_Name: YellowMineralDepositSO
+  m_EditorClassIdentifier: Assembly-CSharp::PlanetStructureSO
+  structureName: YellowMineralDepost
+  structureGameObject: {fileID: 925340714543718202, guid: dd6de55123aeb1840af606e9c100d080, type: 3}
+  structureOutline: {fileID: 2465774899367047564, guid: 100f20b0b9953734f9d7c42e11c8e622, type: 3}
+  width: 0.32
+  height: 0.125
+  sprite: {fileID: 6160519389428905270, guid: 39732978d56bcbb4db68354dc07c6895, type: 3}

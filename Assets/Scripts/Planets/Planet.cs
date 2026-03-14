@@ -6,6 +6,7 @@ using System;
 public class Planet : MonoBehaviour
 {
 
+    public event EventHandler OnPlanetOilUpdated;
     public event EventHandler <OnToggleEnemySpawningArgs>OnToggleEnemySpawning;
     public class OnToggleEnemySpawningArgs : EventArgs
     {
@@ -81,6 +82,18 @@ public class Planet : MonoBehaviour
 
         planetObjectInstance.SetHomePlanet(this);
         planetObjectInstance.OnPlanetObjectDestroyed += PlanetObject_OnPlanetObjectDestroyed;
+
+        if (planetObjectInstance.gameObject.TryGetComponent(out IOilStorageDevice oilStorageDevice))
+        {
+            oilStorageDevice.OnOilUpdatedInStorageDevice += OilStorageDevice_OnOilUpdatedInStorageDevice;
+        }
+
+    }
+
+
+    private void OilStorageDevice_OnOilUpdatedInStorageDevice(object sender, EventArgs e)
+    {
+        PlanetOilAmountUI.Instance.DisplayTotalPlanetOil();
     }
 
     public void AddEnemyOnPlanet(Enemy enemy)
@@ -106,6 +119,12 @@ public class Planet : MonoBehaviour
 
     private void PlanetObject_OnPlanetObjectDestroyed(object sender, PlanetObject.OnPlanetObjectDestroyedArgs e)
     {
+
+        if (e.planetObject.gameObject.TryGetComponent(out IOilStorageDevice oilStorageDevice))
+        {
+            oilStorageDevice.OnOilUpdatedInStorageDevice -= OilStorageDevice_OnOilUpdatedInStorageDevice;
+        }
+
         planetStructures.Remove(e.planetObject);
     }
 
@@ -143,6 +162,21 @@ public class Planet : MonoBehaviour
     public void PlanetHit(Vector3 location, float hitAngle)
     {
         planetVisuals.CreatePlanetHitEffect(location, hitAngle);
+    }
+
+    public float GetStoredOil()
+    {
+
+        float totalOilAmount = 0;
+        foreach (PlanetObject planetObject in planetStructures)
+        {
+            if (planetObject.gameObject.TryGetComponent(out OilStorage oilStorage))
+            {
+                totalOilAmount += oilStorage.GetOilAmount();
+            }
+        }
+
+        return totalOilAmount;
     }
 
     public float GetPlanetRadius()

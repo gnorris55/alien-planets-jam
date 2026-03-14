@@ -5,16 +5,37 @@ using UnityEngine;
 
 public class OilRig : PlanetObject, IOilStorageDevice
 {
+    public event EventHandler OnOilUpdatedInStorageDevice;
+    public event EventHandler OnOilRigFilled;
+
     [SerializeField] private float maxOilAmount = 100.0f;
     [SerializeField] private float oilAccumulationSpeed = 0.05f;
     [SerializeField] private float oilHarvestSpeed = 100f;
     [SerializeField] private ItemVisualMovement oilGlobVisual;
 
-    public event EventHandler OnOilRigFilled;
 
     private float currentOilAmount = 0;
     private bool playerIsHarvestingOil = false;
     private float oilTransferedCount = 0;
+
+    protected override void Start()
+    {
+        base.Start();
+        StatsManager.Instance.GetGameObjectStats(StatsManager.ObjectType.oilRig);
+        SetHealth(GetMaxHealth());
+    }
+    
+    protected override void StatsManager_OnGameObjectStatsUpdated(object sender, StatsManager.OnGameObjectStatsUpgradedArgs e)
+    {
+        if (e.objectType == StatsManager.ObjectType.oilRig)
+        {
+            float updatedMaxOilAmount = e.upgradeValues.storageUpgradeValues[e.currentLevel];
+            float updatedMaxHealthAmount = e.upgradeValues.healthUpgradeValues[e.currentLevel];
+            maxOilAmount = updatedMaxOilAmount;
+            SetMaxHealth(updatedMaxHealthAmount);
+
+        }
+    }
 
     public override void Interact(Player player)
     {

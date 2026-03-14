@@ -27,13 +27,19 @@ public class PlanetObject: MonoBehaviour, IDamagable
     }
    
 
-    private void Start()
+    protected virtual void Start()
     {
-        currentHealth = maxHealth;
 
+        StatsManager.Instance.OnGameObjectStatsUpdated += StatsManager_OnGameObjectStatsUpdated;
+        
         Sequence mySequence = DOTween.Sequence();
         mySequence.Append(transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.15f));
         mySequence.Append(transform.DOScale(new Vector3(1f, 1f, 1f), 0.25f));
+    }
+
+    protected virtual void StatsManager_OnGameObjectStatsUpdated(object sender, StatsManager.OnGameObjectStatsUpgradedArgs e)
+    {
+        print("should update " + e.objectType.ToString());
     }
 
     public virtual void Interact(Player player)
@@ -60,16 +66,34 @@ public class PlanetObject: MonoBehaviour, IDamagable
     }
 
 
-    public void TakeDamage(float damageAmount)
+    public virtual void TakeDamage(float damageAmount)
+    {
+        DamageStructure(damageAmount);
+        if (IsDestroyed())
+        {
+            DestoryPlanetObject();
+        }
+    }
+    protected void DamageStructure(float damageAmount)
     {
         currentHealth -= damageAmount;
         OnHealthUpdated?.Invoke(this, EventArgs.Empty);
-        if (currentHealth <= 0)
-        {
-            Debug.Log("should destroy object");
-            OnPlanetObjectDestroyed?.Invoke(this, new OnPlanetObjectDestroyedArgs { planetObject = this });
-            Destroy(gameObject);
-        }
+    }
+
+    protected bool IsDestroyed()
+    {
+        return currentHealth <= 0;
+    }
+
+    protected void DestoryPlanetObject()
+    {
+        OnPlanetObjectDestroyed?.Invoke(this, new OnPlanetObjectDestroyedArgs { planetObject = this });
+        Destroy(gameObject);
+
+    }
+    public void AddHealth(float healthAmount)
+    {
+
     }
 
     public float GetCurrentHealth()
@@ -80,6 +104,15 @@ public class PlanetObject: MonoBehaviour, IDamagable
     public float GetMaxHealth()
     {
         return maxHealth;
+    }
+    public void SetMaxHealth(float maxHealth)
+    {
+        this.maxHealth = maxHealth;
+    }
+
+    public void SetHealth(float healthAmount)
+    {
+        currentHealth = healthAmount;
     }
 
     public float GetWidth()

@@ -3,8 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 using DG.Tweening;
 
-public class BuildingMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
-{
+public class BuildingMenu : MonoBehaviour{
 
     [SerializeField] private PlanetStructuresSO planetStructuresSO;
     [SerializeField] private BuildingMenuCell buildMenuCell;
@@ -22,6 +21,8 @@ public class BuildingMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         }
     }
 
+
+    
     public void Show()
     {
         gameObject.SetActive(true);
@@ -51,14 +52,5 @@ public class BuildingMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         PlayerBuilding.Instance.SetPlanetStructureSO(e.planetStructureSO);
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        GameInput.Instance.ToggleShootInput(false);
-        // Put your logic here (e.g., showing a tooltip or changing color)
-    }
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        GameInput.Instance.ToggleShootInput(true);
-    }
 
 }

@@ -21,14 +21,10 @@ public class OilProgressBar : MonoBehaviour
         {
             Debug.LogError("GameObject does not contain interface for oil storage");
         }
-        
-
-        
     }
 
     private void Update()
     {
-
         oilProgressFill.fillAmount = oilStorageDevice.GetOilAmount() / oilStorageDevice.GetMaxOilAmount();
         oilAmountText.text = (int)oilStorageDevice.GetOilAmount() + "/" + (int)oilStorageDevice.GetMaxOilAmount();
     }

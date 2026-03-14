@@ -115,6 +115,7 @@ MonoBehaviour:
   speed: 0.1
   attackRange: 1
   attackFrequencyTime: 1
+  damage: 5
   maxHealth: 100
   bullet: {fileID: -4233094135127121287, guid: 4554fea25af99ee498f8a7452a335659, type: 3}
   flightHeight: 3

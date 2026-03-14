@@ -3,11 +3,12 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
+    protected float damageAmount;
+
     [SerializeField] private float speed = 2f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private ParticleSystem groundExplosionParticleSystem;
 
-    private float damageAmount;
     private Rigidbody2D rb;
     private Vector3 shootDirection;
     protected Planet currentPlanet;
@@ -82,7 +83,7 @@ public class Bullet : MonoBehaviour
         }
         else if (collision.gameObject.TryGetComponent(out Enemy enemy))
         {
-            enemy.TakeDamage(20);
+            enemy.TakeDamage(damageAmount);
             Destroy(gameObject);
         }
         

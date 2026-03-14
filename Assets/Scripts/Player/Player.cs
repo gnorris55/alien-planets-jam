@@ -3,12 +3,14 @@ using Unity.Hierarchy;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Splines.Interpolators;
+using static MineralDeposit;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class Player : MonoBehaviour
 {
 
     public static Player Instance { get; private set; }
+
 
     public event EventHandler<OnHealthUpdatedArgs> OnHealthUpdated;
     public class OnHealthUpdatedArgs: EventArgs
@@ -30,6 +32,13 @@ public class Player : MonoBehaviour
         public float updatedFuel;
         public float maxFuel;
     }
+    public event EventHandler<OnMineralAmountUpdatedArgs> OnMineralAmountUpdated;
+    public class OnMineralAmountUpdatedArgs : EventArgs
+    {
+        public float updatedMineralAmount;
+        public float maxMineralAmount;
+        public MineralDeposit.MineralType mineralType;
+    }
 
 
     public enum PlayerStates
@@ -40,11 +49,19 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float maxHealth;
     [SerializeField] private float maxOilAmount;
+    [SerializeField] private float maxBlueMineralAmount;
+    [SerializeField] private float maxRedMineralAmount;
+    [SerializeField] private float maxYellowMineralAmount;
     [SerializeField] private float fuelBurnRate;
     [SerializeField] private LayerMask playerPlanetObjectsLayer;
+    [SerializeField] private LayerMask neutralPlanetObjectsLayer;
+
 
     private float health;
     private float currentOilAmount;
+    private float currentBlueMineralAmount;
+    private float currentRedMineralAmount;
+    private float currentYellowMineralAmount;
 
     private PlanetObject currentInteractablePlanetObject;
     private PlayerStates currentPlayerState = PlayerStates.combat;
@@ -55,7 +72,6 @@ public class Player : MonoBehaviour
     {
         Instance = this;
         health = maxHealth;
-        currentOilAmount = maxOilAmount / 3f;
     }
 
     private void Start()
@@ -63,13 +79,48 @@ public class Player : MonoBehaviour
 
         playerMovement = GetComponent<PlayerMovement>();
 
+
+
         GameInput.Instance.OnChangePlayerStatePressed += GameInput_OnChangePlayerStatePressed;
         GameInput.Instance.OnPlayerInteractPressed += GameInput_OnPlayerInteractPressed;
         GameInput.Instance.OnPlayerInteractReleased += GameInput_OnPlayerInteractReleased;
 
+        StatsManager.Instance.OnGameObjectStatsUpdated += StatsManager_OnGameObjectStatsUpdated;
+
         OnHealthUpdated?.Invoke(this, new OnHealthUpdatedArgs { maxHealth = maxHealth, updatedHealth = health });
+        OnMineralAmountUpdated?.Invoke(this, new OnMineralAmountUpdatedArgs
+        {
+            updatedMineralAmount = currentBlueMineralAmount,
+            maxMineralAmount = maxBlueMineralAmount,
+            mineralType = MineralType.blue
+        });
+        OnMineralAmountUpdated?.Invoke(this, new OnMineralAmountUpdatedArgs
+        {
+            updatedMineralAmount = currentYellowMineralAmount,
+            maxMineralAmount = maxYellowMineralAmount,
+            mineralType = MineralType.yellow
+        });
+        OnMineralAmountUpdated?.Invoke(this, new OnMineralAmountUpdatedArgs
+        {
+            updatedMineralAmount = currentRedMineralAmount,
+            maxMineralAmount = maxRedMineralAmount,
+            mineralType = MineralType.red
+        });
+
         OnPlayerStateChanged?.Invoke(this, new OnPlayerStateChangedArgs { playerState = currentPlayerState });
 
+        StatsManager.Instance.GetGameObjectStats(StatsManager.ObjectType.player);
+        currentOilAmount = maxOilAmount;
+        print(currentOilAmount);
+
+    }
+
+    private void StatsManager_OnGameObjectStatsUpdated(object sender, StatsManager.OnGameObjectStatsUpgradedArgs e)
+    {
+        if (e.objectType == StatsManager.ObjectType.player)
+        {
+            maxOilAmount = e.upgradeValues.storageUpgradeValues[e.currentLevel];
+        }
     }
 
     private void GameInput_OnPlayerInteractReleased(object sender, EventArgs e)
@@ -88,9 +139,6 @@ public class Player : MonoBehaviour
             currentInteractablePlanetObject.Interact(this);
         }
         
-
-        // TODO: Shoot out ray or something to detect shit
-
     }
     private void Update()
     {
@@ -117,7 +165,7 @@ public class Player : MonoBehaviour
     {
         
         float circleRadius = GetComponent<CircleCollider2D>().radius * 1.5f;
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, circleRadius, Vector2.right, 0, playerPlanetObjectsLayer);
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, circleRadius, Vector2.right, 0, (playerPlanetObjectsLayer | neutralPlanetObjectsLayer));
         
         PlanetObject closestInteractablePlanetObject = null;
         float distanceFromClosestInteractablePlanetObject = float.MaxValue;
@@ -169,12 +217,54 @@ public class Player : MonoBehaviour
         {
             currentOilAmount = 0;
         }
+
+        PlanetOilAmountUI.Instance.DisplayTotalPlanetOil();
     }
 
     public void SetState(PlayerStates playerState)
     {
         currentPlayerState = playerState;
         OnPlayerStateChanged?.Invoke(this, new OnPlayerStateChangedArgs { playerState = currentPlayerState });
+    }
+
+    public float AddMineral(float mineralAmount, MineralDeposit.MineralType mineralType)
+    {
+
+        float leftOverMineral = 0;
+        if (mineralType == MineralDeposit.MineralType.blue)
+        {
+            leftOverMineral = HarvestSpecificMineral(mineralAmount, ref currentBlueMineralAmount, ref maxBlueMineralAmount, mineralType);
+
+        }
+        if (mineralType == MineralDeposit.MineralType.yellow)
+        {
+            leftOverMineral = HarvestSpecificMineral(mineralAmount, ref currentYellowMineralAmount, ref maxYellowMineralAmount, mineralType);
+        }
+        if (mineralType == MineralDeposit.MineralType.red)
+        {
+            leftOverMineral = HarvestSpecificMineral(mineralAmount, ref currentRedMineralAmount, ref maxRedMineralAmount, mineralType);
+        }
+
+        return leftOverMineral;
+    }
+
+    private float HarvestSpecificMineral(float mineralAmount, ref float currentMineralAmount, ref float maxMineralAmount, MineralDeposit.MineralType mineralType)
+    {
+            currentMineralAmount += mineralAmount;
+            float leftOverMineral = Mathf.Clamp(currentMineralAmount - maxMineralAmount, 0, maxMineralAmount);
+            if (leftOverMineral > 0)
+            {
+                currentMineralAmount = maxMineralAmount;
+            }
+
+        OnMineralAmountUpdated?.Invoke(this, new OnMineralAmountUpdatedArgs
+        {
+            updatedMineralAmount = currentMineralAmount,
+            maxMineralAmount = maxMineralAmount,
+            mineralType = mineralType
+        }) ;
+
+        return leftOverMineral;
     }
 
     public float AddOil(float oilAmount)
@@ -187,6 +277,7 @@ public class Player : MonoBehaviour
         {
             currentOilAmount = maxOilAmount;
         }
+        PlanetOilAmountUI.Instance.DisplayTotalPlanetOil();
 
         return leftOverOil;
     }
@@ -199,6 +290,7 @@ public class Player : MonoBehaviour
             playerMovement.EnteredPlanet();
             PlanetAtmosphere planetAtmosphere = collision.gameObject.GetComponent<PlanetAtmosphere>();
             currentPlanet = planetAtmosphere.GetPlanet();
+            PlanetOilAmountUI.Instance.DisplayTotalPlanetOil();
         }
     }
 
@@ -209,6 +301,7 @@ public class Player : MonoBehaviour
             playerMovement.ExitedPlanet();
             SetState(Player.PlayerStates.combat);
             currentPlanet = null;
+            PlanetOilAmountUI.Instance.DisplayTotalPlanetOil();
         }
     }
 

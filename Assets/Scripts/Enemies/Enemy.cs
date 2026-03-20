@@ -1,4 +1,5 @@
 using System;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamagable
@@ -27,9 +28,11 @@ public class Enemy : MonoBehaviour, IDamagable
     protected float attackFrequencyTimer;
     protected EnemyState currentState;
     protected PlanetObject planetObjectTarget;
-   
+    protected Planet homePlanet;
 
     [SerializeField] private float maxHealth = 100;
+    [SerializeField] private float oilDropAmount = 20f;
+    [SerializeField] private ItemVisualMovement oilGlobVisual;
     private float currentHealth;
 
 
@@ -51,6 +54,14 @@ public class Enemy : MonoBehaviour, IDamagable
         if (currentHealth <= 0) 
         {
             OnEnemyDestroyed?.Invoke(this, new OnEnemyDestroyedArgs { enemy = this});
+            // transfer oil to player
+            if (Player.Instance.GetCurrentPlanet() == homePlanet)
+            {
+                Player.Instance.AddOil(oilDropAmount);
+                ItemVisualMovement oilGlobInstance = Instantiate(oilGlobVisual, transform.position, Quaternion.identity);
+                oilGlobInstance.SetUp(transform.position, Player.Instance.transform.position);
+            }
+
             Destroy(gameObject);
         }
     }

@@ -95,7 +95,6 @@ public class MineralDeposit : PlanetObject
             ItemVisualMovement mineralGlobInstance = Instantiate(mineralGlobVisual, transform.position, Quaternion.identity);
             mineralGlobInstance.SetUp(transform.position, transferTargetLocation);
             mineralTransferedCount = 0;
-            print(transferTargetLocation);
         }
     }
 

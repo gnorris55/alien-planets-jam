@@ -7,7 +7,6 @@ public class FlyingEnemy : Enemy
     [SerializeField] private float flightHeight;
     [SerializeField] private float speedRange;
 
-    private Planet homePlanet;
     private float movementDirection;
 
 

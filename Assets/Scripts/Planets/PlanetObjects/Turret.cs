@@ -29,11 +29,12 @@ public class Turret : PlanetObject
     {
         if (e.objectType == StatsManager.ObjectType.smallTurret)
         {
-            float updatedMaxHealthAmount = e.upgradeValues.healthUpgradeValues[e.currentLevel];
-            float updatedDamageAmount = e.upgradeValues.damageUpgradeValues[e.currentLevel];
+            float updatedMaxHealthAmount = e.upgradeValues.healthUpgradeValues.Evaluate(e.currentLevel)*100f;
+            float updatedDamageAmount = e.upgradeValues.damageUpgradeValues.Evaluate(e.currentLevel) * 100f;
+
             projectileDamage = updatedDamageAmount;
             SetMaxHealth(updatedMaxHealthAmount);
-
+     
         }
     }
 

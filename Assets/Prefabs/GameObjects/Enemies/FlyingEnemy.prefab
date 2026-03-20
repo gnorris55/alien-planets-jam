@@ -72,7 +72,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.12211853
+  m_Radius: 0.0733991
 --- !u!50 &2922165638341364546
 Rigidbody2D:
   serializedVersion: 5
@@ -117,6 +117,8 @@ MonoBehaviour:
   attackFrequencyTime: 1
   damage: 5
   maxHealth: 100
+  oilDropAmount: 5
+  oilGlobVisual: {fileID: 4933926180698475067, guid: 0ec23a2cb484da14286fa8b14c532a79, type: 3}
   bullet: {fileID: -4233094135127121287, guid: 4554fea25af99ee498f8a7452a335659, type: 3}
   flightHeight: 3
   speedRange: 0.05
@@ -250,12 +252,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -7552603740765027566, guid: 0bd1bc0c4550c16489d0ef1a20972c35, type: 3}
+  m_Sprite: {fileID: -7768121641566485073, guid: 795cd5633db51534cb8eaaf262a4f0ef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.12, y: 0.17}
+  m_Size: {x: 0.15, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -338,7 +340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1613562200991186926, guid: 60143789552b4ae4fbd3cd03ab8570df, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0844
+      value: 0.134
       objectReference: {fileID: 0}
     - target: {fileID: 1613562200991186926, guid: 60143789552b4ae4fbd3cd03ab8570df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -26,7 +26,7 @@ public class PlanetOilAmountUI : MonoBehaviour
         if (currentPlanet != null )
         {
             Show();
-            float totalOilAmount = player.GetOilAmount() + currentPlanet.GetStoredOil();
+            float totalOilAmount = player.GetTotalOil();
             totalOilAmountText.text = currentPlanet.GetPlanetName() +"'s total stored oil: " + (int)totalOilAmount;
         }
         else

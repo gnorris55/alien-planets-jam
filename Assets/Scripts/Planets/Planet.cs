@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
+
 public class Planet : MonoBehaviour
 {
 
@@ -25,6 +26,7 @@ public class Planet : MonoBehaviour
     [SerializeField] private ParticleSystem buildingParticleSystem;
     [SerializeField] PlanetAtmosphere planetAtmosphere;
     [SerializeField] PlanetVisuals planetVisuals;
+    [SerializeField] List<PlanetStructureSO> initialPlanetObjectSOList;
 
 
 
@@ -38,12 +40,31 @@ public class Planet : MonoBehaviour
         GetComponent<CircleCollider2D>().radius = planetRadius;
         planetAtmosphere.SetAtmosphereRadius(atmosphereRadius);
 
-        if (hasEnemies)
+        foreach (PlanetStructureSO planetObjectSO in initialPlanetObjectSOList)
         {
+
             Vector3 positionOnPlanet = UnityEngine.Random.insideUnitCircle.normalized * planetRadius;
-            Vector3 enemySpawnerPlanetPosition = GetPlanetPosition(0, positionOnPlanet, (enemySpawnerStructureSO.height / 2.0f) - 0.02f, 0, 0);
-            Vector3 enemyStructureDirection = (positionOnPlanet - transform.position).normalized;
-            AddObjectOnPlanet(enemySpawnerStructureSO.structureGameObject, enemySpawnerPlanetPosition, enemyStructureDirection);
+
+            Vector3 planetObjectPlanetPosition = GetPlanetPosition(0, positionOnPlanet, (planetObjectSO.height / 2.0f) - 0.02f, 0, 0);
+            int count = 0;
+            do
+            {
+                count++;
+                if (count > 10)
+                {
+                    print("could not find a good position");
+                    break;
+                }
+
+                Vector3 direction = UnityEngine.Random.insideUnitCircle.normalized;
+                positionOnPlanet =  transform.position + direction * planetRadius;
+
+                planetObjectPlanetPosition = GetPlanetPosition(0, positionOnPlanet, (planetObjectSO.height / 2.0f) - 0.02f, 0, 0);
+
+            } while (!CanPlaceObjectOnPlanet(planetObjectSO.width, planetObjectPlanetPosition));
+
+            Vector3 planetObjectDirection = (positionOnPlanet - transform.position).normalized;
+            AddObjectOnPlanet(planetObjectSO.structureGameObject, planetObjectPlanetPosition, planetObjectDirection);
         }
 
     }
@@ -93,6 +114,7 @@ public class Planet : MonoBehaviour
 
     private void OilStorageDevice_OnOilUpdatedInStorageDevice(object sender, EventArgs e)
     {
+        Player.Instance.UpdateTotalOil();
         PlanetOilAmountUI.Instance.DisplayTotalPlanetOil();
     }
 

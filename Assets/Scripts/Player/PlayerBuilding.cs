@@ -61,12 +61,15 @@ public class PlayerBuilding : MonoBehaviour
 
     private void buildCurrentStructure()
     {
+        if (Player.Instance.BuyPlanetObject(currentPlanetStructureSO.oilPrice))
+        {
 
-        Planet currentPlanet = player.GetCurrentPlanet();
-        GetObjectPlacement(out Vector3 placementLocation, out Vector3 placementDirection);
-        currentPlanet.AddObjectOnPlanet(currentPlanetStructureSO.structureGameObject, placementLocation, placementDirection);
-        
-        CameraManager.Instance.ShakeCamera(1f, 0.1f);
+            Planet currentPlanet = player.GetCurrentPlanet();
+            GetObjectPlacement(out Vector3 placementLocation, out Vector3 placementDirection);
+            currentPlanet.AddObjectOnPlanet(currentPlanetStructureSO.structureGameObject, placementLocation, placementDirection);
+
+            CameraManager.Instance.ShakeCamera(1f, 0.1f);
+        }
     }
 
 
@@ -97,7 +100,7 @@ public class PlayerBuilding : MonoBehaviour
 
             canPlaceObject = currentPlanet.CanPlaceObjectOnPlanet(currentPlanetStructureSO.width, planetStructurePlacementVisualTransform.position);
             
-            if (canPlaceObject)
+            if (canPlaceObject && Player.Instance.HasOilAmount(currentPlanetStructureSO.oilPrice))
             {
                 SetColorOverlayForObjectPlacement(new Vector4(0, 1, 0, 1));
             }

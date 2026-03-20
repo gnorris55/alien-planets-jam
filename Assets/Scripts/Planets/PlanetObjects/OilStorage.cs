@@ -28,10 +28,12 @@ public class OilStorage : PlanetObject, IOilStorageDevice
     {
         if (e.objectType == StatsManager.ObjectType.oilStorage)
         {
-            float updatedMaxOilAmount = e.upgradeValues.storageUpgradeValues[e.currentLevel];
-            float updatedMaxHealthAmount = e.upgradeValues.healthUpgradeValues[e.currentLevel];
-            maxOilAmount = updatedMaxOilAmount;
+            float updatedMaxHealthAmount = e.upgradeValues.healthUpgradeValues.Evaluate(e.currentLevel) * 100f;
+            float updatedOilCapacity = e.upgradeValues.storageUpgradeValues.Evaluate(e.currentLevel) * 100f;
+
             SetMaxHealth(updatedMaxHealthAmount);
+            
+            maxOilAmount = updatedOilCapacity;
 
         }
     }
@@ -136,6 +138,26 @@ public class OilStorage : PlanetObject, IOilStorageDevice
         }
 
     }
+
+
+    public float removeOil(float oilAmount)
+    {
+        if (currentOilAmount <= oilAmount)
+        {
+            float leftOverOil = oilAmount - currentOilAmount;
+            currentOilAmount = 0;
+            OnOilUpdatedInStorageDevice?.Invoke(this, EventArgs.Empty);
+            return leftOverOil;
+
+        }
+        else
+        {
+            currentOilAmount -= oilAmount;
+            OnOilUpdatedInStorageDevice?.Invoke(this, EventArgs.Empty);
+            return 0;
+        }
+    }
+    
 
     public override void TakeDamage(float damageAmount)
     {

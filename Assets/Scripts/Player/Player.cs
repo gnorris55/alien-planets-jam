@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.Hierarchy;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -55,6 +57,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float fuelBurnRate;
     [SerializeField] private LayerMask playerPlanetObjectsLayer;
     [SerializeField] private LayerMask neutralPlanetObjectsLayer;
+    [SerializeField] private bool infiniteFuel;
 
 
     private float health;
@@ -62,6 +65,7 @@ public class Player : MonoBehaviour
     private float currentBlueMineralAmount;
     private float currentRedMineralAmount;
     private float currentYellowMineralAmount;
+    private float totalOil = 0;
 
     private PlanetObject currentInteractablePlanetObject;
     private PlayerStates currentPlayerState = PlayerStates.combat;
@@ -72,6 +76,13 @@ public class Player : MonoBehaviour
     {
         Instance = this;
         health = maxHealth;
+
+
+        /*
+        currentBlueMineralAmount = maxBlueMineralAmount;
+        currentYellowMineralAmount = maxYellowMineralAmount;
+        currentRedMineralAmount = maxRedMineralAmount;
+        */
     }
 
     private void Start()
@@ -111,15 +122,13 @@ public class Player : MonoBehaviour
 
         StatsManager.Instance.GetGameObjectStats(StatsManager.ObjectType.player);
         currentOilAmount = maxOilAmount;
-        print(currentOilAmount);
-
     }
 
     private void StatsManager_OnGameObjectStatsUpdated(object sender, StatsManager.OnGameObjectStatsUpgradedArgs e)
     {
         if (e.objectType == StatsManager.ObjectType.player)
         {
-            maxOilAmount = e.upgradeValues.storageUpgradeValues[e.currentLevel];
+            maxOilAmount = e.upgradeValues.storageUpgradeValues.Evaluate(e.currentLevel)*100f;
         }
     }
 
@@ -140,6 +149,7 @@ public class Player : MonoBehaviour
         }
         
     }
+
     private void Update()
     {
 
@@ -159,6 +169,83 @@ public class Player : MonoBehaviour
                 currentInteractablePlanetObject = null;
             }
         }
+    }
+
+    public void UpdateTotalOil()
+    {
+        totalOil = currentOilAmount;
+        if (currentPlanet)
+        {
+            totalOil += currentPlanet.GetStoredOil();
+        }
+    }
+
+    public float GetTotalOil()
+    {
+        UpdateTotalOil();
+        return totalOil;
+    }
+
+    public bool CanAffordUpgrade(float requiredOilAmount, float requiredBlueMineral = 0, float requiredYellowMineral = 0, float requiredRedMineral = 0)
+    {
+        totalOil = GetTotalOil();
+        print(totalOil);
+        print(currentBlueMineralAmount);
+        print(currentYellowMineralAmount);
+        print(currentRedMineralAmount);
+
+        return (totalOil >= requiredOilAmount) && (currentBlueMineralAmount >= requiredBlueMineral) 
+                                               && (currentYellowMineralAmount >= requiredYellowMineral)
+                                               && (currentRedMineralAmount >= requiredRedMineral);
+    }
+
+    public bool BuyUpgrade(float requiredOilAmount, float requiredBlueMineral = 0, float requiredYellowMineral = 0, float requiredRedMineral = 0)
+    {
+        if (CanAffordUpgrade(requiredOilAmount, requiredBlueMineral, requiredYellowMineral,requiredRedMineral))
+        {
+            useOil(requiredOilAmount*100);
+            currentBlueMineralAmount -= requiredBlueMineral*10;
+            currentYellowMineralAmount -= requiredYellowMineral*10;
+            currentRedMineralAmount -= requiredRedMineral * 10;
+            return true;
+        }
+        return false;
+    }
+
+    public bool BuyPlanetObject(float oilAmount)
+    {
+        if (HasOilAmount(oilAmount))
+        {
+            useOil(oilAmount);
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool HasOilAmount(float oilAmount)
+    {
+        totalOil = GetTotalOil();
+        return totalOil >= oilAmount;
+    }
+
+    public void useOil(float oilAmount)
+    {
+        totalOil = GetOilAmount();
+        List<OilStorage> oilStorageDevices = currentPlanet.GetSpecificPlanetObject<OilStorage>();
+        foreach (OilStorage oilStorageDevice in oilStorageDevices)
+        {
+
+            oilAmount = oilStorageDevice.removeOil(oilAmount);
+        }
+
+        if (oilAmount > 0 && !infiniteFuel)
+        {
+            currentOilAmount -= oilAmount;
+        }
+
+        PlanetOilAmountUI.Instance.DisplayTotalPlanetOil();
+
     }
 
     private PlanetObject GetInteractablePlanetObjects()
@@ -188,6 +275,7 @@ public class Player : MonoBehaviour
 
     } 
 
+
     private void GameInput_OnChangePlayerStatePressed(object sender, EventArgs e)
     {
 
@@ -210,15 +298,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void UseFuel()
+    public void UsePlayerFuel()
     {
-        currentOilAmount -= Time.deltaTime * fuelBurnRate;
-        if (currentOilAmount < 0 ) 
+        if (!infiniteFuel)
         {
-            currentOilAmount = 0;
-        }
+            currentOilAmount -= Time.deltaTime * fuelBurnRate;
+            if (currentOilAmount < 0)
+            {
+                currentOilAmount = 0;
+            }
 
-        PlanetOilAmountUI.Instance.DisplayTotalPlanetOil();
+            PlanetOilAmountUI.Instance.DisplayTotalPlanetOil();
+        }
     }
 
     public void SetState(PlayerStates playerState)
@@ -291,6 +382,7 @@ public class Player : MonoBehaviour
             PlanetAtmosphere planetAtmosphere = collision.gameObject.GetComponent<PlanetAtmosphere>();
             currentPlanet = planetAtmosphere.GetPlanet();
             PlanetOilAmountUI.Instance.DisplayTotalPlanetOil();
+            GeneralPlayerMenuUI.Instance.ShowUI();
         }
     }
 
@@ -302,6 +394,7 @@ public class Player : MonoBehaviour
             SetState(Player.PlayerStates.combat);
             currentPlanet = null;
             PlanetOilAmountUI.Instance.DisplayTotalPlanetOil();
+            GeneralPlayerMenuUI.Instance.HideUI();
         }
     }
 

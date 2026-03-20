@@ -2,11 +2,14 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
+
 public class BuildingMenuCell : MonoBehaviour
 {
 
     [SerializeField] private Button button;
     [SerializeField] private Image itemImage;
+    [SerializeField] private TextMeshProUGUI planetObjectOilPrice;
 
     public event EventHandler<OnPlanetStructureSelectedArgs> OnPlanetStructureSelected;
     public class OnPlanetStructureSelectedArgs : EventArgs
@@ -27,6 +30,7 @@ public class BuildingMenuCell : MonoBehaviour
     {
         this.planetStructureSO = planetStructureSO;
         itemImage.sprite = planetStructureSO.sprite;
+        planetObjectOilPrice.text = planetStructureSO.oilPrice.ToString();
     }
 
     private void ButtonActivated()

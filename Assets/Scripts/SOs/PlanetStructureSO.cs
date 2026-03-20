@@ -9,4 +9,5 @@ public class PlanetStructureSO : ScriptableObject
     public float width;
     public float height;
     public Sprite sprite;
+    public float oilPrice = 100;
 }

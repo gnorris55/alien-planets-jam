@@ -4,32 +4,55 @@ using UnityEngine.UI;
 
 public class GeneralPlayerMenuUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+
+
+    static public GeneralPlayerMenuUI Instance { get; private set; }
     [SerializeField] private BuildingMenu buildingMenu;
     [SerializeField] private UpgradesMenuUI upgradesMenu;
     [SerializeField] private Button selectBuildingMenuButton;
     [SerializeField] private Button selectUpgradesMenuButton;
-    [SerializeField] private Button selectCombatButton;
+    [SerializeField] private Button ExitButton;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
         selectBuildingMenuButton.onClick.AddListener(ShowBuildingMenu);
         selectUpgradesMenuButton.onClick.AddListener(ShowUpgradesMenu);
-        selectCombatButton.onClick.AddListener(HidePlayerUI);
+        ExitButton.onClick.AddListener(HidePlayerUI);
 
         HidePlayerUI();
 
     }
 
+    public void ShowUI()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void HideUI()
+    {
+        gameObject.SetActive(false);
+    }
+
     private void ShowBuildingMenu()
     {
+        
         buildingMenu.Show();
         upgradesMenu.Hide();
+        ExitButton.gameObject.SetActive(true);
+        Player.Instance.SetState(Player.PlayerStates.building);
     }
 
     private void ShowUpgradesMenu()
     {
         buildingMenu.Hide();
         upgradesMenu.Show();
+        ExitButton.gameObject.SetActive(true);
+        Player.Instance.SetState(Player.PlayerStates.combat);
 
     }
 
@@ -37,6 +60,8 @@ public class GeneralPlayerMenuUI : MonoBehaviour, IPointerEnterHandler, IPointer
     {
         buildingMenu.Hide();
         upgradesMenu.Hide();
+        ExitButton.gameObject.SetActive(false);
+        Player.Instance.SetState(Player.PlayerStates.combat);
 
     }
 

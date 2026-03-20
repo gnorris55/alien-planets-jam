@@ -29,11 +29,13 @@ public class OilRig : PlanetObject, IOilStorageDevice
     {
         if (e.objectType == StatsManager.ObjectType.oilRig)
         {
-            float updatedMaxOilAmount = e.upgradeValues.storageUpgradeValues[e.currentLevel];
-            float updatedMaxHealthAmount = e.upgradeValues.healthUpgradeValues[e.currentLevel];
-            maxOilAmount = updatedMaxOilAmount;
-            SetMaxHealth(updatedMaxHealthAmount);
+            float updatedMaxHealthAmount = e.upgradeValues.healthUpgradeValues.Evaluate(e.currentLevel)*100f;
+            float updatedOilCapacity = e.upgradeValues.storageUpgradeValues.Evaluate(e.currentLevel) * 100f;
 
+            SetMaxHealth(updatedMaxHealthAmount);
+       
+            maxOilAmount = updatedOilCapacity;
+            print("oil capacity: " + maxOilAmount);
         }
     }
 
@@ -78,7 +80,6 @@ public class OilRig : PlanetObject, IOilStorageDevice
     }
     private void TransferOilToPlayer()
     {
-
         
         float oilTransferAmount = Time.deltaTime * oilHarvestSpeed;
 

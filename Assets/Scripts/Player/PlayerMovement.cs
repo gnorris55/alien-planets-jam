@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 using System;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
+using UnityEditor.XR;
 //using UnityEngine.Windows;
 
 public class PlayerMovement : MonoBehaviour
@@ -13,20 +14,32 @@ public class PlayerMovement : MonoBehaviour
 
     public static PlayerMovement Instance { get; private set; }
 
+    public enum MovementStates
+    {
+        idle,
+        walking,
+        flying
+    }
+
+    public event EventHandler<MovementStates> OnMovementStateChanged;
+    public event EventHandler<bool> OnDirectionChanged;
+
     [SerializeField] private float speed = .1f;
     [SerializeField] private float jumpForce = 20f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private ParticleSystem jetPackFireParticleSystem;
+    [SerializeField] private ParticleSystem jetPackFireParticleSystem2;
     
     private bool canUseJetPack = true;
     private float jetPackActivationTimer;
 
     private float circleRadius;
-    private float circleCastDistance = 0.01f;
+    private float circleCastDistance = 0.1f;
 
     private Vector2 lastMovement = Vector2.zero;
     private Vector3 playerDirection;
     private Player player;
+    private MovementStates currentMovementState = MovementStates.idle;
 
 
     private void Awake()
@@ -66,10 +79,45 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        HandleMovementStates(playerMovement);
         SetJetPackEffects(playerMovement);
         
 
         lastMovement = playerMovement;
+    }
+
+    private void HandleMovementStates(Vector2 playerMovement)
+    {
+
+        if (OnGround())
+        {
+            
+            if (Mathf.Abs(playerMovement.x) > 0)
+            {
+                if (currentMovementState != MovementStates.walking)
+                {
+                    currentMovementState = MovementStates.walking;
+                    OnMovementStateChanged?.Invoke(this, currentMovementState);
+                }
+            }
+            else if (currentMovementState != MovementStates.idle)
+            {
+                currentMovementState = MovementStates.idle;
+                OnMovementStateChanged?.Invoke(this, currentMovementState);
+            }
+        }
+        print(lastMovement);
+        print(playerMovement);
+        if (lastMovement.x >= 0 && playerMovement.x < 0)
+        {
+            OnDirectionChanged?.Invoke(this, true);
+        }
+        else if (lastMovement.x <= 0 && playerMovement.x > 0)
+        {
+            OnDirectionChanged?.Invoke(this, false);
+
+        }
+
     }
 
     
@@ -80,11 +128,16 @@ public class PlayerMovement : MonoBehaviour
             CameraManager.Instance.SetShakeCamera(0.35f);
             jetPackFireParticleSystem.gameObject.SetActive(true);
             jetPackFireParticleSystem.Play();
+            jetPackFireParticleSystem2.gameObject.SetActive(true);
+            jetPackFireParticleSystem2.Play();
+
         }
         else if (playerMovement.y == 0 && lastMovement.y > 0) {
             CameraManager.Instance.SetShakeCamera(0.0f);
             jetPackFireParticleSystem.gameObject.SetActive(false);
             jetPackFireParticleSystem.Pause();
+            jetPackFireParticleSystem2.gameObject.SetActive(false);
+            jetPackFireParticleSystem2.Pause();
         }
 
     }
@@ -103,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerMovement.y > 0)
         {
             playerDirection = transform.up;
-            Player.Instance.UseFuel();
+            Player.Instance.UsePlayerFuel();
 
         }
         transform.position += playerDirection * jumpForce * Time.deltaTime;
@@ -120,13 +173,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 toPlanetDirection = toPlanet.normalized;
         Vector3 toPlayerDirection = -toPlanetDirection;
 
-        if (OnGround())
-        {
-            //Debug.Log("on ground");
-
-        }
         // if the player is not on the ground of the planet, apply gravity to their movement
-        else
+        if (!OnGround()) { }
         {
             transform.position += toPlanetDirection * currentPlanet.GetGravityScalar() * Time.deltaTime;
         }
@@ -135,7 +183,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerMovement.y > 0 && canUseJetPack && Player.Instance.hasFuel())
         {
             transform.position += toPlayerDirection * jumpForce * Time.deltaTime;
-            Player.Instance.UseFuel();
+            Player.Instance.UsePlayerFuel();
         }
 
 

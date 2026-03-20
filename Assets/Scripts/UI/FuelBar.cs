@@ -1,8 +1,10 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class FuelBar : MonoBehaviour
 {
     [SerializeField] private Image FuelFill;
+    [SerializeField] private TextMeshProUGUI fuelAmountText;
 
     private Player player;
 
@@ -16,6 +18,7 @@ public class FuelBar : MonoBehaviour
     private void Update()
     {
         FuelFill.fillAmount = player.GetOilAmount() / player.GetMaxOilAmount();
+        fuelAmountText.text = "Fuel: " + (int)player.GetOilAmount() + "/" + (int)player.GetMaxOilAmount();
     }
 
 }

@@ -12,10 +12,104 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d70ef881e0bdd46976b5ad8fd99ae7, type: 3}
   m_Name: PlayerUpgradeRequirementsSO
   m_EditorClassIdentifier: Assembly-CSharp::UpgradesSO
-  healthUpgradeRequirements: []
-  damageUpgradeRequirements: []
-  storageUpgradeRequirements:
-  - oilAmount: 20
-    blueMineralAmount: 0
-    yellowMineralAmount: 0
-    redMineralAmount: 0
+  type: 0
+  objectName: Player
+  objectTextureSprite: {fileID: -7552603740765027566, guid: 0bd1bc0c4550c16489d0ef1a20972c35, type: 3}
+  upgradeRequirements:
+    oilAmount:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0.2
+        outSlope: 0.2
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5
+        value: 1
+        inSlope: 0.2
+        outSlope: 0.2
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    blueMineralAmount:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0.2
+        outSlope: 0.2
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5
+        value: 1
+        inSlope: 0.2
+        outSlope: 0.2
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    yellowMineralAmount:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0.2
+        outSlope: 0.2
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5
+        value: 1
+        inSlope: 0.2
+        outSlope: 0.2
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    redMineralAmount:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0.2
+        outSlope: 0.2
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5
+        value: 1
+        inSlope: 0.2
+        outSlope: 0.2
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  upgradeValues: {fileID: 11400000, guid: 4ddb546591d92fb4fb3b52254a866e2b, type: 2}

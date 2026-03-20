@@ -18,3 +18,4 @@ MonoBehaviour:
   width: 0.32
   height: 0.125
   sprite: {fileID: 7517564383262865977, guid: 64904da68b20fbe4bb0555779a6a5ea6, type: 3}
+  oilPrice: 0

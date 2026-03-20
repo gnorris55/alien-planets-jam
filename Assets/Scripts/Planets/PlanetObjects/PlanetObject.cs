@@ -39,7 +39,7 @@ public class PlanetObject: MonoBehaviour, IDamagable
 
     protected virtual void StatsManager_OnGameObjectStatsUpdated(object sender, StatsManager.OnGameObjectStatsUpgradedArgs e)
     {
-        print("should update " + e.objectType.ToString());
+        //print("should update " + e.objectType.ToString());
     }
 
     public virtual void Interact(Player player)
@@ -113,6 +113,8 @@ public class PlanetObject: MonoBehaviour, IDamagable
     public void SetHealth(float healthAmount)
     {
         currentHealth = healthAmount;
+        OnHealthUpdated?.Invoke(this, EventArgs.Empty);
+        //this.OnHealthUpdated.Invoke(this, EventArgs.Empty);
     }
 
     public float GetWidth()

@@ -35,7 +35,6 @@ public class OilRig : PlanetObject, IOilStorageDevice
             SetMaxHealth(updatedMaxHealthAmount);
        
             maxOilAmount = updatedOilCapacity;
-            print("oil capacity: " + maxOilAmount);
         }
     }
 

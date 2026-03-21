@@ -76,21 +76,12 @@ public class Player : MonoBehaviour
     {
         Instance = this;
         health = maxHealth;
-
-
-        /*
-        currentBlueMineralAmount = maxBlueMineralAmount;
-        currentYellowMineralAmount = maxYellowMineralAmount;
-        currentRedMineralAmount = maxRedMineralAmount;
-        */
     }
 
     private void Start()
     {
 
         playerMovement = GetComponent<PlayerMovement>();
-
-
 
         GameInput.Instance.OnChangePlayerStatePressed += GameInput_OnChangePlayerStatePressed;
         GameInput.Instance.OnPlayerInteractPressed += GameInput_OnPlayerInteractPressed;
@@ -99,24 +90,10 @@ public class Player : MonoBehaviour
         StatsManager.Instance.OnGameObjectStatsUpdated += StatsManager_OnGameObjectStatsUpdated;
 
         OnHealthUpdated?.Invoke(this, new OnHealthUpdatedArgs { maxHealth = maxHealth, updatedHealth = health });
-        OnMineralAmountUpdated?.Invoke(this, new OnMineralAmountUpdatedArgs
-        {
-            updatedMineralAmount = currentBlueMineralAmount,
-            maxMineralAmount = maxBlueMineralAmount,
-            mineralType = MineralType.blue
-        });
-        OnMineralAmountUpdated?.Invoke(this, new OnMineralAmountUpdatedArgs
-        {
-            updatedMineralAmount = currentYellowMineralAmount,
-            maxMineralAmount = maxYellowMineralAmount,
-            mineralType = MineralType.yellow
-        });
-        OnMineralAmountUpdated?.Invoke(this, new OnMineralAmountUpdatedArgs
-        {
-            updatedMineralAmount = currentRedMineralAmount,
-            maxMineralAmount = maxRedMineralAmount,
-            mineralType = MineralType.red
-        });
+
+        UpdateMineralAmount(currentBlueMineralAmount, maxBlueMineralAmount, MineralType.blue);
+        UpdateMineralAmount(currentYellowMineralAmount, maxYellowMineralAmount, MineralType.yellow);
+        UpdateMineralAmount(currentRedMineralAmount, maxRedMineralAmount, MineralType.red);
 
         OnPlayerStateChanged?.Invoke(this, new OnPlayerStateChangedArgs { playerState = currentPlayerState });
 
@@ -166,6 +143,7 @@ public class Player : MonoBehaviour
         { 
             {
                 currentInteractablePlanetObject.HideInteractable();
+                currentInteractablePlanetObject.InteractStopped();
                 currentInteractablePlanetObject = null;
             }
         }
@@ -189,24 +167,26 @@ public class Player : MonoBehaviour
     public bool CanAffordUpgrade(float requiredOilAmount, float requiredBlueMineral = 0, float requiredYellowMineral = 0, float requiredRedMineral = 0)
     {
         totalOil = GetTotalOil();
-        print(totalOil);
-        print(currentBlueMineralAmount);
-        print(currentYellowMineralAmount);
-        print(currentRedMineralAmount);
 
-        return (totalOil >= requiredOilAmount) && (currentBlueMineralAmount >= requiredBlueMineral) 
-                                               && (currentYellowMineralAmount >= requiredYellowMineral)
-                                               && (currentRedMineralAmount >= requiredRedMineral);
+        return (totalOil >= requiredOilAmount) && (currentBlueMineralAmount >= requiredBlueMineral*10f) 
+                                               && (currentYellowMineralAmount >= requiredYellowMineral*10f)
+                                               && (currentRedMineralAmount >= requiredRedMineral*10f);
     }
 
     public bool BuyUpgrade(float requiredOilAmount, float requiredBlueMineral = 0, float requiredYellowMineral = 0, float requiredRedMineral = 0)
     {
         if (CanAffordUpgrade(requiredOilAmount, requiredBlueMineral, requiredYellowMineral,requiredRedMineral))
         {
+            
             useOil(requiredOilAmount*100);
-            currentBlueMineralAmount -= requiredBlueMineral*10;
-            currentYellowMineralAmount -= requiredYellowMineral*10;
-            currentRedMineralAmount -= requiredRedMineral * 10;
+            currentBlueMineralAmount -= requiredBlueMineral*10f;
+            currentYellowMineralAmount -= requiredYellowMineral*10f;
+            currentRedMineralAmount -= requiredRedMineral * 10f;
+
+            UpdateMineralAmount(currentBlueMineralAmount, maxBlueMineralAmount, MineralType.blue);
+            UpdateMineralAmount(currentYellowMineralAmount, maxYellowMineralAmount, MineralType.yellow);
+            UpdateMineralAmount(currentRedMineralAmount, maxRedMineralAmount, MineralType.red);
+
             return true;
         }
         return false;
@@ -339,6 +319,16 @@ public class Player : MonoBehaviour
         return leftOverMineral;
     }
 
+    private void UpdateMineralAmount(float currentMineralAmount, float maxMineralAmount, MineralDeposit.MineralType mineralType)
+    {
+        OnMineralAmountUpdated?.Invoke(this, new OnMineralAmountUpdatedArgs
+        {
+            updatedMineralAmount = currentMineralAmount,
+            maxMineralAmount = maxMineralAmount,
+            mineralType = mineralType
+        });
+    }
+
     private float HarvestSpecificMineral(float mineralAmount, ref float currentMineralAmount, ref float maxMineralAmount, MineralDeposit.MineralType mineralType)
     {
             currentMineralAmount += mineralAmount;
@@ -347,14 +337,9 @@ public class Player : MonoBehaviour
             {
                 currentMineralAmount = maxMineralAmount;
             }
+        UpdateMineralAmount(currentMineralAmount, maxMineralAmount, mineralType);
 
-        OnMineralAmountUpdated?.Invoke(this, new OnMineralAmountUpdatedArgs
-        {
-            updatedMineralAmount = currentMineralAmount,
-            maxMineralAmount = maxMineralAmount,
-            mineralType = mineralType
-        }) ;
-
+        
         return leftOverMineral;
     }
 

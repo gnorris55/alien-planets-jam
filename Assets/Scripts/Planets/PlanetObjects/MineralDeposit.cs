@@ -57,17 +57,19 @@ public class MineralDeposit : PlanetObject
     private void TransferMineralToPlayer()
     {
 
-
         float mineralTransferAmount = Time.deltaTime * mineralHarvestSpeed;
-
 
         Player player = Player.Instance;
 
         float leftOverMineral = player.AddMineral(mineralTransferAmount, mineralType);
-
+        
         currentMineralAmount = currentMineralAmount - mineralTransferAmount + leftOverMineral;
 
-        DisplayMaterialTransferVisuals(mineralTransferAmount, player.transform.position);
+        if (leftOverMineral == 0)
+        {
+            DisplayMaterialTransferVisuals(mineralTransferAmount, player.transform.position);
+        }
+
     }
 
     public float AddMineral(float mineralAmount)

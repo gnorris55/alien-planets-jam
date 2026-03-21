@@ -15,32 +15,25 @@ public class UpgradeCellUI : MonoBehaviour
 
     [SerializeField] private Image objectImage;
     [SerializeField] private TextMeshProUGUI objectNamePlusUpgradeType;
+    [SerializeField] private TextMeshProUGUI levelDisplayText;
     [SerializeField] private Button upgradeButton;
 
-    [SerializeField] private TextMeshProUGUI healthUpgradeValuesText;
-    [SerializeField] private TextMeshProUGUI storageUpgradeValuesText;
-    [SerializeField] private TextMeshProUGUI damageUpgradeValuesText;
 
-    [SerializeField] private TextMeshProUGUI oilAmountRequired;
-    [SerializeField] private TextMeshProUGUI blueMineralAmountRequired;
-    [SerializeField] private TextMeshProUGUI yellowMineralAmountRequired;
-    [SerializeField] private TextMeshProUGUI redMineralAmountRequired;
+    [SerializeField] private Transform upgradeEffectsContainerTransform;
+    
+    [SerializeField] private TextMeshProUGUI oilAmountRequiredText;
+    [SerializeField] private TextMeshProUGUI blueMineralAmountRequiredText;
+    [SerializeField] private TextMeshProUGUI yellowMineralAmountRequiredText;
+    [SerializeField] private TextMeshProUGUI redMineralAmountRequiredText;
 
 
     private UpgradeRequirementsSO upgradeRequirementsSO;
 
     private void Awake()
     {
-        healthUpgradeValuesText.gameObject.SetActive(false);
-        storageUpgradeValuesText.gameObject.SetActive(false);
-        damageUpgradeValuesText.gameObject.SetActive(false);
-
-        healthUpgradeValuesText.text = "Health: ";
-        storageUpgradeValuesText.text = "Storage: ";
-        damageUpgradeValuesText.text = "Damage: ";
-
-
-
+        blueMineralAmountRequiredText.transform.parent.gameObject.SetActive(false);
+        yellowMineralAmountRequiredText.transform.parent.gameObject.SetActive(false);
+        redMineralAmountRequiredText.transform.parent.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -72,32 +65,46 @@ public class UpgradeCellUI : MonoBehaviour
 
         this.upgradeRequirementsSO = upgradeRequirementsSO;
         objectImage.sprite = upgradeRequirementsSO.objectTextureSprite;
-        objectNamePlusUpgradeType.text = upgradeRequirementsSO.objectName + "(" + currentLevel + "->" + (currentLevel + 1) + ")";
+        objectNamePlusUpgradeType.text = upgradeRequirementsSO.objectName;
+        levelDisplayText.text = currentLevel + " -> " + (currentLevel + 1);
 
         UpgradeValuesSO upgradeValuesSO = upgradeRequirementsSO.upgradeValues;
-        //print(upgradeValuesSO.healthUpgradeValues.Evaluate(currentLevel));
 
-        DisplayUpgradeValuesInformation(ref healthUpgradeValuesText, upgradeValuesSO.healthUpgradeValues, currentLevel);
-        DisplayUpgradeValuesInformation(ref storageUpgradeValuesText, upgradeValuesSO.storageUpgradeValues, currentLevel);
-        DisplayUpgradeValuesInformation(ref damageUpgradeValuesText, upgradeValuesSO.damageUpgradeValues, currentLevel);
+        DisplayUpgradeValuesInformation("Health: ", upgradeValuesSO.healthUpgradeValues, currentLevel);
+        DisplayUpgradeValuesInformation("Storage: ", upgradeValuesSO.storageUpgradeValues, currentLevel);
+        DisplayUpgradeValuesInformation("Damage: ", upgradeValuesSO.damageUpgradeValues, currentLevel);
 
-        oilAmountRequired.text = (upgradeRequirementsSO.upgradeRequirements.oilAmount.Evaluate(currentLevel)*100f).ToString();
-        blueMineralAmountRequired.text = (upgradeRequirementsSO.upgradeRequirements.blueMineralAmount.Evaluate(currentLevel)*10f).ToString();
-        yellowMineralAmountRequired.text = (upgradeRequirementsSO.upgradeRequirements.yellowMineralAmount.Evaluate(currentLevel)*10f).ToString();
-        redMineralAmountRequired.text = (upgradeRequirementsSO.upgradeRequirements.redMineralAmount.Evaluate(currentLevel)*10f).ToString();
+        oilAmountRequiredText.text = (upgradeRequirementsSO.upgradeRequirements.oilAmount.Evaluate(currentLevel) * 100).ToString();
+
+        DisplayUpgradeCostInformation(ref blueMineralAmountRequiredText, upgradeRequirementsSO.upgradeRequirements.blueMineralAmount, currentLevel, 10f);
+        DisplayUpgradeCostInformation(ref yellowMineralAmountRequiredText, upgradeRequirementsSO.upgradeRequirements.yellowMineralAmount, currentLevel, 10f);
+        DisplayUpgradeCostInformation(ref redMineralAmountRequiredText, upgradeRequirementsSO.upgradeRequirements.redMineralAmount, currentLevel, 10f);
+    }
+
+    private void DisplayUpgradeCostInformation(ref TextMeshProUGUI upgradeCostText, AnimationCurve upgradeCostCurve, int currentLevel, float costScalar)
+    {
+        float upgradeCost = (upgradeCostCurve.Evaluate(currentLevel) * costScalar);
+        if (upgradeCost > 0) 
+        {
+            upgradeCostText.transform.parent.gameObject.SetActive(true);
+            upgradeCostText.text = upgradeCost.ToString();
+        }
 
     }
 
-    private void DisplayUpgradeValuesInformation(ref TextMeshProUGUI upgradeValueText, AnimationCurve upgradeValues, int currentLevel)
+    private void DisplayUpgradeValuesInformation(String upgradeTypeString, AnimationCurve upgradeValues, int currentLevel)
     {
         if (upgradeValues.Evaluate(currentLevel) > 0)
         {
-            upgradeValueText.gameObject.SetActive(true);
             int currentLevelValue = (int)(upgradeValues.Evaluate(currentLevel) * 100f);
             int nextLevelValue = (int)(upgradeValues.Evaluate(currentLevel+1) * 100f);
             int valueDifference = nextLevelValue - currentLevelValue;
 
-            upgradeValueText.text += currentLevelValue.ToString() + " (+" + valueDifference + ")";
+            TextMeshProUGUI upgradeValueEffectText = new TextMeshProUGUI();
+            upgradeValueEffectText.text = upgradeTypeString + currentLevelValue.ToString() + " (+" + valueDifference + ")";
+
+            //Instantiate(upgradeValueEffectText, upgradeEffectsContainerTransform);
+            
         }
 
     }

@@ -106,8 +106,6 @@ public class PlayerMovement : MonoBehaviour
                 OnMovementStateChanged?.Invoke(this, currentMovementState);
             }
         }
-        print(lastMovement);
-        print(playerMovement);
         if (lastMovement.x >= 0 && playerMovement.x < 0)
         {
             OnDirectionChanged?.Invoke(this, true);

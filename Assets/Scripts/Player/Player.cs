@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float fuelBurnRate;
     [SerializeField] private LayerMask playerPlanetObjectsLayer;
     [SerializeField] private LayerMask neutralPlanetObjectsLayer;
-    [SerializeField] private bool infiniteFuel;
+    [SerializeField] private bool infiniteResources;
 
 
     private float health;
@@ -106,7 +106,16 @@ public class Player : MonoBehaviour
     {
         if (e.objectType == StatsManager.ObjectType.player)
         {
-            maxOilAmount = e.upgradeValues.storageUpgradeValues.Evaluate(e.currentLevel)*100f;
+            float upgradeCurveValue = e.upgradeValues.storageUpgradeValues.Evaluate(e.currentLevel);
+            maxOilAmount = upgradeCurveValue * 100f;
+            maxBlueMineralAmount = upgradeCurveValue * 10f / 2.0f;
+            maxYellowMineralAmount = upgradeCurveValue * 10f /2.0f;
+            maxRedMineralAmount = upgradeCurveValue * 10f / 2.0f;
+
+            UpdateMineralAmount(currentBlueMineralAmount, maxBlueMineralAmount, MineralType.blue);
+            UpdateMineralAmount(currentYellowMineralAmount, maxYellowMineralAmount, MineralType.yellow);
+            UpdateMineralAmount(currentRedMineralAmount, maxRedMineralAmount, MineralType.red);
+
         }
     }
 
@@ -169,7 +178,10 @@ public class Player : MonoBehaviour
     {
         totalOil = GetTotalOil();
 
-        return (totalOil >= requiredOilAmount) && (currentBlueMineralAmount >= requiredBlueMineral*10f) 
+        if (infiniteResources)
+            return true;
+
+        return (totalOil >= requiredOilAmount*100f) && (currentBlueMineralAmount >= requiredBlueMineral*10f) 
                                                && (currentYellowMineralAmount >= requiredYellowMineral*10f)
                                                && (currentRedMineralAmount >= requiredRedMineral*10f);
     }
@@ -220,7 +232,7 @@ public class Player : MonoBehaviour
             oilAmount = oilStorageDevice.removeOil(oilAmount);
         }
 
-        if (oilAmount > 0 && !infiniteFuel)
+        if (oilAmount > 0 && !infiniteResources)
         {
             currentOilAmount -= oilAmount;
         }
@@ -281,7 +293,7 @@ public class Player : MonoBehaviour
 
     public void ActivateJetPack()
     {
-        if (!infiniteFuel)
+        if (!infiniteResources)
         {
             float usedOilAmount = Time.deltaTime * fuelBurnRate;
             UseJetPackFuel(usedOilAmount);

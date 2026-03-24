@@ -52,7 +52,7 @@ MonoBehaviour:
   maxHealth: 250
   isInteractable: 1
   maxOilAmount: 100
-  oilAccumulationSpeed: 25
+  oilAccumulationSpeed: 10
   oilHarvestSpeed: 100
   oilGlobVisual: {fileID: 4933926180698475067, guid: 0ec23a2cb484da14286fa8b14c532a79, type: 3}
 --- !u!61 &925096294506189575

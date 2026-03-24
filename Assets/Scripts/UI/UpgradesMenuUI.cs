@@ -12,6 +12,7 @@ public class UpgradesMenuUI : MonoBehaviour
     private void Start()
     {
         CreateUpgrades();
+
     }
 
     private void CreateUpgrades()
@@ -35,8 +36,7 @@ public class UpgradesMenuUI : MonoBehaviour
                 upgradeCellUIInstance.OnUpgrade += UpgradeCellUIInstance_OnUpgrade;
             }
         }
-        scrollbar.value = 1;
-
+       
     }
 
     private void UpgradeCellUIInstance_OnUpgrade(object sender, UpgradeCellUI.OnUpgradeArgs e)
@@ -53,6 +53,7 @@ public class UpgradesMenuUI : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
+        scrollbar.value = 1;
     }
 
     public void Hide()

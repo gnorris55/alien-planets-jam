@@ -1194,23 +1194,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3353497964771147189, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: planetColor.g
-      value: 0.3918121
+      value: 0.000000026990785
       objectReference: {fileID: 0}
     - target: {fileID: 3353497964771147189, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: planetColor.r
-      value: 0.9339623
+      value: 0.8490566
       objectReference: {fileID: 0}
     - target: {fileID: 3353497964771147189, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: atmospshereColor.b
-      value: 0
+      value: 0.13013265
       objectReference: {fileID: 0}
     - target: {fileID: 3353497964771147189, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: atmospshereColor.g
-      value: 0.4262402
+      value: 0.04160734
       objectReference: {fileID: 0}
     - target: {fileID: 3353497964771147189, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: atmospshereColor.r
-      value: 0.7735849
+      value: 0.5188679
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: planetName
@@ -1245,8 +1245,12 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: maxAmountEnemies
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: initialPlanetObjectSOList.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: 'initialPlanetObjectSOList.Array.data[0]'
@@ -1256,6 +1260,22 @@ PrefabInstance:
       propertyPath: 'initialPlanetObjectSOList.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 7aab6bd1202a55249852ac0cf21d7f3f, type: 2}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: 'initialPlanetObjectSOList.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: cbb2002e9972c134781359870ff6838d, type: 2}
+    - target: {fileID: 8836020024376063307, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: m_Color.b
+      value: 0.04705879
+      objectReference: {fileID: 0}
+    - target: {fileID: 8836020024376063307, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: m_Color.g
+      value: 0.30537477
+      objectReference: {fileID: 0}
+    - target: {fileID: 8836020024376063307, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9764706
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10990,7 +11010,7 @@ MonoBehaviour:
   neutralPlanetObjectsLayer:
     serializedVersion: 2
     m_Bits: 16384
-  infiniteFuel: 0
+  infiniteResources: 0
 --- !u!1 &631269201
 GameObject:
   m_ObjectHideFlags: 0
@@ -13015,27 +13035,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3353497964771147189, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: planetColor.b
-      value: 0
+      value: 0.5377358
       objectReference: {fileID: 0}
     - target: {fileID: 3353497964771147189, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: planetColor.g
-      value: 0.2263243
+      value: 0.53773564
       objectReference: {fileID: 0}
     - target: {fileID: 3353497964771147189, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: planetColor.r
-      value: 1
+      value: 0.10399607
       objectReference: {fileID: 0}
     - target: {fileID: 3353497964771147189, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: atmospshereColor.b
-      value: 0
+      value: 0.9056604
       objectReference: {fileID: 0}
     - target: {fileID: 3353497964771147189, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: atmospshereColor.g
-      value: 0.088918835
+      value: 0.78994375
       objectReference: {fileID: 0}
     - target: {fileID: 3353497964771147189, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: atmospshereColor.r
-      value: 1
+      value: 0.2947668
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: planetRadius
@@ -13062,8 +13082,12 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: maxAmountEnemies
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: initialPlanetObjectSOList.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: 'initialPlanetObjectSOList.Array.data[0]'
@@ -13077,6 +13101,10 @@ PrefabInstance:
       propertyPath: 'initialPlanetObjectSOList.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: fc8a8332c231b89439aab35bad15f3d3, type: 2}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: 'initialPlanetObjectSOList.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: cbb2002e9972c134781359870ff6838d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14108,7 +14136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: gravityScalar
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: planetColor.a
@@ -14131,8 +14159,12 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: maxAmountEnemies
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: initialPlanetObjectSOList.Array.size
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: 'initialPlanetObjectSOList.Array.data[0]'
@@ -14162,6 +14194,26 @@ PrefabInstance:
       propertyPath: 'initialPlanetObjectSOList.Array.data[6]'
       value: 
       objectReference: {fileID: 11400000, guid: 462761844e250614b8181e899b274c20, type: 2}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: 'initialPlanetObjectSOList.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: cbb2002e9972c134781359870ff6838d, type: 2}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: 'initialPlanetObjectSOList.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ea18d059dc1f614daf33d6bd3ede83f, type: 2}
+    - target: {fileID: 8836020024376063307, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: m_Color.b
+      value: 0.4009434
+      objectReference: {fileID: 0}
+    - target: {fileID: 8836020024376063307, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8798378
+      objectReference: {fileID: 0}
+    - target: {fileID: 8836020024376063307, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15079,6 +15131,71 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
   m_Asset: {fileID: -944628639613478452, guid: 2beb72fa43e9818498a2c4b531dc95f8, type: 3}
   m_ActionId: 47cdd6b1-305e-41ba-9e58-22a5e07e87ac
+--- !u!1001 &1700122339
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184701137496122571, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_Name
+      value: SpaceEnemySpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991574878840883608, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: spawnRate
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991574878840883608, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: targetPlanet
+      value: 
+      objectReference: {fileID: 259181638102545109}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
 --- !u!4 &1727660510 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 560480225347302856, guid: 95b68708ac04c0640be061913b865efb, type: 3}
@@ -21280,6 +21397,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2712198886073491955, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
   m_PrefabInstance: {fileID: 1037379754885274456}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &259181638102545109 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1570127113453684200, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
+  m_PrefabInstance: {fileID: 1037379754885274456}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1299fc2516276e948b6e6b07ff3f7ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Planet
 --- !u!1001 &1037379754885274456
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21288,6 +21416,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 218686572}
     m_Modifications:
+    - target: {fileID: 1570127113453684200, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
+      propertyPath: maxAmountEnemies
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1570127113453684200, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
       propertyPath: initialPlanetObjects.Array.size
       value: 4
@@ -21319,7 +21451,7 @@ PrefabInstance:
     - target: {fileID: 1570127113453684200, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
       propertyPath: 'initialPlanetObjectSOList.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 0ea18d059dc1f614daf33d6bd3ede83f, type: 2}
+      objectReference: {fileID: 11400000, guid: cbb2002e9972c134781359870ff6838d, type: 2}
     - target: {fileID: 1570127113453684200, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
       propertyPath: 'initialPlanetObjectSOList.Array.data[2]'
       value: 
@@ -21368,6 +21500,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TheRock
       objectReference: {fileID: 0}
+    - target: {fileID: 5223354514543614088, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8867924
+      objectReference: {fileID: 0}
+    - target: {fileID: 5223354514543614088, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8867924
+      objectReference: {fileID: 0}
+    - target: {fileID: 5223354514543614088, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8867924
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21384,3 +21528,4 @@ SceneRoots:
   - {fileID: 1595011134}
   - {fileID: 423183752}
   - {fileID: 359192544}
+  - {fileID: 1700122339}

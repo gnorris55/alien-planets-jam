@@ -120,7 +120,7 @@ MonoBehaviour:
   oilDropAmount: 20
   oilGlobVisual: {fileID: 4933926180698475067, guid: 0ec23a2cb484da14286fa8b14c532a79, type: 3}
   DieParticleGoo: {fileID: 1855568903275695687, guid: 0029b4279db48c1489c440a9041515ae, type: 3}
-  flightHeight: 1
+  flightHeight: 3
   bullet: {fileID: -4233094135127121287, guid: 4554fea25af99ee498f8a7452a335659, type: 3}
 --- !u!1 &3592284185599257397
 GameObject:

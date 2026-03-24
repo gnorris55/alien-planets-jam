@@ -64,7 +64,7 @@ public class UpgradeCellUI : MonoBehaviour
         float requiredYellowMineralAmount = upgradeRequirementsSO.upgradeRequirements.yellowMineralAmount.Evaluate(currentLevel);
         float requiredRedMineralAmount = upgradeRequirementsSO.upgradeRequirements.redMineralAmount.Evaluate(currentLevel);
 
-        if (Player.Instance.BuyUpgrade(requiredOilAmount, requiredBlueMineralAmount, requiredYellowMineralAmount, requiredRedMineralAmount))
+        if (Player.Instance.BuyUpgrade(Mathf.Round(requiredOilAmount), Mathf.Round(requiredBlueMineralAmount), Mathf.Round(requiredYellowMineralAmount), Mathf.Round(requiredRedMineralAmount)))
         {
             OnUpgrade?.Invoke(this, new OnUpgradeArgs
             {
@@ -88,7 +88,7 @@ public class UpgradeCellUI : MonoBehaviour
         DisplayUpgradeValuesInformation(ref storageUpgradeEffectText, upgradeValuesSO.storageUpgradeValues, currentLevel);
         DisplayUpgradeValuesInformation(ref damageUpgradeEffectText, upgradeValuesSO.damageUpgradeValues, currentLevel);
 
-        oilAmountRequiredText.text = (upgradeRequirementsSO.upgradeRequirements.oilAmount.Evaluate(currentLevel) * 100).ToString();
+        oilAmountRequiredText.text = ((int)((upgradeRequirementsSO.upgradeRequirements.oilAmount.Evaluate(currentLevel)) * 100f)).ToString();
 
         DisplayUpgradeCostInformation(ref blueMineralAmountRequiredText, upgradeRequirementsSO.upgradeRequirements.blueMineralAmount, currentLevel, 10f);
         DisplayUpgradeCostInformation(ref yellowMineralAmountRequiredText, upgradeRequirementsSO.upgradeRequirements.yellowMineralAmount, currentLevel, 10f);
@@ -101,7 +101,7 @@ public class UpgradeCellUI : MonoBehaviour
         if (upgradeCost > 0) 
         {
             upgradeCostText.transform.parent.gameObject.SetActive(true);
-            upgradeCostText.text = upgradeCost.ToString();
+            upgradeCostText.text = ((int)upgradeCost).ToString();
         }
 
     }

@@ -51,7 +51,6 @@ public class StatsManager : MonoBehaviour
 
     public void UpgradeStats(ObjectType type)
     {
-        print(type);
         switch(type)
         {
             case ObjectType.player:

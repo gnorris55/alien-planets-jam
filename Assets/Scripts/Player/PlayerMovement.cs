@@ -29,7 +29,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private ParticleSystem jetPackFireParticleSystem;
     [SerializeField] private ParticleSystem jetPackFireParticleSystem2;
-    
+
+    private bool playerCanMove;
     private bool canUseJetPack = true;
     private float jetPackActivationTimer;
 
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 playerDirection;
     private Player player;
     private MovementStates currentMovementState = MovementStates.idle;
+   
 
 
     private void Awake()
@@ -51,13 +53,26 @@ public class PlayerMovement : MonoBehaviour
     {
         player = GetComponent<Player>();
         circleRadius = GetComponent<CircleCollider2D>().radius;
+        player.OnPlayerStateChanged += Player_OnPlayerStateChanged;
 
     }
-    
+
+    private void Player_OnPlayerStateChanged(object sender, Player.OnPlayerStateChangedArgs e)
+    {
+        if (e.playerState == Player.PlayerStates.inactive)
+        {
+            playerCanMove = false;
+        }
+        else
+        {
+            playerCanMove = true;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-
+        //if ()
         Vector2 playerMovement = GameInput.Instance.GetMovement();
 
         if (player.GetCurrentPlanet() != null)
@@ -142,6 +157,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void SpaceMovement(Vector2 playerMovement)
     {
+
+        Player.Instance.UseJetPackFuel(Time.deltaTime*1f);
         if(playerMovement.x > 0)
         {
             transform.Rotate(0, 0, -180f*Time.deltaTime);  
@@ -154,7 +171,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerMovement.y > 0)
         {
             playerDirection = transform.up;
-            Player.Instance.UsePlayerFuel();
+            Player.Instance.ActivateJetPack();
 
         }
         transform.position += playerDirection * jumpForce * Time.deltaTime;
@@ -181,7 +198,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerMovement.y > 0 && canUseJetPack && Player.Instance.hasFuel())
         {
             transform.position += toPlayerDirection * jumpForce * Time.deltaTime;
-            Player.Instance.UsePlayerFuel();
+            Player.Instance.ActivateJetPack();
         }
 
 

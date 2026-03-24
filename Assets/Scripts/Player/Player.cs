@@ -46,7 +46,8 @@ public class Player : MonoBehaviour
     public enum PlayerStates
     {
         combat,
-        building
+        building,
+        inactive
     }
 
     [SerializeField] private float maxHealth;
@@ -178,7 +179,7 @@ public class Player : MonoBehaviour
         if (CanAffordUpgrade(requiredOilAmount, requiredBlueMineral, requiredYellowMineral,requiredRedMineral))
         {
             
-            useOil(requiredOilAmount*100);
+            UseOilToPurchase(requiredOilAmount*100);
             currentBlueMineralAmount -= requiredBlueMineral*10f;
             currentYellowMineralAmount -= requiredYellowMineral*10f;
             currentRedMineralAmount -= requiredRedMineral * 10f;
@@ -196,7 +197,7 @@ public class Player : MonoBehaviour
     {
         if (HasOilAmount(oilAmount))
         {
-            useOil(oilAmount);
+            UseOilToPurchase(oilAmount);
             return true;
         }
 
@@ -209,7 +210,7 @@ public class Player : MonoBehaviour
         return totalOil >= oilAmount;
     }
 
-    public void useOil(float oilAmount)
+    public void UseOilToPurchase(float oilAmount)
     {
         totalOil = GetOilAmount();
         List<OilStorage> oilStorageDevices = currentPlanet.GetSpecificPlanetObject<OilStorage>();
@@ -278,18 +279,28 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void UsePlayerFuel()
+    public void ActivateJetPack()
     {
         if (!infiniteFuel)
         {
-            currentOilAmount -= Time.deltaTime * fuelBurnRate;
-            if (currentOilAmount < 0)
-            {
-                currentOilAmount = 0;
-            }
-
-            PlanetOilAmountUI.Instance.DisplayTotalPlanetOil();
+            float usedOilAmount = Time.deltaTime * fuelBurnRate;
+            UseJetPackFuel(usedOilAmount);
         }
+    }
+
+    public void UseJetPackFuel(float usedOilAmount)
+    {
+        currentOilAmount -= usedOilAmount;
+        if (currentOilAmount < 0)
+        {
+            currentOilAmount = 0;
+            if (!currentPlanet)
+            {
+                GameManager.Instance.RespawnPlayer();
+            }
+        }
+
+        PlanetOilAmountUI.Instance.DisplayTotalPlanetOil();
     }
 
     public void SetState(PlayerStates playerState)

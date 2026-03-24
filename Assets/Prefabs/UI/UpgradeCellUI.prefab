@@ -1443,7 +1443,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 77.84412, y: -51.76625}
+  m_AnchoredPosition: {x: 89.61998, y: -51.76625}
   m_SizeDelta: {x: 60.4553, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5342979012946298392
@@ -1527,8 +1527,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.36950684, y: 4.4451}
-  m_SizeDelta: {x: 170.0287, y: 0}
+  m_AnchoredPosition: {x: 18.033325, y: 4.445099}
+  m_SizeDelta: {x: 205.3563, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4734099807257010050
 CanvasRenderer:
@@ -1555,6 +1555,9 @@ MonoBehaviour:
   levelDisplayText: {fileID: 9118030771576074503}
   upgradeButton: {fileID: 854426752989006572}
   upgradeEffectsContainerTransform: {fileID: 4280681080108442758}
+  healthUpgradeEffectText: {fileID: 3191390583594708001}
+  storageUpgradeEffectText: {fileID: 5563611865338769345}
+  damageUpgradeEffectText: {fileID: 8022589333586794343}
   oilAmountRequiredText: {fileID: 3174323531742024692}
   blueMineralAmountRequiredText: {fileID: 8203411492374879463}
   yellowMineralAmountRequiredText: {fileID: 7033074953741964490}
@@ -2253,7 +2256,7 @@ GameObject:
   - component: {fileID: 1636152911205383181}
   - component: {fileID: 6008610456556376886}
   m_Layer: 5
-  m_Name: UpgradeEffectContainer (2)
+  m_Name: DamageUpgradeEffectContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2317,7 +2320,7 @@ GameObject:
   - component: {fileID: 2838076145081361940}
   - component: {fileID: 376327630490113931}
   m_Layer: 5
-  m_Name: UpgradeEffectContainer (1)
+  m_Name: StorageUpgradeEffectContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2599,7 +2602,7 @@ GameObject:
   - component: {fileID: 786802059891299287}
   - component: {fileID: 8022589333586794343}
   m_Layer: 5
-  m_Name: UpgradeEfffectCost
+  m_Name: DamageUpgradeEfffectText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2736,7 +2739,7 @@ GameObject:
   - component: {fileID: 8356324607668523899}
   - component: {fileID: 5563611865338769345}
   m_Layer: 5
-  m_Name: UpgradeEfffectCost
+  m_Name: StorageUpgradeEfffectText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2869,6 +2872,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4280681080108442758}
     m_Modifications:
+    - target: {fileID: 7786499306101456, guid: 66984de02dae1eb48b42feff6f78cb99, type: 3}
+      propertyPath: m_Name
+      value: HealthUpgradeEfffectText
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485296735202370169, guid: 66984de02dae1eb48b42feff6f78cb99, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485296735202370169, guid: 66984de02dae1eb48b42feff6f78cb99, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485296735202370169, guid: 66984de02dae1eb48b42feff6f78cb99, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485296735202370169, guid: 66984de02dae1eb48b42feff6f78cb99, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1544880132369970765, guid: 66984de02dae1eb48b42feff6f78cb99, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2951,13 +2974,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2358148123983489134, guid: 66984de02dae1eb48b42feff6f78cb99, type: 3}
       propertyPath: m_Name
-      value: UpgradeEffectContainer
+      value: HealthUpgradeEffectContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834408099262906633, guid: 66984de02dae1eb48b42feff6f78cb99, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834408099262906633, guid: 66984de02dae1eb48b42feff6f78cb99, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834408099262906633, guid: 66984de02dae1eb48b42feff6f78cb99, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834408099262906633, guid: 66984de02dae1eb48b42feff6f78cb99, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66984de02dae1eb48b42feff6f78cb99, type: 3}
+--- !u!114 &3191390583594708001 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8303354587512897614, guid: 66984de02dae1eb48b42feff6f78cb99, type: 3}
+  m_PrefabInstance: {fileID: 6877394459359800431}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!224 &5332804676043217442 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1544880132369970765, guid: 66984de02dae1eb48b42feff6f78cb99, type: 3}

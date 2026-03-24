@@ -20,7 +20,12 @@ public class UpgradeCellUI : MonoBehaviour
 
 
     [SerializeField] private Transform upgradeEffectsContainerTransform;
-    
+
+
+    [SerializeField] private TextMeshProUGUI healthUpgradeEffectText;
+    [SerializeField] private TextMeshProUGUI storageUpgradeEffectText;
+    [SerializeField] private TextMeshProUGUI damageUpgradeEffectText;
+
     [SerializeField] private TextMeshProUGUI oilAmountRequiredText;
     [SerializeField] private TextMeshProUGUI blueMineralAmountRequiredText;
     [SerializeField] private TextMeshProUGUI yellowMineralAmountRequiredText;
@@ -34,6 +39,15 @@ public class UpgradeCellUI : MonoBehaviour
         blueMineralAmountRequiredText.transform.parent.gameObject.SetActive(false);
         yellowMineralAmountRequiredText.transform.parent.gameObject.SetActive(false);
         redMineralAmountRequiredText.transform.parent.gameObject.SetActive(false);
+
+        healthUpgradeEffectText.transform.parent.gameObject.SetActive(false);
+        storageUpgradeEffectText.transform.parent.gameObject.SetActive(false);
+        damageUpgradeEffectText.transform.parent.gameObject.SetActive(false);
+
+        healthUpgradeEffectText.text = "Health: ";
+        storageUpgradeEffectText.text = "Storage: ";
+        damageUpgradeEffectText.text = "Damage: ";
+
     }
 
     private void Start()
@@ -70,9 +84,9 @@ public class UpgradeCellUI : MonoBehaviour
 
         UpgradeValuesSO upgradeValuesSO = upgradeRequirementsSO.upgradeValues;
 
-        DisplayUpgradeValuesInformation("Health: ", upgradeValuesSO.healthUpgradeValues, currentLevel);
-        DisplayUpgradeValuesInformation("Storage: ", upgradeValuesSO.storageUpgradeValues, currentLevel);
-        DisplayUpgradeValuesInformation("Damage: ", upgradeValuesSO.damageUpgradeValues, currentLevel);
+        DisplayUpgradeValuesInformation(ref healthUpgradeEffectText, upgradeValuesSO.healthUpgradeValues, currentLevel);
+        DisplayUpgradeValuesInformation(ref storageUpgradeEffectText, upgradeValuesSO.storageUpgradeValues, currentLevel);
+        DisplayUpgradeValuesInformation(ref damageUpgradeEffectText, upgradeValuesSO.damageUpgradeValues, currentLevel);
 
         oilAmountRequiredText.text = (upgradeRequirementsSO.upgradeRequirements.oilAmount.Evaluate(currentLevel) * 100).ToString();
 
@@ -92,7 +106,7 @@ public class UpgradeCellUI : MonoBehaviour
 
     }
 
-    private void DisplayUpgradeValuesInformation(String upgradeTypeString, AnimationCurve upgradeValues, int currentLevel)
+    private void DisplayUpgradeValuesInformation(ref TextMeshProUGUI upgradeEffectText, AnimationCurve upgradeValues, int currentLevel)
     {
         if (upgradeValues.Evaluate(currentLevel) > 0)
         {
@@ -100,11 +114,8 @@ public class UpgradeCellUI : MonoBehaviour
             int nextLevelValue = (int)(upgradeValues.Evaluate(currentLevel+1) * 100f);
             int valueDifference = nextLevelValue - currentLevelValue;
 
-            TextMeshProUGUI upgradeValueEffectText = new TextMeshProUGUI();
-            upgradeValueEffectText.text = upgradeTypeString + currentLevelValue.ToString() + " (+" + valueDifference + ")";
-
-            //Instantiate(upgradeValueEffectText, upgradeEffectsContainerTransform);
-            
+            upgradeEffectText.transform.parent.gameObject.SetActive(true);
+            upgradeEffectText.text += currentLevelValue.ToString() + " (+" + valueDifference + ")";
         }
 
     }

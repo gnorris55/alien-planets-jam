@@ -3,6 +3,7 @@ using UnityEngine;
 public class RocketShip : PlanetObject
 {
 
+    private bool gameWon = false;
     protected override void Start()
     {
         base.Start();
@@ -12,21 +13,26 @@ public class RocketShip : PlanetObject
 
     protected override void StatsManager_OnGameObjectStatsUpdated(object sender, StatsManager.OnGameObjectStatsUpgradedArgs e)
     {
+        print(e.objectType);
         if (e.objectType == StatsManager.ObjectType.rocketShip)
         {
 
-            print("current level: " + e.currentLevel);
+            /*
+            float updatedMaxHealthAmount = e.upgradeValues.healthUpgradeValues.Evaluate(e.currentLevel) * 100f;
+            print(updatedMaxHealthAmount);
+            SetMaxHealth(updatedMaxHealthAmount);
+            */
+
             if (e.currentLevel == 1)
             {
                 SetInteractable();
             }
-            
-
         }
     }
     public override void Interact(Player player)
     {
-        Debug.Log("Player has one the game");
+        gameWon = true;
+        GameManager.Instance.PlayerWonGame();
     }
 
 
@@ -42,14 +48,18 @@ public class RocketShip : PlanetObject
         PlayerHints.Instance.DisplayHint("PRESS E TO GO HOME");
     }
 
+
     public override void TakeDamage(float damageAmount)
     {
-        DamageStructure(damageAmount);
-        if (IsDestroyed())
+        if (!gameWon)
         {
+            DamageStructure(damageAmount);
+            if (IsDestroyed())
+            {
 
-            Debug.Log("Player has lost the game");
-            DestoryPlanetObject();
+                GameManager.Instance.PlayerLostGame();
+                DestoryPlanetObject();
+            }
         }
     }
 

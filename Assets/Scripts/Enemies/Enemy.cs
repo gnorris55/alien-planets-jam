@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour, IDamagable
     [SerializeField] private float maxHealth = 100;
     [SerializeField] private float oilDropAmount = 20f;
     [SerializeField] private ItemVisualMovement oilGlobVisual;
+    [SerializeField] private ParticleSystem DieParticleGoo;
     private float currentHealth;
 
 
@@ -50,6 +51,7 @@ public class Enemy : MonoBehaviour, IDamagable
     {
         currentHealth -= damageAmount;
         OnHealthUpdated?.Invoke(this, EventArgs.Empty);
+        Instantiate(DieParticleGoo, transform.position, Quaternion.identity);
 
         if (currentHealth <= 0) 
         {
@@ -61,7 +63,9 @@ public class Enemy : MonoBehaviour, IDamagable
                 ItemVisualMovement oilGlobInstance = Instantiate(oilGlobVisual, transform.position, Quaternion.identity);
                 oilGlobInstance.SetUp(transform.position, Player.Instance.transform.position);
             }
-
+            Instantiate(DieParticleGoo, transform.position, Quaternion.identity);
+            Instantiate(DieParticleGoo, transform.position, Quaternion.identity);
+            Instantiate(DieParticleGoo, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

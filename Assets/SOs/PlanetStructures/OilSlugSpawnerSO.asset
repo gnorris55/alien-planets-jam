@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6588ca47b61de3428494777f8e4fc3f, type: 3}
+  m_Name: OilSlugSpawnerSO
+  m_EditorClassIdentifier: Assembly-CSharp::PlanetStructureSO
+  structureName: OilSlugSpawner
+  structureGameObject: {fileID: 7411875127919582058, guid: 6ec943f942c6722479e2bc5165acb4b0, type: 3}
+  structureOutline: {fileID: 2417424981015295488, guid: b37bb5f79a57958448e0d680cf5d7aab, type: 3}
+  width: 0.32
+  height: 0.05
+  sprite: {fileID: 137100544721314990, guid: 183e73a36c475fa40aff43fd62a63fe5, type: 3}
+  oilPrice: 0

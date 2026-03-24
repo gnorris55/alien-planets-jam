@@ -43,7 +43,7 @@ public class FlyingEnemy : Enemy
     {
         if (homePlanet != null)
         {
-            float distanceFromPlanet = Vector3.Distance(homePlanet.transform.position, transform.position);
+            float distanceFromPlanet = Vector3.Distance(homePlanet.transform.position, transform.position) - homePlanet.GetPlanetRadius();
             Vector3 directionFromPlanet = (transform.position - homePlanet.transform.position);
 
             if (distanceFromPlanet >= flightHeight)

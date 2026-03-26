@@ -24,22 +24,27 @@ public class Planet : MonoBehaviour
     [SerializeField] private int maxAmountEnemies = 10;
     
     [SerializeField] private ParticleSystem buildingParticleSystem;
-    [SerializeField] PlanetAtmosphere planetAtmosphere;
-    [SerializeField] PlanetVisuals planetVisuals;
-    [SerializeField] List<PlanetStructureSO> initialPlanetObjectSOList;
-
-
+    [SerializeField] private PlanetAtmosphere planetAtmosphere;
+    [SerializeField] private PlanetVisuals planetVisuals;
+    [SerializeField] private List<PlanetStructureSO> initialPlanetObjectSOList;
 
 
     private List<PlanetObject> planetStructures = new List<PlanetObject>();
     private List<Enemy> planetEnemies = new List<Enemy>();
 
 
-    public void Start()
+
+
+    private void Awake()
     {
         GetComponent<CircleCollider2D>().radius = planetRadius;
         planetAtmosphere.SetAtmosphereRadius(atmosphereRadius);
 
+        PlaceInitialPlanetStructures();
+    }
+
+    private void PlaceInitialPlanetStructures()
+    {
         foreach (PlanetStructureSO planetObjectSO in initialPlanetObjectSOList)
         {
 
@@ -57,7 +62,7 @@ public class Planet : MonoBehaviour
                 }
 
                 Vector3 direction = UnityEngine.Random.insideUnitCircle.normalized;
-                positionOnPlanet =  transform.position + direction * planetRadius;
+                positionOnPlanet = transform.position + direction * planetRadius;
 
                 planetObjectPlanetPosition = GetPlanetPosition(0, positionOnPlanet, (planetObjectSO.height / 2.0f) - 0.02f, 0, 0);
 
@@ -66,7 +71,6 @@ public class Planet : MonoBehaviour
             Vector3 planetObjectDirection = (positionOnPlanet - transform.position).normalized;
             AddObjectOnPlanet(planetObjectSO.structureGameObject, planetObjectPlanetPosition, planetObjectDirection);
         }
-
     }
 
     // Gets the position on the planet so that objects obey laws of gravity for each planet, i.e. moving around it

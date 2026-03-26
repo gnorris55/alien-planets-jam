@@ -25,7 +25,7 @@ public class RepairBuilding : PlanetObject
         StatsManager.Instance.OnGameObjectStatsUpdated += StatsManager_OnGameObjectStatsUpdated;
     }
 
-    private void StatsManager_OnGameObjectStatsUpdated(object sender, StatsManager.OnGameObjectStatsUpgradedArgs e)
+    protected override void StatsManager_OnGameObjectStatsUpdated(object sender, StatsManager.OnGameObjectStatsUpgradedArgs e)
     {
         if (e.objectType == StatsManager.ObjectType.repairBuilding)
         {

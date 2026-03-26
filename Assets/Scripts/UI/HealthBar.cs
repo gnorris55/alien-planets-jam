@@ -6,19 +6,27 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Image healthFill;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnEnable()
     {
-        Player.Instance.OnHealthUpdated += Player_OnHealthUpdated;
+
+        PlanetObject planetObject = RocketShip.Instance as PlanetObject;
+        if (planetObject == null )
+        {
+            print("rocket ship not present is null");
+            gameObject.SetActive(false);
+        }  
+        else
+        {
+            planetObject.OnHealthUpdated += RocketShip_OnHealthUpdated;
+
+        }
+
     }
 
-    private void Player_OnHealthUpdated(object sender, Player.OnHealthUpdatedArgs e)
+    private void RocketShip_OnHealthUpdated(object sender, System.EventArgs e)
     {
-        healthFill.fillAmount = e.updatedHealth / e.maxHealth;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        float currentHealth = RocketShip.Instance.GetCurrentHealth();
+        float maxHealth = RocketShip.Instance.GetMaxHealth();
+        healthFill.fillAmount = currentHealth / maxHealth;
     }
 }

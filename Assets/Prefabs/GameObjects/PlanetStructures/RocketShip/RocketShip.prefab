@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RocketShip
   width: 0
-  maxHealth: 100
+  maxHealth: 500
   isInteractable: 0
 --- !u!1 &4648100163928716011
 GameObject:

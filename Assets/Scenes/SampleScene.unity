@@ -11010,7 +11010,7 @@ MonoBehaviour:
   neutralPlanetObjectsLayer:
     serializedVersion: 2
     m_Bits: 16384
-  infiniteResources: 0
+  infiniteResources: 1
 --- !u!1 &631269201
 GameObject:
   m_ObjectHideFlags: 0
@@ -15688,7 +15688,8 @@ MonoBehaviour:
   oilRigUpgradeValuesSO: {fileID: 11400000, guid: dbaa5c1ede53fa94ba0b7825004ae7f7, type: 2}
   oilStorageUpgradeValuesSO: {fileID: 11400000, guid: d2ca1b8d5874347448704cdfb05ae82c, type: 2}
   smallTurretUpgradeValuesSO: {fileID: 11400000, guid: eeedc9030d927a04fb6595677d210893, type: 2}
-  rocketShipUpgradeValuesSO: {fileID: 0}
+  rocketShipUpgradeValuesSO: {fileID: 11400000, guid: 33af134297857b2439b27a82ef80d4d3, type: 2}
+  repairBuildingUpgradeValuesSO: {fileID: 11400000, guid: 468e97ee984cbbe46add5581c1633812, type: 2}
 --- !u!1 &1886132769
 GameObject:
   m_ObjectHideFlags: 0

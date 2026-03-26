@@ -20,7 +20,6 @@ public class OilStorage : PlanetObject, IOilStorageDevice
     {
         base.Start();
         StatsManager.Instance.GetGameObjectStats(StatsManager.ObjectType.oilStorage);
-        SetHealth(GetMaxHealth());
     }
 
 
@@ -32,10 +31,15 @@ public class OilStorage : PlanetObject, IOilStorageDevice
             float updatedOilCapacity = e.upgradeValues.storageUpgradeValues.Evaluate(e.currentLevel) * 100f;
 
             SetMaxHealth(updatedMaxHealthAmount);
+            SetHealth(GetMaxHealth());
             
             maxOilAmount = updatedOilCapacity;
 
         }
+    }
+    public override void InteractAlternate()
+    {
+        DestoryPlanetObject();
     }
 
     public override void Interact(Player player)
@@ -54,7 +58,7 @@ public class OilStorage : PlanetObject, IOilStorageDevice
 
     public override void ShowInteractable()
     {
-        PlayerHints.Instance.DisplayHint("HOLD E TO HARVEST OIL");
+        PlayerHints.Instance.DisplayHint("HOLD E TO HARVEST OIL\nPRESS F TO DESTROY");
     }
 
 
@@ -135,6 +139,7 @@ public class OilStorage : PlanetObject, IOilStorageDevice
             ItemVisualMovement oilGlobInstance = Instantiate(oilGlobVisual, transform.position, Quaternion.identity);
             oilGlobInstance.SetUp(transform.position, transferTargetLocation);
             oilTransferedCount = 0;
+            statsSet = true;
         }
 
     }

@@ -9,6 +9,8 @@ public class StatsManager : MonoBehaviour
     private const int OIL_STORAGE_MAX_LEVEL = 5;
     private const int SMALL_TURRET_MAX_LEVEL = 5;
     private const int ROCKETSHIP_MAX_LEVEL = 1;
+    private const int REPAIR_BUILDING_MAX_LEVEL = 5;
+
 
     public static StatsManager Instance { get; private set; }
     
@@ -18,6 +20,7 @@ public class StatsManager : MonoBehaviour
         oilRig,
         oilStorage,
         smallTurret,
+        repairBuilding,
         rocketShip
     }
 
@@ -35,6 +38,7 @@ public class StatsManager : MonoBehaviour
     [SerializeField] private UpgradeValuesSO oilStorageUpgradeValuesSO;
     [SerializeField] private UpgradeValuesSO smallTurretUpgradeValuesSO;
     [SerializeField] private UpgradeValuesSO rocketShipUpgradeValuesSO;
+    [SerializeField] private UpgradeValuesSO repairBuildingUpgradeValuesSO;
 
 
     private int playerLevel = 0;
@@ -42,6 +46,7 @@ public class StatsManager : MonoBehaviour
     private int oilStorageLevel = 0;
     private int smallTurretLevel = 0;
     private int rocketShipLevel = 0;
+    private int repairBuildingLevel = 0;
 
 
     private void Awake()
@@ -68,6 +73,11 @@ public class StatsManager : MonoBehaviour
             case ObjectType.rocketShip:
                 UpgradeSpecificStat(ref rocketShipLevel, UpdateRocketShipStats);
                 break;
+            case ObjectType.repairBuilding:
+                UpgradeSpecificStat(ref repairBuildingLevel, UpdateRepairBuildingStats);
+                break;
+
+
         }
     }
 
@@ -85,6 +95,8 @@ public class StatsManager : MonoBehaviour
                 return smallTurretLevel >= SMALL_TURRET_MAX_LEVEL;
             case ObjectType.rocketShip:
                 return rocketShipLevel >= ROCKETSHIP_MAX_LEVEL;
+            case ObjectType.repairBuilding:
+                return repairBuildingLevel >= REPAIR_BUILDING_MAX_LEVEL;
         }
 
         return false;
@@ -158,6 +170,14 @@ public class StatsManager : MonoBehaviour
         });
     }
 
+    private void UpdateRepairBuildingStats()
+    {
+        OnGameObjectStatsUpdated?.Invoke(this, new OnGameObjectStatsUpgradedArgs 
+        { objectType = ObjectType.repairBuilding, 
+            upgradeValues = repairBuildingUpgradeValuesSO, 
+            currentLevel = repairBuildingLevel
+        });
+    }
     
 
     public void GetGameObjectStats(ObjectType objectType)
@@ -175,6 +195,12 @@ public class StatsManager : MonoBehaviour
                 break;
             case ObjectType.smallTurret:
                 UpdateSmallTurretStats(); 
+                break;
+            case ObjectType.rocketShip:
+                UpdateRocketShipStats();
+                break;
+            case ObjectType.repairBuilding:
+                UpdateRepairBuildingStats();
                 break;
         }
     }

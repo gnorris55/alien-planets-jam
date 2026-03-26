@@ -271,15 +271,19 @@ public class Player : MonoBehaviour
 
     private void GameInput_OnChangePlayerStatePressed(object sender, EventArgs e)
     {
+        if (currentInteractablePlanetObject)
+        {
+            currentInteractablePlanetObject.InteractAlternate();
+        }
 
-        if (currentPlanet != null)
+        /*if (currentPlanet != null)
         {
             int numPlayerStates = Enum.GetNames(typeof(PlayerStates)).Length;
             int nextState = ((int)currentPlayerState + 1) % numPlayerStates;
 
             currentPlayerState = (PlayerStates)nextState;
             OnPlayerStateChanged?.Invoke(this, new OnPlayerStateChangedArgs { playerState = currentPlayerState });
-        }
+        }*/
     }
 
     private void TakeDamage(float damageAmount)

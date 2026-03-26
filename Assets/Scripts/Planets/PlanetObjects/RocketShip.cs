@@ -8,25 +8,19 @@ public class RocketShip : PlanetObject
     {
         base.Start();
         StatsManager.Instance.GetGameObjectStats(StatsManager.ObjectType.rocketShip);
-        SetHealth(GetMaxHealth());
     }
 
     protected override void StatsManager_OnGameObjectStatsUpdated(object sender, StatsManager.OnGameObjectStatsUpgradedArgs e)
     {
-        print(e.objectType);
         if (e.objectType == StatsManager.ObjectType.rocketShip)
         {
-
-            /*
-            float updatedMaxHealthAmount = e.upgradeValues.healthUpgradeValues.Evaluate(e.currentLevel) * 100f;
-            print(updatedMaxHealthAmount);
-            SetMaxHealth(updatedMaxHealthAmount);
-            */
-
             if (e.currentLevel == 1)
             {
                 SetInteractable();
             }
+            float updatedMaxHealthAmount = e.upgradeValues.healthUpgradeValues.Evaluate(e.currentLevel) * 100f;
+            SetMaxHealth(updatedMaxHealthAmount);
+            SetHealth(GetMaxHealth());
         }
     }
     public override void Interact(Player player)

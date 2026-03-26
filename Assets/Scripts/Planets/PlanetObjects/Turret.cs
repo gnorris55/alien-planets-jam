@@ -34,10 +34,20 @@ public class Turret : PlanetObject
 
             projectileDamage = updatedDamageAmount;
             SetMaxHealth(updatedMaxHealthAmount);
+            SetHealth(GetMaxHealth());
+            statsSet = true;
      
         }
     }
 
+    public override void InteractAlternate()
+    {
+        DestoryPlanetObject();
+    }
+    public override void ShowInteractable()
+    {
+        PlayerHints.Instance.DisplayHint("PRESS F TO DESTROY");
+    }
     public void SetEnemyTarget(Enemy enemy)
     {
         targetedEnemy = enemy;

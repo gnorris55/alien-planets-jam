@@ -18,6 +18,7 @@ public class PlanetObject: MonoBehaviour, IDamagable
     [SerializeField] protected bool isInteractable = true;
 
     protected Planet homePlanet;
+    protected bool statsSet = false;
 
     private float currentHealth;
 
@@ -47,6 +48,11 @@ public class PlanetObject: MonoBehaviour, IDamagable
         
     }
     public virtual void InteractStopped()
+    {
+
+    }
+
+    public virtual void InteractAlternate()
     {
 
     }
@@ -93,7 +99,17 @@ public class PlanetObject: MonoBehaviour, IDamagable
     }
     public void AddHealth(float healthAmount)
     {
+        if (statsSet)
+        {
+            currentHealth += healthAmount;
 
+            if (currentHealth > maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
+
+            OnHealthUpdated?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public float GetCurrentHealth()
@@ -108,6 +124,7 @@ public class PlanetObject: MonoBehaviour, IDamagable
     public void SetMaxHealth(float maxHealth)
     {
         this.maxHealth = maxHealth;
+        OnHealthUpdated?.Invoke(this, EventArgs.Empty);
     }
 
     public void SetHealth(float healthAmount)

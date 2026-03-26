@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6588ca47b61de3428494777f8e4fc3f, type: 3}
+  m_Name: RepairBuildingSO
+  m_EditorClassIdentifier: Assembly-CSharp::PlanetStructureSO
+  structureName: RepairBuilding
+  structureGameObject: {fileID: -8847340864943255555, guid: 7c8504a10d10baf4e95a2474f2cc6cbb, type: 3}
+  structureOutline: {fileID: 2465774899367047564, guid: cb9514b0912e60240ad81878ed65089d, type: 3}
+  width: 0.3
+  height: 0.17
+  sprite: {fileID: -3682299261698216172, guid: 5645f2c2b91efb049b359f9ad4f70434, type: 3}
+  oilPrice: 80

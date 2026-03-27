@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private ParticleSystem jetPackFireParticleSystem;
     [SerializeField] private ParticleSystem jetPackFireParticleSystem2;
+    [SerializeField] private AudioSource jetPackAudioSource;
 
     private bool playerCanMove;
     private bool canUseJetPack = true;
@@ -143,6 +144,11 @@ public class PlayerMovement : MonoBehaviour
             jetPackFireParticleSystem.Play();
             jetPackFireParticleSystem2.gameObject.SetActive(true);
             jetPackFireParticleSystem2.Play();
+            if (lastMovement.y == 0)
+            {
+                jetPackAudioSource.Play();
+
+            }
 
         }
         else if (playerMovement.y == 0 && lastMovement.y > 0) {
@@ -151,6 +157,10 @@ public class PlayerMovement : MonoBehaviour
             jetPackFireParticleSystem.Pause();
             jetPackFireParticleSystem2.gameObject.SetActive(false);
             jetPackFireParticleSystem2.Pause();
+            if (lastMovement.y > 0)
+            {
+                jetPackAudioSource.Pause();
+            }
         }
 
     }

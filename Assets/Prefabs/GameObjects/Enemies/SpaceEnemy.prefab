@@ -115,7 +115,7 @@ MonoBehaviour:
   speed: 0.2
   attackRange: 1
   attackFrequencyTime: 1
-  damage: 22
+  damage: 10
   maxHealth: 100
   oilDropAmount: 20
   oilGlobVisual: {fileID: 4933926180698475067, guid: 0ec23a2cb484da14286fa8b14c532a79, type: 3}

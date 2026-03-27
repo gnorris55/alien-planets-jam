@@ -10,6 +10,7 @@ public class BuildingMenuCell : MonoBehaviour
     [SerializeField] private Button button;
     [SerializeField] private Image itemImage;
     [SerializeField] private TextMeshProUGUI planetObjectOilPrice;
+    [SerializeField] private AudioSource buttonClickedAudioSource;
 
     public event EventHandler<OnPlanetStructureSelectedArgs> OnPlanetStructureSelected;
     public class OnPlanetStructureSelectedArgs : EventArgs
@@ -37,6 +38,7 @@ public class BuildingMenuCell : MonoBehaviour
     {
 
         OnPlanetStructureSelected?.Invoke(this, new OnPlanetStructureSelectedArgs { planetStructureSO = planetStructureSO});
+        GetComponent<AudioSource>().Play();
     }
 
     public void OnEnterButton()

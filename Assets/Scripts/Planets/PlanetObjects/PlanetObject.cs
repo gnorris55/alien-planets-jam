@@ -13,12 +13,15 @@ public class PlanetObject: MonoBehaviour, IDamagable
         public PlanetObject planetObject;
     }
 
-    [SerializeField] private float width;
-    [SerializeField] private float maxHealth = 100;
+    [SerializeField] protected ParticleSystem planetObjectDestroyedParticles;
+    [SerializeField] protected AudioSource planetObjectDestroyedAudioSource;
     [SerializeField] protected bool isInteractable = true;
 
     protected Planet homePlanet;
     protected bool statsSet = false;
+
+    [SerializeField] private float width;
+    [SerializeField] private float maxHealth = 100;
 
     private float currentHealth;
 
@@ -93,9 +96,12 @@ public class PlanetObject: MonoBehaviour, IDamagable
 
     protected void DestoryPlanetObject()
     {
-        OnPlanetObjectDestroyed?.Invoke(this, new OnPlanetObjectDestroyedArgs { planetObject = this });
+        Instantiate(planetObjectDestroyedParticles, transform.position, Quaternion.identity);
+        planetObjectDestroyedAudioSource.Play();
+        
         Destroy(gameObject);
-
+        OnPlanetObjectDestroyed?.Invoke(this, new OnPlanetObjectDestroyedArgs { planetObject = this });
+        
     }
     public void AddHealth(float healthAmount)
     {

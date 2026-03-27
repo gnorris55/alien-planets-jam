@@ -153,7 +153,6 @@ public class OilStorage : PlanetObject, IOilStorageDevice
             currentOilAmount = 0;
             OnOilUpdatedInStorageDevice?.Invoke(this, EventArgs.Empty);
             return leftOverOil;
-
         }
         else
         {

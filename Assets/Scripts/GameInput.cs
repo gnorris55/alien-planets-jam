@@ -14,6 +14,9 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnPlayerInteractPressed;
     public event EventHandler OnPlayerInteractReleased;
     public event EventHandler OnChangePlayerStatePressed;
+    public event EventHandler OnPistolSelectedPressed;
+    public event EventHandler OnShotGunSelectedPressed;
+    public event EventHandler OnMachineGunSelectedPressed;
  
 
     [SerializeField] InputActionReference moveInput;
@@ -21,7 +24,12 @@ public class GameInput : MonoBehaviour
     [SerializeField] InputActionReference swapWeaponInput;
     [SerializeField] InputActionReference playerInteractInput;
     [SerializeField] InputActionReference changePlayerStateInput;
+    [SerializeField] InputActionReference selectPistolInput;
+    [SerializeField] InputActionReference selectShotGunInput;
+    [SerializeField] InputActionReference selectMachineGunInput;
     [SerializeField] InputActionReference scrollingInput;
+
+
 
     //[SerializeField] InputActionReference shoot;
 
@@ -40,7 +48,28 @@ public class GameInput : MonoBehaviour
         swapWeaponInput.action.started += SwapWeaponInput_started;
         playerInteractInput.action.started += PlayerInput_started;
         playerInteractInput.action.canceled += PlayerInput_canceled;
+
+        selectPistolInput.action.started += SelectPistol_started;
+        selectShotGunInput.action.started += SelectShotGun_started;
+        selectMachineGunInput.action.started += SelectMachineGun_started;
+        
+
         changePlayerStateInput.action.started += ChangePlayerStateInput_started;
+    }
+
+    private void SelectMachineGun_started(InputAction.CallbackContext obj)
+    {
+        OnMachineGunSelectedPressed?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void SelectPistol_started(InputAction.CallbackContext obj)
+    {
+        OnPistolSelectedPressed?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void SelectShotGun_started(InputAction.CallbackContext obj)
+    {
+        OnShotGunSelectedPressed?.Invoke(this, EventArgs.Empty);
     }
 
     private void PlayerInput_canceled(InputAction.CallbackContext obj)

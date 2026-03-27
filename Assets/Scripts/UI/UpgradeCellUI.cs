@@ -31,6 +31,9 @@ public class UpgradeCellUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI yellowMineralAmountRequiredText;
     [SerializeField] private TextMeshProUGUI redMineralAmountRequiredText;
 
+    [SerializeField] private AudioSource upgradeBoughtAudioSource;
+    [SerializeField] private AudioSource cantAffordUpgradeAudioSource;
+
 
     private UpgradeRequirementsSO upgradeRequirementsSO;
 
@@ -66,10 +69,15 @@ public class UpgradeCellUI : MonoBehaviour
 
         if (Player.Instance.BuyUpgrade(Mathf.Round(requiredOilAmount), Mathf.Round(requiredBlueMineralAmount), Mathf.Round(requiredYellowMineralAmount), Mathf.Round(requiredRedMineralAmount)))
         {
+            upgradeBoughtAudioSource.Play();
             OnUpgrade?.Invoke(this, new OnUpgradeArgs
             {
                 upgradeRequirementsSO = upgradeRequirementsSO
             });
+        }
+        else
+        {
+            cantAffordUpgradeAudioSource.Play();
         }
     }
 

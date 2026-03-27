@@ -1,6 +1,8 @@
+using NUnit.Framework;
 using System;
 using TMPro.EditorUtilities;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour, IDamagable
 {
@@ -59,9 +61,31 @@ public class Enemy : MonoBehaviour, IDamagable
             // transfer oil to player
             if (Player.Instance.GetCurrentPlanet() == homePlanet)
             {
-                Player.Instance.AddOil(oilDropAmount);
-                ItemVisualMovement oilGlobInstance = Instantiate(oilGlobVisual, transform.position, Quaternion.identity);
-                oilGlobInstance.SetUp(transform.position, Player.Instance.transform.position);
+                float leftOverOil = Player.Instance.AddOil(oilDropAmount);
+                if (leftOverOil > 0)
+                {
+                    List<OilStorage> oilStorageDevices = homePlanet.GetSpecificPlanetObject<OilStorage>();
+                    foreach (OilStorage oilStorage in oilStorageDevices)
+                    {
+
+                        leftOverOil = oilStorage.AddOil(leftOverOil);
+
+                        if (leftOverOil == 0)
+                        {
+                            ItemVisualMovement oilGlobInstance = Instantiate(oilGlobVisual, transform.position, Quaternion.identity);
+                            oilGlobInstance.SetUp(transform.position, oilStorage.transform.position);
+                            break;
+                        } 
+
+                    }
+
+                }
+                else
+                {
+                    ItemVisualMovement oilGlobInstance = Instantiate(oilGlobVisual, transform.position, Quaternion.identity);
+                    oilGlobInstance.SetUp(transform.position, Player.Instance.transform.position);
+                }
+
             }
             Instantiate(DieParticleGoo, transform.position, Quaternion.identity);
             Instantiate(DieParticleGoo, transform.position, Quaternion.identity);
@@ -73,7 +97,6 @@ public class Enemy : MonoBehaviour, IDamagable
     {
 
     }
-
     public float GetCurrentHealth() 
     {
         return currentHealth;

@@ -9,6 +9,7 @@ public class Turret : PlanetObject
     [SerializeField] private Bullet projectile;
     [SerializeField] private float projectileSpeed;
     [SerializeField] private float projectileDamage;
+    [SerializeField] private AudioSource shootAudioSource;
 
     [SerializeField] private float turretShootTime = 2f;
 
@@ -16,8 +17,6 @@ public class Turret : PlanetObject
 
     private Enemy targetedEnemy;
 
-
-    
     protected override void Start()
     {
         base.Start();
@@ -75,6 +74,7 @@ public class Turret : PlanetObject
     {
         Bullet bulletInstance = Instantiate(projectile.gameObject, turretProjectileSpawnLocation.position, Quaternion.identity).GetComponent<Bullet>();
         bulletInstance.Setup(shootDirection, projectileDamage, projectileSpeed);
+        shootAudioSource.Play();
     }
 
     public Enemy GetEnemyTarget() 

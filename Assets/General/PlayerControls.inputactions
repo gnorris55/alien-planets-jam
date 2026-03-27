@@ -59,6 +59,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "SelectPistol",
+                    "type": "Button",
+                    "id": "f9540d06-2cfa-4afa-8046-a4203d294c9e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SelectShotgun",
+                    "type": "Button",
+                    "id": "eca9bbb1-b20d-4551-bf17-85892df163b1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SelectMachineGun",
+                    "type": "Button",
+                    "id": "25b6f8fc-a92b-4509-83ae-70c6f7ad281f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -226,6 +253,39 @@
                     "action": "Zooming",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "dedf0c7e-73b4-4ee1-acbd-8267029f8855",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectPistol",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "90b61ff9-94d3-4529-a7e2-7a2d323caebe",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectShotgun",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "355c1ee8-1aab-4e1b-86e8-ffdad508c5ff",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectMachineGun",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

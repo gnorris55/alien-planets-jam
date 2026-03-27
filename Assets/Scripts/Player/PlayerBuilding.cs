@@ -6,8 +6,10 @@ public class PlayerBuilding : MonoBehaviour
 
 
     public static PlayerBuilding Instance { get; private set; }
-    [SerializeField] PlanetStructureSO currentPlanetStructureSO;
+    [SerializeField] private PlanetStructureSO currentPlanetStructureSO;
     [SerializeField] private float placementDistance = -1.1f;
+    [SerializeField] private AudioSource placeObjectAudioSource;
+    [SerializeField] private AudioSource cantPlaceObjectAudioSource;
 
 
 
@@ -20,7 +22,7 @@ public class PlayerBuilding : MonoBehaviour
     {
         Instance = this;
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         player = Player.Instance;
@@ -33,8 +35,14 @@ public class PlayerBuilding : MonoBehaviour
     {
         if (isBuilding && canPlaceObject)
         {
-            buildCurrentStructure(); 
+
+            if (canPlaceObject)
+            {
+
+                BuildCurrentStructure(); 
+            }
         }
+
     }
 
     private void Player_OnPlayerStateChanged(object sender, Player.OnPlayerStateChangedArgs e)
@@ -59,16 +67,20 @@ public class PlayerBuilding : MonoBehaviour
         }
     }
 
-    private void buildCurrentStructure()
+    private void BuildCurrentStructure()
     {
         if (Player.Instance.BuyPlanetObject(currentPlanetStructureSO.oilPrice))
         {
-
             Planet currentPlanet = player.GetCurrentPlanet();
             GetObjectPlacement(out Vector3 placementLocation, out Vector3 placementDirection);
             currentPlanet.AddObjectOnPlanet(currentPlanetStructureSO.structureGameObject, placementLocation, placementDirection);
 
+            placeObjectAudioSource.Play();
             CameraManager.Instance.ShakeCamera(1f, 0.1f);
+        }
+        else
+        {
+            //cantPlaceObjectAudioSource.Play();
         }
     }
 

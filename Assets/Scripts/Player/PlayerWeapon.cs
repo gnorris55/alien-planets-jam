@@ -3,9 +3,13 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using JetBrains.Annotations;
+using UnityEngine.UIElements;
 
 public class PlayerWeapon : MonoBehaviour
 {
+
+    public static PlayerWeapon Instance;    
+    public event EventHandler <WeaponType>OnWeaponUnlocked;
 
     private List<bool> weaponIsUnlockedList;
 
@@ -20,11 +24,21 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private Transform bulletPrefab;
     [SerializeField] private Transform bulletSpawnTransform;
     [SerializeField] private float playerDamage;
+    [SerializeField] private AudioSource shootAudioSource;
 
 
     private WeaponType currentWeapon = WeaponType.pistol;
+
+    private float machineGunShootTime = 0.1f;
+    private float machineGunShootTimer = 0f;
     private bool isShooting = false;
     private bool inCombat = true;
+
+
+    private void Awake()
+    {
+        Instance = this;   
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,17 +47,61 @@ public class PlayerWeapon : MonoBehaviour
         GameInput.Instance.OnShootInputReleased += GameInput_OnShootInputReleased;
         GameInput.Instance.OnSwapWeaponInputPressed += GameInput_OnSwapWeaponInputPressed;
 
+        GameInput.Instance.OnPistolSelectedPressed += GameInput_OnPistolSelectedPressed;
+        GameInput.Instance.OnShotGunSelectedPressed += GameInput_OnShotGunSelectedPressed;
+        GameInput.Instance.OnMachineGunSelectedPressed += GameInput_OnMachineGunSelectedPressed;
+
         Player.Instance.OnPlayerStateChanged += Player_OnPlayerStateChanged;
 
         SetUpWeaponUnlockList();
 
         // for testing
 
-        UnlockWeapon(WeaponType.shotgun);
-        UnlockWeapon(WeaponType.machinegun);
+        UnlockWeapon(WeaponType.pistol);
+        //UnlockWeapon(WeaponType.shotgun);
+        //UnlockWeapon(WeaponType.machinegun);
 
         currentWeapon = WeaponType.pistol;
 
+    }
+
+
+    public bool WeaponIsUnlocked(WeaponType weaponType)
+    {
+
+        if (weaponType == WeaponType.shotgun)
+        {
+            return (weaponIsUnlockedList[1]);
+        }
+        else if (weaponType == WeaponType.machinegun)
+        {
+            return (weaponIsUnlockedList[2]);
+        }
+
+
+        return true;
+    }
+
+
+    private void GameInput_OnMachineGunSelectedPressed(object sender, EventArgs e)
+    {
+        if (weaponIsUnlockedList[2])
+        {
+            currentWeapon = WeaponType.machinegun;
+        }
+    }
+
+    private void GameInput_OnShotGunSelectedPressed(object sender, EventArgs e)
+    {
+        if (weaponIsUnlockedList[1])
+        {
+            currentWeapon = WeaponType.shotgun;
+        }
+    }
+
+    private void GameInput_OnPistolSelectedPressed(object sender, EventArgs e)
+    {
+        currentWeapon = WeaponType.pistol;
     }
 
     private void Player_OnPlayerStateChanged(object sender, Player.OnPlayerStateChangedArgs e)
@@ -102,8 +160,6 @@ public class PlayerWeapon : MonoBehaviour
             }
             else if (currentWeapon == WeaponType.shotgun)
             {
-
-
                 int numShotGunBullets = 5;
                 float shotgunSpreadAngle = 2.5f;
 
@@ -128,21 +184,52 @@ public class PlayerWeapon : MonoBehaviour
 
     private void SpawnBullet(Vector3 shootDirection, float damageAmount, float speed, float despawnTime = 2f)
     {
-            Transform bulletTransform = Instantiate(bulletPrefab, bulletSpawnTransform.position, Quaternion.identity);
-            bulletTransform.GetComponent<Bullet>().Setup(shootDirection, damageAmount, speed, despawnTime);
+        shootAudioSource.Play();
+        Transform bulletTransform = Instantiate(bulletPrefab, bulletSpawnTransform.position, Quaternion.identity);
+        bulletTransform.GetComponent<Bullet>().Setup(shootDirection, damageAmount, speed, despawnTime);
 
     }
 
-    private void UnlockWeapon(WeaponType unlockedWeapon)
+    public void UnlockWeapon(WeaponType unlockedWeapon)
     {
         weaponIsUnlockedList[(int)unlockedWeapon] = true;
         currentWeapon = unlockedWeapon;
+
+        OnWeaponUnlocked?.Invoke(this, unlockedWeapon);
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.right = GetMouseDirectionFromPlayer();
+
+
+
+
+        if (isShooting && currentWeapon == WeaponType.machinegun)
+        {
+            machineGunShootTimer -= Time.deltaTime;
+
+
+            if (machineGunShootTimer < 0)
+            {
+                Vector3 shootDirection = (bulletSpawnTransform.position - transform.position).normalized;
+
+                float machineGunSpreadAngle = 5f;
+                float spreadAngle = machineGunSpreadAngle * UnityEngine.Random.Range(-1, 1);
+                Quaternion machineGunSpread = Quaternion.Euler(0, 0, spreadAngle);
+
+                Vector3 angledShootDirection = machineGunSpread * shootDirection;
+                SpawnBullet(angledShootDirection, playerDamage / 1f, 6f, 1.5f);
+
+                machineGunShootTimer = machineGunShootTime;
+                CameraManager.Instance.ShakeCamera(1f, 0.1f);
+            }
+        }
+    }
+
+    private void shootMachineGun()
+    {
+
     }
 
     // ---MISC---

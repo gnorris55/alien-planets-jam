@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 321fe5f22e672ce41b602e95adfc0d5b, type: 3}
   m_Name: OilRigUpgradeValuesSO
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeValuesSO
-  type: 0
+  type: 1
   healthUpgradeValues:
     serializedVersion: 2
     m_Curve:

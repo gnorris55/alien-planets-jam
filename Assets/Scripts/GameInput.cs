@@ -31,6 +31,7 @@ public class GameInput : MonoBehaviour
 
 
 
+
     //[SerializeField] InputActionReference shoot;
 
 

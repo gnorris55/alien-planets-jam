@@ -8,10 +8,9 @@ public class PlayerBuilding : MonoBehaviour
     public static PlayerBuilding Instance { get; private set; }
     [SerializeField] private PlanetStructureSO currentPlanetStructureSO;
     [SerializeField] private float placementDistance = -1.1f;
+
     [SerializeField] private AudioSource placeObjectAudioSource;
     [SerializeField] private AudioSource cantPlaceObjectAudioSource;
-
-
 
     private bool isBuilding = false;
     private bool canPlaceObject = true;

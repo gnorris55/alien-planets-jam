@@ -39,9 +39,10 @@ public class UpgradesMenuUI : MonoBehaviour
                 upgradeCellUIInstance.OnUpgrade += UpgradeCellUIInstance_OnUpgrade;
             }
         }
-
+        
         WeaponUnlockCell shotGunUnlockCellInstance = Instantiate(shotGunUnlockCell, upgradeContentsTransform).GetComponent<WeaponUnlockCell>();
         shotGunUnlockCellInstance.OnPurchaseWeapon += ShotGunUnlockCellInstance_OnPurchaseWeapon1; 
+        
         if (PlayerWeapon.Instance.WeaponIsUnlocked(shotGunUnlockCellInstance.GetWeaponType()))
         {
             Destroy(shotGunUnlockCellInstance.gameObject);
@@ -49,12 +50,12 @@ public class UpgradesMenuUI : MonoBehaviour
 
         WeaponUnlockCell machineGunUnlockCellInstance = Instantiate(machineGunUnlockCell, upgradeContentsTransform).GetComponent<WeaponUnlockCell>();
         machineGunUnlockCellInstance.OnPurchaseWeapon += MachineGunUnlockCellInstance_OnPurchaseWeapon1;
-        print(machineGunUnlockCellInstance.GetWeaponType());
-        print(PlayerWeapon.Instance.WeaponIsUnlocked(machineGunUnlockCellInstance.GetWeaponType()));
+
         if (PlayerWeapon.Instance.WeaponIsUnlocked(machineGunUnlockCellInstance.GetWeaponType()))
         {
             Destroy(machineGunUnlockCellInstance.gameObject);
         }
+        
 
        
     }

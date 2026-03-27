@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6588ca47b61de3428494777f8e4fc3f, type: 3}
   m_Name: OilRigSO
   m_EditorClassIdentifier: Assembly-CSharp::PlanetStructureSO
-  structureName: 
+  structureName: OIl Rig
   structureGameObject: {fileID: 5563090197499670405, guid: 241746f824182164e90a0658e59485a3, type: 3}
   structureOutline: {fileID: 2465774899367047564, guid: 17f788ac8406fd147b8073100024d3a0, type: 3}
   width: 0.61

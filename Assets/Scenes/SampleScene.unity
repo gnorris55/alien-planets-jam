@@ -2155,6 +2155,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222766507}
   m_CullTransparentMesh: 1
+--- !u!114 &243845293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: Keyboard/SelectPistol
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 2beb72fa43e9818498a2c4b531dc95f8, type: 3}
+  m_ActionId: f9540d06-2cfa-4afa-8046-a4203d294c9e
 --- !u!1 &277987061
 GameObject:
   m_ObjectHideFlags: 0
@@ -2707,20 +2721,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 560480225347302856, guid: 95b68708ac04c0640be061913b865efb, type: 3}
   m_PrefabInstance: {fileID: 1021068714}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &317578051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
-  m_Name: Keyboard/SelectMachineGun
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
-  m_Asset: {fileID: -944628639613478452, guid: 2beb72fa43e9818498a2c4b531dc95f8, type: 3}
-  m_ActionId: 25b6f8fc-a92b-4509-83ae-70c6f7ad281f
 --- !u!1 &349062977
 GameObject:
   m_ObjectHideFlags: 0
@@ -2872,20 +2872,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &363122699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
-  m_Name: Keyboard/SelectPistol
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
-  m_Asset: {fileID: -944628639613478452, guid: 2beb72fa43e9818498a2c4b531dc95f8, type: 3}
-  m_ActionId: f9540d06-2cfa-4afa-8046-a4203d294c9e
 --- !u!1 &374077186
 GameObject:
   m_ObjectHideFlags: 0
@@ -11015,9 +11001,9 @@ MonoBehaviour:
   swapWeaponInput: {fileID: 1210678429}
   playerInteractInput: {fileID: 948585517}
   changePlayerStateInput: {fileID: 422988652}
-  selectPistolInput: {fileID: 363122699}
-  selectShotGunInput: {fileID: 825039671}
-  selectMachineGunInput: {fileID: 317578051}
+  selectPistolInput: {fileID: 243845293}
+  selectShotGunInput: {fileID: 1662502153}
+  selectMachineGunInput: {fileID: 1624454428}
   scrollingInput: {fileID: 1759573745}
 --- !u!4 &605814264
 Transform:
@@ -11237,8 +11223,8 @@ Transform:
   m_Children:
   - {fileID: 1993690705}
   - {fileID: 1081308204}
-  - {fileID: 1261737471}
   - {fileID: 1504305681}
+  - {fileID: 1261737471}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &624801649
@@ -11362,9 +11348,9 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 27c0f489ad935a74a98008068fa14c61, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.592
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -11406,7 +11392,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.563
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -11735,9 +11721,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d9b559cab43f8c47a401a9afd66c998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponInformation
-  pistolInformationBox: {fileID: 835598010}
-  shotGunInformationBox: {fileID: 869885249}
-  machineGunInformationBox: {fileID: 90380233}
+  pistolInformationBox: {fileID: 835598009}
+  shotGunInformationBox: {fileID: 869885248}
+  machineGunInformationBox: {fileID: 90380232}
 --- !u!1 &736142756
 GameObject:
   m_ObjectHideFlags: 0
@@ -12064,20 +12050,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 349062978}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &825039671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
-  m_Name: Keyboard/SelectShotgun
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
-  m_Asset: {fileID: -944628639613478452, guid: 2beb72fa43e9818498a2c4b531dc95f8, type: 3}
-  m_ActionId: eca9bbb1-b20d-4551-bf17-85892df163b1
 --- !u!1 &835598009
 GameObject:
   m_ObjectHideFlags: 0
@@ -13855,7 +13827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: initialPlanetObjectSOList.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: 'initialPlanetObjectSOList.Array.data[0]'
@@ -14799,6 +14771,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1136475996}
   m_CullTransparentMesh: 1
+--- !u!1001 &1150979029
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962077218292211919, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184701137496122571, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: m_Name
+      value: SpaceEnemySpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991574878840883608, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
+      propertyPath: targetPlanet
+      value: 
+      objectReference: {fileID: 259181638102545109}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1a458e04b2b0bbd438e7c496d8df4cb5, type: 3}
 --- !u!1 &1209034305
 GameObject:
   m_ObjectHideFlags: 0
@@ -15112,7 +15145,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261737470}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.03, y: 2.0855749, z: 2.0855749}
   m_ConstrainProportionsScale: 1
@@ -16411,6 +16444,20 @@ Transform:
   - {fileID: 283408570}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1624454428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: Keyboard/SelectMachineGun
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 2beb72fa43e9818498a2c4b531dc95f8, type: 3}
+  m_ActionId: 25b6f8fc-a92b-4509-83ae-70c6f7ad281f
 --- !u!114 &1626228884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16425,6 +16472,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
   m_Asset: {fileID: -944628639613478452, guid: 2beb72fa43e9818498a2c4b531dc95f8, type: 3}
   m_ActionId: 47cdd6b1-305e-41ba-9e58-22a5e07e87ac
+--- !u!114 &1662502153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: Keyboard/SelectShotgun
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 2beb72fa43e9818498a2c4b531dc95f8, type: 3}
+  m_ActionId: eca9bbb1-b20d-4551-bf17-85892df163b1
 --- !u!4 &1727660510 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 560480225347302856, guid: 95b68708ac04c0640be061913b865efb, type: 3}
@@ -16948,10 +17009,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39fd81ecd9ac30408cbc29d311680c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatsManager
-  playerUpgradeValuesSO: {fileID: 11400000, guid: 4ddb546591d92fb4fb3b52254a866e2b, type: 2}
-  oilRigUpgradeValuesSO: {fileID: 11400000, guid: dbaa5c1ede53fa94ba0b7825004ae7f7, type: 2}
-  oilStorageUpgradeValuesSO: {fileID: 11400000, guid: d2ca1b8d5874347448704cdfb05ae82c, type: 2}
-  smallTurretUpgradeValuesSO: {fileID: 11400000, guid: eeedc9030d927a04fb6595677d210893, type: 2}
+  playerUpgradeValuesSO: {fileID: 11400000, guid: 4599ea561aab526469ef12f4d253d4a1, type: 2}
+  oilRigUpgradeValuesSO: {fileID: 11400000, guid: 9ef84c32239714746a94833f5b2a0351, type: 2}
+  oilStorageUpgradeValuesSO: {fileID: 11400000, guid: 4f1df6f7cef166644a8d993b10139558, type: 2}
+  smallTurretUpgradeValuesSO: {fileID: 11400000, guid: 7b1b36c8cef24df48ab0f57c2a49c5de, type: 2}
   rocketShipUpgradeValuesSO: {fileID: 11400000, guid: 33af134297857b2439b27a82ef80d4d3, type: 2}
   repairBuildingUpgradeValuesSO: {fileID: 11400000, guid: 468e97ee984cbbe46add5581c1633812, type: 2}
 --- !u!1 &1867340444
@@ -22816,6 +22877,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2712198886073491955, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
   m_PrefabInstance: {fileID: 1037379754885274456}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &259181638102545109 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1570127113453684200, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
+  m_PrefabInstance: {fileID: 1037379754885274456}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1299fc2516276e948b6e6b07ff3f7ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Planet
 --- !u!1001 &1037379754885274456
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22850,16 +22922,16 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: fc8a8332c231b89439aab35bad15f3d3, type: 2}
     - target: {fileID: 1570127113453684200, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
       propertyPath: initialPlanetObjectSOList.Array.size
-      value: 16
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1570127113453684200, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
       propertyPath: 'initialPlanetObjectSOList.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: cbb2002e9972c134781359870ff6838d, type: 2}
+      objectReference: {fileID: 11400000, guid: 1f7ef693f8ed273478295a0dc4b9fd02, type: 2}
     - target: {fileID: 1570127113453684200, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
       propertyPath: 'initialPlanetObjectSOList.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 1f7ef693f8ed273478295a0dc4b9fd02, type: 2}
+      objectReference: {fileID: 11400000, guid: cbb2002e9972c134781359870ff6838d, type: 2}
     - target: {fileID: 1570127113453684200, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
       propertyPath: 'initialPlanetObjectSOList.Array.data[2]'
       value: 
@@ -22988,3 +23060,4 @@ SceneRoots:
   - {fileID: 1595011134}
   - {fileID: 423183752}
   - {fileID: 359192544}
+  - {fileID: 1150979029}

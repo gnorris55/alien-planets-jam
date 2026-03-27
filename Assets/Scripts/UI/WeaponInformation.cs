@@ -2,18 +2,19 @@ using UnityEngine;
 
 public class WeaponInformation : MonoBehaviour
 {
-    [SerializeField] private Transform pistolInformationBox;
-    [SerializeField] private Transform shotGunInformationBox;
-    [SerializeField] private Transform machineGunInformationBox;
+    [SerializeField] private GameObject pistolInformationBox;
+    [SerializeField] private GameObject shotGunInformationBox;
+    [SerializeField] private GameObject machineGunInformationBox;
 
 
 
     private void Start()
     {
-        pistolInformationBox.gameObject.SetActive(false);
-        shotGunInformationBox.gameObject.SetActive(false);
-        machineGunInformationBox.gameObject.SetActive(false);
-
+        
+        pistolInformationBox.SetActive(false);
+        shotGunInformationBox.SetActive(false);
+        machineGunInformationBox.SetActive(false);
+       
 
 
         PlayerWeapon.Instance.OnWeaponUnlocked += PlayerWeapon_OnWeaponUnlocked;
@@ -24,16 +25,16 @@ public class WeaponInformation : MonoBehaviour
 
         if (weaponType == PlayerWeapon.WeaponType.pistol)
         {
-            pistolInformationBox.gameObject.SetActive(true);
+            pistolInformationBox.SetActive(true);
         }
 
         else if (weaponType == PlayerWeapon.WeaponType.shotgun)
         {
-            shotGunInformationBox.gameObject.SetActive(true);
+            shotGunInformationBox.SetActive(true);
         }
         else if (weaponType == PlayerWeapon.WeaponType.machinegun) 
         {
-            machineGunInformationBox.gameObject.SetActive(true);
+            machineGunInformationBox.SetActive(true);
         }
     }
 }

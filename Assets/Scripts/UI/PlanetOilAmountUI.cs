@@ -43,7 +43,10 @@ public class PlanetOilAmountUI : MonoBehaviour
 
     public void Hide()
     {
-        gameObject.SetActive(false);
+        if (this)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
 }

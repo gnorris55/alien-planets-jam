@@ -26,6 +26,7 @@ public class RocketShip : PlanetObject
     {
         if (e.objectType == StatsManager.ObjectType.rocketShip)
         {
+            print(e.currentLevel);
             if (e.currentLevel == 1)
             {
                 SetInteractable();

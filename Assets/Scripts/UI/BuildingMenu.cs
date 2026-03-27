@@ -31,8 +31,11 @@ public class BuildingMenu : MonoBehaviour{
 
     public void Hide()
     {
-        gameObject.SetActive(false);
-        //transform.DOScale(new Vector3(0.1f, 1f, 1f), 0.25f).SetEase(Ease.InQuad);
+        if (this)
+        {
+            gameObject.SetActive(false);
+            //transform.DOScale(new Vector3(0.1f, 1f, 1f), 0.25f).SetEase(Ease.InQuad);
+        }
     }
 
     private void Player_OnPlayerStateChanged(object sender, Player.OnPlayerStateChangedArgs e)

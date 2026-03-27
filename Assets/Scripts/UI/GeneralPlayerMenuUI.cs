@@ -35,7 +35,10 @@ public class GeneralPlayerMenuUI : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void HideUI()
     {
-        gameObject.SetActive(false);
+        if (this)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void ShowBuildingMenu()

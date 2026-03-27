@@ -16,8 +16,6 @@ public class WeaponUnlockCell : MonoBehaviour
     [SerializeField] private TextMeshProUGUI blueMineralCostText;
     [SerializeField] private TextMeshProUGUI yellowMineralCostText;
     [SerializeField] private TextMeshProUGUI redMineralCostText;
-
-    
     
     [SerializeField] private float oilCost;
     [SerializeField] private float blueMineralCost;
@@ -25,14 +23,9 @@ public class WeaponUnlockCell : MonoBehaviour
     [SerializeField] private float redMineralCost;
 
 
-
-
-
-
-
     private void Start()
     {
-
+        
         if (blueMineralCost == 0)
         {
             blueMineralCostText.transform.parent.gameObject.SetActive(false);
@@ -53,7 +46,7 @@ public class WeaponUnlockCell : MonoBehaviour
         redMineralCostText.text = redMineralCost.ToString();
 
         unlockButton.onClick.AddListener(UnlockWeapon);
-
+        
 
     }
 

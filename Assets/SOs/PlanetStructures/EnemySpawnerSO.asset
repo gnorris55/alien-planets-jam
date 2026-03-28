@@ -15,7 +15,7 @@ MonoBehaviour:
   structureName: EnemySpawner
   structureGameObject: {fileID: 7411875127919582058, guid: 96ce35d134bc33f4b8a45c897da19372, type: 3}
   structureOutline: {fileID: 2417424981015295488, guid: c542b1d7bfc712c468022414d1596a69, type: 3}
-  width: 0.32
-  height: 0.05
-  sprite: {fileID: 137100544721314990, guid: 183e73a36c475fa40aff43fd62a63fe5, type: 3}
+  width: 0.64
+  height: 0.11
+  sprite: {fileID: 1871869133636868673, guid: fea1f30bfa7502445b7b672f7c49e2b9, type: 3}
   oilPrice: 0

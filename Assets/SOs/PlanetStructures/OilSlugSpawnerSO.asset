@@ -15,7 +15,7 @@ MonoBehaviour:
   structureName: OilSlugSpawner
   structureGameObject: {fileID: 7411875127919582058, guid: 6ec943f942c6722479e2bc5165acb4b0, type: 3}
   structureOutline: {fileID: 2417424981015295488, guid: b37bb5f79a57958448e0d680cf5d7aab, type: 3}
-  width: 0.32
-  height: 0.05
-  sprite: {fileID: 137100544721314990, guid: 183e73a36c475fa40aff43fd62a63fe5, type: 3}
+  width: 0.64
+  height: 0.11
+  sprite: {fileID: 1871869133636868673, guid: fea1f30bfa7502445b7b672f7c49e2b9, type: 3}
   oilPrice: 0

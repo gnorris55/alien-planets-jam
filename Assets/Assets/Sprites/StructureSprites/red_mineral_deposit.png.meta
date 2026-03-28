@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7eff345a51d356f4795af4da8f8bb670
+guid: 09ee27ecdff31934d91e37531151b1c0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1614904644912000564
-    second: repair_building_placeholder_0
+      213: 6948326589738131378
+    second: red_mineral_deposit_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: repair_building_placeholder_0
+      name: red_mineral_deposit_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 64
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 43eab1ae73b496610800000000000000
-      internalID: 1614904644912000564
+      spriteID: 2bf1eb4383a6d6060800000000000000
+      internalID: 6948326589738131378
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      repair_building_placeholder_0: 1614904644912000564
+      red_mineral_deposit_0: 6948326589738131378
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

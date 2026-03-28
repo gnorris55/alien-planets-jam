@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlyingEnemy
   speed: 0.1
-  attackRange: 1
+  attackRange: 2
   attackFrequencyTime: 1
   damage: 5
   maxHealth: 100
@@ -121,7 +121,7 @@ MonoBehaviour:
   oilGlobVisual: {fileID: 4933926180698475067, guid: 0ec23a2cb484da14286fa8b14c532a79, type: 3}
   DieParticleGoo: {fileID: 1855568903275695687, guid: 0029b4279db48c1489c440a9041515ae, type: 3}
   bullet: {fileID: -4233094135127121287, guid: 4554fea25af99ee498f8a7452a335659, type: 3}
-  flightHeight: 1
+  flightHeight: 5
   speedRange: 0.05
 --- !u!1 &3592284185599257397
 GameObject:

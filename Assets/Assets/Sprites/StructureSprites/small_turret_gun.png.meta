@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d36f79c9c9781fb4496b5415afdb15a5
+guid: 7fea22eb0056dd149a400aeb763ff901
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4430060604676338546
-    second: oil_storage_0
+      213: 5913228551043287462
+    second: small_turret_gun_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: oil_storage_0
+      name: small_turret_gun_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 0
-        width: 26
-        height: 24
+        x: 11
+        y: 25
+        width: 36
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2737f2306acba7d30800000000000000
-      internalID: 4430060604676338546
+      spriteID: 6a902ac9902001250800000000000000
+      internalID: 5913228551043287462
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      oil_storage_0: 4430060604676338546
+      small_turret_gun_0: 5913228551043287462
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

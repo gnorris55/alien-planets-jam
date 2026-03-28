@@ -92,7 +92,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0045843124, y: -0.004450619}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -102,7 +102,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.6057136, y: 0.55117184}
+  m_Size: {x: 1.2139072, y: 1.0838529}
   m_EdgeRadius: 0
 --- !u!82 &284006063931517403
 AudioSource:
@@ -382,7 +382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5758165514275388099, guid: d4deff23f97889d41bc46a5dea4f6bf1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.29280007
+      value: 0.772
       objectReference: {fileID: 0}
     - target: {fileID: 5758165514275388099, guid: d4deff23f97889d41bc46a5dea4f6bf1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -492,7 +492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1613562200991186926, guid: 60143789552b4ae4fbd3cd03ab8570df, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.22
+      value: 0.635
       objectReference: {fileID: 0}
     - target: {fileID: 1613562200991186926, guid: 60143789552b4ae4fbd3cd03ab8570df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

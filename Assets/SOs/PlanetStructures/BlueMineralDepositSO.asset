@@ -15,7 +15,7 @@ MonoBehaviour:
   structureName: BlueMineralDeposit
   structureGameObject: {fileID: 925340714543718202, guid: db3fbcc50db817b45a9070c4a3ff3f90, type: 3}
   structureOutline: {fileID: 2465774899367047564, guid: e7e3daabb58b9ac4f90c31058ae62022, type: 3}
-  width: 0.32
-  height: 0.125
-  sprite: {fileID: 7517564383262865977, guid: 64904da68b20fbe4bb0555779a6a5ea6, type: 3}
+  width: 0.64
+  height: 0.24
+  sprite: {fileID: 4795824590636334991, guid: 93f97bc60f3f74e4eb7f143ebcf23e4f, type: 3}
   oilPrice: 0

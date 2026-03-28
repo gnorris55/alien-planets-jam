@@ -71,7 +71,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.0011100173}
+  m_Offset: {x: 0.0005840063, y: -0.0006417036}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -81,7 +81,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.17502546, y: 0.17154443}
+  m_Size: {x: 0.32100463, y: 0.3198595}
   m_EdgeRadius: 0
 --- !u!114 &-8847340864943255555
 MonoBehaviour:
@@ -100,7 +100,7 @@ MonoBehaviour:
   isInteractable: 1
   width: 0
   maxHealth: 100
-  repairRadius: 1.25
+  repairRadius: 2.5
   repairAmount: 0.5
   playerPlanetObjectsLayer:
     serializedVersion: 2
@@ -375,12 +375,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 1614904644912000564, guid: 7eff345a51d356f4795af4da8f8bb670, type: 3}
+  m_Sprite: {fileID: -1050092745121943356, guid: 2e00b4a7ac0763c42ba13261e959a8e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.34, y: 0.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -463,7 +463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1613562200991186926, guid: 60143789552b4ae4fbd3cd03ab8570df, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.22
+      value: 0.301
       objectReference: {fileID: 0}
     - target: {fileID: 1613562200991186926, guid: 60143789552b4ae4fbd3cd03ab8570df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

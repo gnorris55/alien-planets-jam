@@ -15,7 +15,7 @@ MonoBehaviour:
   structureName: RedMineralDeposit
   structureGameObject: {fileID: 925340714543718202, guid: 45fe0c729e9b7ec43bf7c93c79e54d8a, type: 3}
   structureOutline: {fileID: 2465774899367047564, guid: c876a254e2f0fad4bad7709e0acd0c1e, type: 3}
-  width: 0.32
-  height: 0.125
-  sprite: {fileID: -6669579659061873785, guid: d119134c602c9e043a4fdffb9db0577d, type: 3}
+  width: 0.64
+  height: 0.24
+  sprite: {fileID: 6948326589738131378, guid: 09ee27ecdff31934d91e37531151b1c0, type: 3}
   oilPrice: 0

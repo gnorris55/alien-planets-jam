@@ -15,7 +15,7 @@ MonoBehaviour:
   structureName: OilStorage
   structureGameObject: {fileID: 7793103899278457270, guid: 3efa6ce54340f0345b1242bcc02bf2e3, type: 3}
   structureOutline: {fileID: 7539599734396319184, guid: 2d29c4cfaa87ca54787f2a9ce349a2cc, type: 3}
-  width: 0.24
-  height: 0.23
+  width: 0.38
+  height: 0.46
   sprite: {fileID: 4430060604676338546, guid: d36f79c9c9781fb4496b5415afdb15a5, type: 3}
   oilPrice: 60

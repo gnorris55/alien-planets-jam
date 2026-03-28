@@ -142,10 +142,10 @@ TextureImporter:
       name: oil_rig_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 3
         y: 0
-        width: 62
-        height: 55
+        width: 122
+        height: 109
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

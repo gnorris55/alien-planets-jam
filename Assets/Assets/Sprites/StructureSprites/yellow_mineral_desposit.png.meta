@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 183e73a36c475fa40aff43fd62a63fe5
+guid: ed956cec488efab4082c81a0be496153
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 137100544721314990
-    second: enemySpawn_0
+      213: 740834014676082860
+    second: yellow_mineral_desposit_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enemySpawn_0
+      name: yellow_mineral_desposit_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 6
+        width: 64
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ea460a2183417e100800000000000000
-      internalID: 137100544721314990
+      spriteID: ca06b4a7c98f74a00800000000000000
+      internalID: 740834014676082860
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      enemySpawn_0: 137100544721314990
+      yellow_mineral_desposit_0: 740834014676082860
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

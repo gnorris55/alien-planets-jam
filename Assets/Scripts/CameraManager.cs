@@ -8,8 +8,8 @@ public class CameraManager : MonoBehaviour
 
     public static CameraManager Instance { get; private set; }
 
-    [SerializeField] private float maxZoom = 2.0f;
-    [SerializeField] private float minZoom = 0.5f;
+    [SerializeField] private float maxZoom = 10.0f;
+    [SerializeField] private float minZoom = 1f;
 
     private CinemachineCamera cinemachineCamera;
     private float shakeTimer;
@@ -39,6 +39,7 @@ public class CameraManager : MonoBehaviour
         }
 
         float scrollValue = GameInput.Instance.GetScroll().y;
+        print(cinemachineCamera.Lens.OrthographicSize);
         if (scrollValue > 0f && cinemachineCamera.Lens.OrthographicSize > minZoom)
         {
             cinemachineCamera.Lens.OrthographicSize -= Time.deltaTime*5;

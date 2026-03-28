@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bcbcb82731b599649b2fc2c1c5fca3ca
+guid: 93f97bc60f3f74e4eb7f143ebcf23e4f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4851792507827675012
-    second: turret_gun_0
+      213: 4795824590636334991
+    second: blue_mineral_deposit_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: turret_gun_0
+      name: blue_mineral_deposit_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 12
-        width: 19
-        height: 9
+        x: 0
+        y: 0
+        width: 64
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 48f58f87497055340800000000000000
-      internalID: 4851792507827675012
+      spriteID: f8f36f94e013e8240800000000000000
+      internalID: 4795824590636334991
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      turret_gun_0: 4851792507827675012
+      blue_mineral_deposit_0: 4795824590636334991
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

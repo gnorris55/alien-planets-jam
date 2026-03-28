@@ -343,9 +343,9 @@ RectTransform:
   - {fileID: 1425832891}
   - {fileID: 106292773}
   - {fileID: 780675057}
+  - {fileID: 735491341}
   - {fileID: 1209034306}
   - {fileID: 1730301506}
-  - {fileID: 735491341}
   m_Father: {fileID: 423183752}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -905,7 +905,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 119, y: 7.5}
+  m_AnchoredPosition: {x: 119, y: 7.5000305}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &98103775
@@ -1222,11 +1222,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 560480225347302856, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.61526
+      value: -21.35
       objectReference: {fileID: 0}
     - target: {fileID: 560480225347302856, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.39352
+      value: -2.1
       objectReference: {fileID: 0}
     - target: {fileID: 560480225347302856, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1294,11 +1294,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: planetRadius
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: gravityScalar
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: planetColor.a
@@ -1318,7 +1318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: atmosphereRadius
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: maxAmountEnemies
@@ -2281,8 +2281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d15a58dadb42c4c902ea613bf2e8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraManager
-  maxZoom: 3
-  minZoom: 0.7
+  maxZoom: 10
+  minZoom: 1
 --- !u!114 &283408566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2373,7 +2373,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 2.04
+    OrthographicSize: 6
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -9134,7 +9134,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.04
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -11261,8 +11261,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.006323099}
-  m_Radius: 0.10755658
+  m_Offset: {x: 0, y: -0.021911025}
+  m_Radius: 0.22153974
 --- !u!114 &624801651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11275,8 +11275,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530b90b04f21b654393008790b897e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  speed: 0.75
-  jumpForce: 2.5
+  speed: 1.5
+  jumpForce: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -13731,11 +13731,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 560480225347302856, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.53
+      value: -27.07
       objectReference: {fileID: 0}
     - target: {fileID: 560480225347302856, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.62
+      value: 21.41
       objectReference: {fileID: 0}
     - target: {fileID: 560480225347302856, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13799,7 +13799,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: planetRadius
-      value: 1.5
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
+      propertyPath: gravityScalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: planetColor.a
@@ -13819,7 +13823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: atmosphereRadius
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: maxAmountEnemies
@@ -14191,8 +14195,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.002, y: 0.0162, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2091465431}
   - {fileID: 1030795820}
@@ -14634,7 +14638,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 30
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -15312,11 +15316,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 560480225347302856, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.3947399
+      value: 2.01
       objectReference: {fileID: 0}
     - target: {fileID: 560480225347302856, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.61
+      value: 29.99
       objectReference: {fileID: 0}
     - target: {fileID: 560480225347302856, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15384,11 +15388,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: planetRadius
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: gravityScalar
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: planetColor.a
@@ -15408,7 +15412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: atmosphereRadius
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8275285212673470864, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: maxAmountEnemies
@@ -15871,8 +15875,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0018, y: 0.0134, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1886132772}
   - {fileID: 396121519}
@@ -22103,7 +22107,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 631269203}
   m_HandleRect: {fileID: 631269202}
   m_Direction: 2
-  m_Value: 0.5
+  m_Value: 0.49999994
   m_Size: 0.456438
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -22264,8 +22268,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 624801648}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -22896,6 +22900,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 218686572}
     m_Modifications:
+    - target: {fileID: 1570127113453684200, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
+      propertyPath: planetRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570127113453684200, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
+      propertyPath: gravityScalar
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570127113453684200, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
+      propertyPath: atmosphereRadius
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1570127113453684200, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
       propertyPath: maxAmountEnemies
       value: 3

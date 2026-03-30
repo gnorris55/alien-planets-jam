@@ -37,16 +37,16 @@ public class CameraManager : MonoBehaviour
             cinemachineBasicMultiChannelPerlin.AmplitudeGain = Mathf.Lerp(startingIntensity, 0f, 1 - (shakeTimer / shakeTimerTotal));
 
         }
+        float scrollScalar = 15f;
 
         float scrollValue = GameInput.Instance.GetScroll().y;
-        print(cinemachineCamera.Lens.OrthographicSize);
         if (scrollValue > 0f && cinemachineCamera.Lens.OrthographicSize > minZoom)
         {
-            cinemachineCamera.Lens.OrthographicSize -= Time.deltaTime*5;
+            cinemachineCamera.Lens.OrthographicSize -= Time.deltaTime*scrollScalar;
         }
         else if (scrollValue < 0f && cinemachineCamera.Lens.OrthographicSize < maxZoom)
         {
-            cinemachineCamera.Lens.OrthographicSize += Time.deltaTime*5;
+            cinemachineCamera.Lens.OrthographicSize += Time.deltaTime*scrollScalar;
         }
     }
 

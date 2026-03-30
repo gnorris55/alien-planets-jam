@@ -91,15 +91,13 @@ public class Player : MonoBehaviour
         StatsManager.Instance.OnGameObjectStatsUpdated += StatsManager_OnGameObjectStatsUpdated;
 
         OnHealthUpdated?.Invoke(this, new OnHealthUpdatedArgs { maxHealth = maxHealth, updatedHealth = health });
-
-        UpdateMineralAmount(currentBlueMineralAmount, maxBlueMineralAmount, MineralType.blue);
-        UpdateMineralAmount(currentYellowMineralAmount, maxYellowMineralAmount, MineralType.yellow);
-        UpdateMineralAmount(currentRedMineralAmount, maxRedMineralAmount, MineralType.red);
-
         OnPlayerStateChanged?.Invoke(this, new OnPlayerStateChangedArgs { playerState = currentPlayerState });
 
         StatsManager.Instance.GetGameObjectStats(StatsManager.ObjectType.player);
         currentOilAmount = maxOilAmount;
+        UpdateMineralAmount(currentBlueMineralAmount, maxBlueMineralAmount, MineralType.blue);
+        UpdateMineralAmount(currentYellowMineralAmount, maxYellowMineralAmount, MineralType.yellow);
+        UpdateMineralAmount(currentRedMineralAmount, maxRedMineralAmount, MineralType.red);
     }
 
     private void StatsManager_OnGameObjectStatsUpdated(object sender, StatsManager.OnGameObjectStatsUpgradedArgs e)
@@ -181,20 +179,25 @@ public class Player : MonoBehaviour
         if (infiniteResources)
             return true;
 
-        return (totalOil >= requiredOilAmount*100f) && (currentBlueMineralAmount >= requiredBlueMineral*10f) 
-                                               && (currentYellowMineralAmount >= requiredYellowMineral*10f)
-                                               && (currentRedMineralAmount >= requiredRedMineral*10f);
+        return (totalOil >= requiredOilAmount) && (currentBlueMineralAmount >= requiredBlueMineral) 
+                                               && (currentYellowMineralAmount >= requiredYellowMineral)
+                                               && (currentRedMineralAmount >= requiredRedMineral);
     }
 
     public bool BuyUpgrade(float requiredOilAmount, float requiredBlueMineral = 0, float requiredYellowMineral = 0, float requiredRedMineral = 0)
     {
         if (CanAffordUpgrade(requiredOilAmount, requiredBlueMineral, requiredYellowMineral,requiredRedMineral))
         {
-            
-            UseOilToPurchase(requiredOilAmount*100);
-            currentBlueMineralAmount -= requiredBlueMineral*10f;
-            currentYellowMineralAmount -= requiredYellowMineral*10f;
-            currentRedMineralAmount -= requiredRedMineral * 10f;
+
+            print("required blue mineral: " + requiredBlueMineral);
+            UseOilToPurchase(requiredOilAmount);
+            currentBlueMineralAmount -= requiredBlueMineral;
+            currentYellowMineralAmount -= requiredYellowMineral;
+            print("before: " +currentRedMineralAmount);
+            currentRedMineralAmount -= requiredRedMineral;
+            print("after: " + currentRedMineralAmount);
+
+
 
             UpdateMineralAmount(currentBlueMineralAmount, maxBlueMineralAmount, MineralType.blue);
             UpdateMineralAmount(currentYellowMineralAmount, maxYellowMineralAmount, MineralType.yellow);
@@ -275,15 +278,6 @@ public class Player : MonoBehaviour
         {
             currentInteractablePlanetObject.InteractAlternate();
         }
-
-        /*if (currentPlanet != null)
-        {
-            int numPlayerStates = Enum.GetNames(typeof(PlayerStates)).Length;
-            int nextState = ((int)currentPlayerState + 1) % numPlayerStates;
-
-            currentPlayerState = (PlayerStates)nextState;
-            OnPlayerStateChanged?.Invoke(this, new OnPlayerStateChangedArgs { playerState = currentPlayerState });
-        }*/
     }
 
     private void TakeDamage(float damageAmount)
@@ -312,12 +306,25 @@ public class Player : MonoBehaviour
             currentOilAmount = 0;
             if (!currentPlanet)
             {
-                GameManager.Instance.RespawnPlayer();
+                PlayerDiedInSpace();
             }
         }
 
         PlanetOilAmountUI.Instance.DisplayTotalPlanetOil();
     }
+
+    private void PlayerDiedInSpace()
+    {
+        GameManager.Instance.RespawnPlayer();
+        currentBlueMineralAmount = 0;
+        currentRedMineralAmount = 0;
+        currentYellowMineralAmount = 0;
+
+        UpdateMineralAmount(currentBlueMineralAmount, maxBlueMineralAmount, MineralType.blue);
+        UpdateMineralAmount(currentYellowMineralAmount, maxYellowMineralAmount, MineralType.yellow);
+        UpdateMineralAmount(currentRedMineralAmount, maxRedMineralAmount, MineralType.red);
+
+    } 
 
     public void SetState(PlayerStates playerState)
     {

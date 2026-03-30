@@ -88,14 +88,11 @@ public class SpaceEnemy : Enemy
         {
             Vector3 directionToPlanetObject = (planetObjectTarget.transform.position - transform.position).normalized;
             Vector3 directionFromPlanet = (transform.position - targetPlanet.transform.position);
-            //float horizontalMovement = directionToPlanetObject.x > 0 ? -1f : 1f;
-            float horizontalMovement = GetShortestDirection(transform, planetObjectTarget.transform, targetPlanet.transform);
-
-            //transform.position += directionToPlanetObject * Time.deltaTime * speed;
 
 
 
-            transform.position = targetPlanet.GetPlanetPosition(horizontalMovement, transform.position, 0.1f, speed, 100);
+
+            transform.position = targetPlanet.GetPlanetPosition(movementDirection, transform.position, 0.1f, speed, 100);
 
             if (Vector3.Distance(planetObjectTarget.transform.position, transform.position) < attackRange)
             {
@@ -119,6 +116,19 @@ public class SpaceEnemy : Enemy
         // If crossProduct < 0, target is Clockwise
         return crossProduct > 0 ? 1 : -1;
     }
+
+    public override void SetTarget(PlanetObject planetObject)
+    {
+        base.SetTarget(planetObject);
+        movementDirection = GetShortestDirection(transform, planetObject.transform, homePlanet.transform);
+        if (movementDirection > 0)
+        {
+            enemySpriteRenderer.flipX = true;
+            bulletSpawnTransform.localPosition = new Vector3(-1*bulletSpawnTransform.localPosition.x, bulletSpawnTransform.localPosition.y, bulletSpawnTransform.localPosition.z);
+        }
+
+
+    }
     private void ShootAtPlanetObject()
     {
         attackFrequencyTimer -= Time.deltaTime;
@@ -131,8 +141,8 @@ public class SpaceEnemy : Enemy
 
     private void ShootProjectile()
     {
-        Vector3 directionToPlanetObject = (planetObjectTarget.transform.position - transform.position).normalized;
-        EnemyBullet bulletInstance = Instantiate(bullet, transform.position, Quaternion.identity);
+        Vector3 directionToPlanetObject = (planetObjectTarget.transform.position - bulletSpawnTransform.position).normalized;
+        EnemyBullet bulletInstance = Instantiate(bullet, bulletSpawnTransform.position, Quaternion.identity);
         bulletInstance.Setup(directionToPlanetObject, damage, 3);
     }
 

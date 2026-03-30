@@ -74,6 +74,8 @@ public class PlayerBuilding : MonoBehaviour
             GetObjectPlacement(out Vector3 placementLocation, out Vector3 placementDirection);
             currentPlanet.AddObjectOnPlanet(currentPlanetStructureSO.structureGameObject, placementLocation, placementDirection);
 
+            PlanetOilAmountUI.Instance.DisplayTotalPlanetOil();
+
             placeObjectAudioSource.Play();
             CameraManager.Instance.ShakeCamera(1f, 0.1f);
         }

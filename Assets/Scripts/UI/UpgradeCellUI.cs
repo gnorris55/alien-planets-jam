@@ -67,7 +67,7 @@ public class UpgradeCellUI : MonoBehaviour
         float requiredYellowMineralAmount = upgradeRequirementsSO.upgradeRequirements.yellowMineralAmount.Evaluate(currentLevel);
         float requiredRedMineralAmount = upgradeRequirementsSO.upgradeRequirements.redMineralAmount.Evaluate(currentLevel);
 
-        if (Player.Instance.BuyUpgrade(Mathf.Round(requiredOilAmount), Mathf.Round(requiredBlueMineralAmount), Mathf.Round(requiredYellowMineralAmount), Mathf.Round(requiredRedMineralAmount)))
+        if (Player.Instance.BuyUpgrade(Mathf.Round(requiredOilAmount *100f), Mathf.Round(requiredBlueMineralAmount*10f), Mathf.Round(requiredYellowMineralAmount*10f), Mathf.Round(requiredRedMineralAmount*10f)))
         {
             upgradeBoughtAudioSource.Play();
             OnUpgrade?.Invoke(this, new OnUpgradeArgs

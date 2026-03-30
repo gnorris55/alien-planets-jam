@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour, IDamagable
     [SerializeField] protected float attackRange = 1f;
     [SerializeField] protected float attackFrequencyTime = 1f;
     [SerializeField] protected float damage;
+    [SerializeField] protected Transform bulletSpawnTransform;
+    [SerializeField] protected SpriteRenderer enemySpriteRenderer;   
 
     protected float attackFrequencyTimer;
     protected EnemyState currentState;
@@ -114,10 +116,11 @@ public class Enemy : MonoBehaviour, IDamagable
         this.currentHealth = healthAmount;
     }
 
-    public void SetTarget(PlanetObject planetObject)
+    public virtual void SetTarget(PlanetObject planetObject)
     {
         this.planetObjectTarget = planetObject;
         planetObjectTarget.OnPlanetObjectDestroyed += PlanetObjectTarget_OnPlanetObjectDestroyed;
+
 
     }
 

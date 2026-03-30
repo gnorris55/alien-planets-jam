@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class FlyingEnemy : Enemy
@@ -72,14 +73,8 @@ public class FlyingEnemy : Enemy
         {
             Vector3 directionToPlanetObject = (planetObjectTarget.transform.position - transform.position).normalized;
             Vector3 directionFromPlanet = (transform.position - homePlanet.transform.position);
-            //float horizontalMovement = directionToPlanetObject.x > 0 ? -1f : 1f;
-            float horizontalMovement = GetShortestDirection(transform, planetObjectTarget.transform, homePlanet.transform);
 
-            //transform.position += directionToPlanetObject * Time.deltaTime * speed;
-
-
-
-            transform.position = homePlanet.GetPlanetPosition(horizontalMovement, transform.position, 0.1f, speed, 100);
+            transform.position = homePlanet.GetPlanetPosition(movementDirection, transform.position, 0.1f, speed, 100);
 
             if (Vector3.Distance(planetObjectTarget.transform.position, transform.position) < attackRange)
             {
@@ -111,11 +106,22 @@ public class FlyingEnemy : Enemy
             attackFrequencyTimer = attackFrequencyTime;
         }
     }
+    public override void SetTarget(PlanetObject planetObject)
+    {
+        base.SetTarget(planetObject);
+        movementDirection = GetShortestDirection(transform, planetObject.transform, homePlanet.transform);
+        if (movementDirection > 0)
+        {
+            enemySpriteRenderer.flipX = true;
+            bulletSpawnTransform.localPosition = new Vector3(-1*bulletSpawnTransform.localPosition.x, bulletSpawnTransform.localPosition.y, bulletSpawnTransform.localPosition.z);
+        }
 
+
+    }
     private void ShootProjectile()
     {
-        Vector3 directionToPlanetObject = (planetObjectTarget.transform.position - transform.position).normalized;
-        EnemyBullet bulletInstance = Instantiate(bullet, transform.position, Quaternion.identity);
+        Vector3 directionToPlanetObject = (planetObjectTarget.transform.position - bulletSpawnTransform.position).normalized;
+        EnemyBullet bulletInstance = Instantiate(bullet, bulletSpawnTransform.position, Quaternion.identity);
         bulletInstance.Setup(directionToPlanetObject, damage, 3);
     }
 

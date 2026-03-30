@@ -4,11 +4,19 @@ public class OilSlug : Enemy
 {
 
     [SerializeField] private float speedRange = 1.15f;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
+
     private float movementDirection = -1f;
     protected override void Start()
     {
         base.Start();
         movementDirection = (Random.value > 0.5f) ? -1 : 1;
+
+        if (movementDirection > 0)
+        {
+            spriteRenderer.flipX = true;
+        }
     }
 
     public override void SetUp(float speed, Vector3 direction)

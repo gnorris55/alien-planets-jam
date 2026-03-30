@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1839937567067400400}
   - component: {fileID: 3266339331562420910}
+  - component: {fileID: 4534913382500046933}
   m_Layer: 0
-  m_Name: OilSlugSprite
+  m_Name: OilSlugAnimationPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -7818493825185448204, guid: 610a577546675094993cad88a72f068f, type: 3}
+  m_Sprite: {fileID: 8187153214195923341, guid: 4436e6a978c918e429bffb19598530e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -91,6 +92,28 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!95 &4534913382500046933
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741244780615274357}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0cb5ccea2e6218846aa7c232036091db, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6949773738693180535
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,6 +171,7 @@ MonoBehaviour:
   oilGlobVisual: {fileID: 4933926180698475067, guid: 0ec23a2cb484da14286fa8b14c532a79, type: 3}
   DieParticleGoo: {fileID: 1855568903275695687, guid: 0029b4279db48c1489c440a9041515ae, type: 3}
   speedRange: 0
+  spriteRenderer: {fileID: 3266339331562420910}
 --- !u!58 &620362830322707393
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -289,7 +313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1613562200991186926, guid: 60143789552b4ae4fbd3cd03ab8570df, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.186
+      value: 0.297
       objectReference: {fileID: 0}
     - target: {fileID: 1613562200991186926, guid: 60143789552b4ae4fbd3cd03ab8570df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -302,6 +326,10 @@ PrefabInstance:
     - target: {fileID: 1613562200991186926, guid: 60143789552b4ae4fbd3cd03ab8570df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560154774449362032, guid: 60143789552b4ae4fbd3cd03ab8570df, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6266197895808312555, guid: 60143789552b4ae4fbd3cd03ab8570df, type: 3}
       propertyPath: damagableGameObject

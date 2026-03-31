@@ -52,7 +52,6 @@ public class Planet : MonoBehaviour
             Vector3 planetObjectPlanetPosition = GetPlanetPosition(0, positionOnPlanet, (rocketShipSO.height / 2.0f) - 0.02f, 0, 0);
 
             Vector3 planetObjectDirection = (positionOnPlanet - transform.position).normalized;
-            print(planetObjectPlanetPosition);
 
             AddObjectOnPlanet(rocketShipSO.structureGameObject, planetObjectPlanetPosition, planetObjectDirection);
         }

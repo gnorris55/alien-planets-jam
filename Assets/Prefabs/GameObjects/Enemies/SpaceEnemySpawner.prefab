@@ -47,33 +47,75 @@ MonoBehaviour:
   spaceEnemy: {fileID: 8198597339360166737, guid: db10a85bfc88e624f854c365131fb2ed, type: 3}
   targetPlanet: {fileID: 0}
   spawnRate: 5
-  maxEnemies: 5
+  maxEnemies: 20
   spawnRateAnimationCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 10
-      inSlope: -0.4661218
-      outSlope: -0.4661218
+      value: 20
+      inSlope: -0.03883943
+      outSlope: -0.03883943
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 13.026112
-      value: 3.9282455
-      inSlope: -0.26422977
-      outSlope: -0.26422977
-      tangentMode: 34
+      time: 20.774494
+      value: 19.19313
+      inSlope: -0.19000122
+      outSlope: -0.19000122
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
+      outWeight: 0.09397722
+    - serializedVersion: 3
+      time: 70.23191
+      value: 10.042311
+      inSlope: -0.4959467
+      outSlope: -0.4959467
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.068493344
+    - serializedVersion: 3
+      time: 120
+      value: 1
+      inSlope: -0.124614954
+      outSlope: -0.124614954
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.28344512
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  enemyHealthAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0.013654322
+      outSlope: 0.013654322
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 60
-      value: 1
-      inSlope: -0.06233773
-      outSlope: -0.06233773
+      time: 39.869667
+      value: 1.0443933
+      inSlope: 0.021949584
+      outSlope: 0.021949584
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.068042494
+    - serializedVersion: 3
+      time: 120
+      value: 5
+      inSlope: 0.04936466
+      outSlope: 0.04936466
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

@@ -72,8 +72,9 @@ public class Turret : PlanetObject
 
     private void SpawnProjectile(Vector3 shootDirection)
     {
-        Bullet bulletInstance = Instantiate(projectile.gameObject, turretProjectileSpawnLocation.position, Quaternion.identity).GetComponent<Bullet>();
+        TurretBullet bulletInstance = Instantiate(projectile.gameObject, turretProjectileSpawnLocation.position, Quaternion.identity).GetComponent<TurretBullet>();
         bulletInstance.Setup(shootDirection, projectileDamage, projectileSpeed);
+        bulletInstance.SetTarget(targetedEnemy);
         shootAudioSource.Play();
     }
 

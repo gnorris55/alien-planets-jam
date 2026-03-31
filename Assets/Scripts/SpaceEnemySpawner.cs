@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class SpaceEnemySpawner : MonoBehaviour
@@ -7,6 +8,7 @@ public class SpaceEnemySpawner : MonoBehaviour
     [SerializeField] private float spawnRate = 5.0f;
     [SerializeField] private int maxEnemies = 5;
     [SerializeField] private AnimationCurve spawnRateAnimationCurve;
+    [SerializeField] private AnimationCurve enemyHealthAnimationCurve;
 
 
 
@@ -22,7 +24,7 @@ public class SpaceEnemySpawner : MonoBehaviour
     private void Awake()
     {
         startTime = Time.time;
-        spawnRate = spawnRateAnimationCurve.Evaluate((startTime - Time.time)/10f);
+        spawnRate = spawnRateAnimationCurve.Evaluate((Time.time - startTime)/10f);
     }
 
     private void Start()
@@ -60,10 +62,21 @@ public class SpaceEnemySpawner : MonoBehaviour
             if (spawnTimer >= spawnRate)
             {
                 SpaceEnemy spaceEnemyInstance = Instantiate(spaceEnemy, transform.position, Quaternion.identity).GetComponent<SpaceEnemy>();
+
+
+                float gameTime = (Time.time - startTime);
+
+                float enemyHealth = Mathf.Round(enemyHealthAnimationCurve.Evaluate(gameTime / 10f) * 100f);
+
                 spaceEnemyInstance.SetTargetPlanet(targetPlanet);
                 spaceEnemyInstance.OnEnemyDestroyed += SpaceEnemyInstance_OnEnemyDestroyed;
+                spaceEnemy.SetUpHealth(enemyHealth);
                 amountOfEnemies++;
-                spawnRate = spawnRateAnimationCurve.Evaluate((startTime - Time.time)/10f);
+                
+                spawnRate = spawnRateAnimationCurve.Evaluate(gameTime/10f);
+                print(gameTime / 10f);
+                print("Spawn rate: " + spawnRate);
+                print("enemy health: " + enemyHealth);
                 spawnTimer = 0f;
             }
         }

@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] protected float speed = 2f;
 
     protected float damageAmount;
+    protected Rigidbody2D rb;
+    protected Planet currentPlanet;
 
-    [SerializeField] private float speed = 2f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private ParticleSystem groundExplosionParticleSystem;
 
-    private Rigidbody2D rb;
     private Vector3 shootDirection;
-    protected Planet currentPlanet;
     
 
     public void Awake()
@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, despawnTime);
     }
 
-    private void Update()
+    protected virtual void Update()
     {
 
         Vector3 currentVelocity = shootDirection * speed;

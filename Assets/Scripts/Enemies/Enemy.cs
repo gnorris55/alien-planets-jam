@@ -53,6 +53,13 @@ public class Enemy : MonoBehaviour, IDamagable
         this.speed = speed;
     }
 
+    public void SetUpHealth(float health = 100f)
+    {
+        SetMaxHealth(health);
+        SetHealth(GetMaxHealth());
+
+    }
+
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
@@ -117,6 +124,7 @@ public class Enemy : MonoBehaviour, IDamagable
     public void SetHealth(float healthAmount)
     {
         this.currentHealth = healthAmount;
+        OnHealthUpdated?.Invoke(this, EventArgs.Empty);
     }
 
     public virtual void SetTarget(PlanetObject planetObject)

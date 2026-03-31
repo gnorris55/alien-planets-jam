@@ -135,7 +135,7 @@ MonoBehaviour:
   maxHealth: 175
   turretGun: {fileID: 2511572551169992822}
   turretProjectileSpawnLocation: {fileID: 7094341136537213319}
-  projectile: {fileID: 5704210298252384231, guid: a970b1e3a9cc98e44ad3760be19cc107, type: 3}
+  projectile: {fileID: 7862442060765614452, guid: e84978fbbde17af45aaf15176a863402, type: 3}
   projectileSpeed: 10
   projectileDamage: 5
   shootAudioSource: {fileID: 6211566513852307489}

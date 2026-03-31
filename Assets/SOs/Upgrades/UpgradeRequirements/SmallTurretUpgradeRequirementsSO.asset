@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeRequirementsSO
   type: 3
   objectName: Small Turret
-  objectTextureSprite: {fileID: -5538894683225859666, guid: 30026503565648540909e0ad0b6f8b44, type: 3}
+  objectTextureSprite: {fileID: 8972487566560178202, guid: 375d932cd2541d842a4aecf181300228, type: 3}
   upgradeRequirements:
     oilAmount:
       serializedVersion: 2

@@ -17,5 +17,5 @@ MonoBehaviour:
   structureOutline: {fileID: 2465774899367047564, guid: cb9514b0912e60240ad81878ed65089d, type: 3}
   width: 0.33
   height: 0.95
-  sprite: {fileID: -1050092745121943356, guid: 2e00b4a7ac0763c42ba13261e959a8e8, type: 3}
+  sprite: {fileID: 5075796109773724179, guid: 75afc04bc7883f34d9dd6de5199fc382, type: 3}
   oilPrice: 80

@@ -6,7 +6,6 @@ using System;
 
 public class Planet : MonoBehaviour
 {
-
     public event EventHandler OnPlanetOilUpdated;
     public event EventHandler <OnToggleEnemySpawningArgs>OnToggleEnemySpawning;
     public class OnToggleEnemySpawningArgs : EventArgs
@@ -28,12 +27,12 @@ public class Planet : MonoBehaviour
     [SerializeField] private PlanetVisuals planetVisuals;
     [SerializeField] private List<PlanetStructureSO> initialPlanetObjectSOList;
 
+    [SerializeField] private PlanetStructureSO rocketShipSO; 
+
+    [SerializeField] private bool isMainPlanet;
 
     private List<PlanetObject> planetStructures = new List<PlanetObject>();
     private List<Enemy> planetEnemies = new List<Enemy>();
-
-
-
 
     private void Awake()
     {
@@ -45,6 +44,19 @@ public class Planet : MonoBehaviour
 
     private void PlaceInitialPlanetStructures()
     {
+
+
+        if (isMainPlanet)
+        {
+            Vector3 positionOnPlanet = transform.position + (new Vector3(0, 1, 0)) * planetRadius;
+            Vector3 planetObjectPlanetPosition = GetPlanetPosition(0, positionOnPlanet, (rocketShipSO.height / 2.0f) - 0.02f, 0, 0);
+
+            Vector3 planetObjectDirection = (positionOnPlanet - transform.position).normalized;
+            print(planetObjectPlanetPosition);
+
+            AddObjectOnPlanet(rocketShipSO.structureGameObject, planetObjectPlanetPosition, planetObjectDirection);
+        }
+
         foreach (PlanetStructureSO planetObjectSO in initialPlanetObjectSOList)
         {
 

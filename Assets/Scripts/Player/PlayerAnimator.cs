@@ -5,6 +5,7 @@ public class PlayerAnimator : MonoBehaviour
 
     [SerializeField] private SpriteRenderer playerArmSprite;
     [SerializeField] private Transform playerArmTransform;
+    [SerializeField] private SpriteRenderer gunSpriteRenderer;
 
     private SpriteRenderer spriteRenderer;
     private Animator playerAnimation;
@@ -26,6 +27,7 @@ public class PlayerAnimator : MonoBehaviour
     private void PlayerMovement_OnDirectionChanged(object sender, bool flipX)
     {
         spriteRenderer.flipX = flipX;
+        //gunSpriteRenderer.flipX = flipX;
         /*
         if (flipX)
         {
@@ -37,6 +39,8 @@ public class PlayerAnimator : MonoBehaviour
         }
         */
         playerArmSprite.flipY = flipX;
+        gunSpriteRenderer.flipY = flipX;
+
     }
 
     private void PlayerMovement_OnMovementStateChanged(object sender, PlayerMovement.MovementStates movementState)

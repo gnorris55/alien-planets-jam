@@ -26,6 +26,12 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private float playerDamage;
     [SerializeField] private AudioSource shootAudioSource;
 
+    [SerializeField] private SpriteRenderer gunSpriteRenderer;
+    [SerializeField] private Sprite pistolSprite;
+    [SerializeField] private Sprite shotgunSprite;
+    [SerializeField] private Sprite machinegunSprite;
+
+
 
     private WeaponType currentWeapon = WeaponType.pistol;
 
@@ -88,6 +94,7 @@ public class PlayerWeapon : MonoBehaviour
         if (weaponIsUnlockedList[2])
         {
             currentWeapon = WeaponType.machinegun;
+            gunSpriteRenderer.sprite = machinegunSprite;
         }
     }
 
@@ -96,12 +103,15 @@ public class PlayerWeapon : MonoBehaviour
         if (weaponIsUnlockedList[1])
         {
             currentWeapon = WeaponType.shotgun;
+            gunSpriteRenderer.sprite = shotgunSprite;
+
         }
     }
 
     private void GameInput_OnPistolSelectedPressed(object sender, EventArgs e)
     {
         currentWeapon = WeaponType.pistol;
+        gunSpriteRenderer.sprite = pistolSprite;
     }
 
     private void Player_OnPlayerStateChanged(object sender, Player.OnPlayerStateChangedArgs e)

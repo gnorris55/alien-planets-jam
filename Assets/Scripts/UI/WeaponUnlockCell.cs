@@ -46,6 +46,7 @@ public class WeaponUnlockCell : MonoBehaviour
         redMineralCostText.text = redMineralCost.ToString();
 
         unlockButton.onClick.AddListener(UnlockWeapon);
+        Canvas.ForceUpdateCanvases();
         
 
     }

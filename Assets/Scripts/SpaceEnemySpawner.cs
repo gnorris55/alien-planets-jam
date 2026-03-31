@@ -15,6 +15,8 @@ public class SpaceEnemySpawner : MonoBehaviour
     private float currentAngleToPlanet;
     private float distanceFromPlanet;
 
+
+
     private void Start()
     {
         // for making sure that enemies are not spawned at the same time

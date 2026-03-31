@@ -55,9 +55,7 @@ public class UpgradesMenuUI : MonoBehaviour
         {
             Destroy(machineGunUnlockCellInstance.gameObject);
         }
-        
 
-       
     }
 
     private void MachineGunUnlockCellInstance_OnPurchaseWeapon1(object sender, System.EventArgs e)

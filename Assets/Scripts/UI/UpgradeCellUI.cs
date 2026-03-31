@@ -101,6 +101,8 @@ public class UpgradeCellUI : MonoBehaviour
         DisplayUpgradeCostInformation(ref blueMineralAmountRequiredText, upgradeRequirementsSO.upgradeRequirements.blueMineralAmount, currentLevel, 10f);
         DisplayUpgradeCostInformation(ref yellowMineralAmountRequiredText, upgradeRequirementsSO.upgradeRequirements.yellowMineralAmount, currentLevel, 10f);
         DisplayUpgradeCostInformation(ref redMineralAmountRequiredText, upgradeRequirementsSO.upgradeRequirements.redMineralAmount, currentLevel, 10f);
+
+        Canvas.ForceUpdateCanvases();
     }
 
     private void DisplayUpgradeCostInformation(ref TextMeshProUGUI upgradeCostText, AnimationCurve upgradeCostCurve, int currentLevel, float costScalar)

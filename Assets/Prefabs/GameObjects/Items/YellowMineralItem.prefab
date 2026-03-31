@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5f5e5fc15b373b41b34e11b3607e2b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemVisualMovement
-  speed: 10
+  speed: 5
 --- !u!212 &8511348815877945255
 SpriteRenderer:
   serializedVersion: 2

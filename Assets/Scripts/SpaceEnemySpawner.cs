@@ -6,6 +6,7 @@ public class SpaceEnemySpawner : MonoBehaviour
     [SerializeField] private Planet targetPlanet;
     [SerializeField] private float spawnRate = 5.0f;
     [SerializeField] private int maxEnemies = 5;
+    [SerializeField] private AnimationCurve spawnRateAnimationCurve;
 
 
 
@@ -14,14 +15,22 @@ public class SpaceEnemySpawner : MonoBehaviour
     private int amountOfEnemies = 0;
     private float currentAngleToPlanet;
     private float distanceFromPlanet;
+    private float startTime = 0;
 
 
+
+    private void Awake()
+    {
+        startTime = Time.time;
+        spawnRate = spawnRateAnimationCurve.Evaluate((startTime - Time.time)/10f);
+    }
 
     private void Start()
     {
         // for making sure that enemies are not spawned at the same time
         distanceFromPlanet = Vector3.Distance(transform.position, targetPlanet.transform.position);
-        spawnTimer = Random.RandomRange(0, spawnRate);
+
+        //spawnTimer = Random.RandomRange(0, spawnRate);
     }
 
     private void HomePlanet_OnToggleEnemySpawning(object sender, Planet.OnToggleEnemySpawningArgs e)
@@ -54,6 +63,7 @@ public class SpaceEnemySpawner : MonoBehaviour
                 spaceEnemyInstance.SetTargetPlanet(targetPlanet);
                 spaceEnemyInstance.OnEnemyDestroyed += SpaceEnemyInstance_OnEnemyDestroyed;
                 amountOfEnemies++;
+                spawnRate = spawnRateAnimationCurve.Evaluate((startTime - Time.time)/10f);
                 spawnTimer = 0f;
             }
         }

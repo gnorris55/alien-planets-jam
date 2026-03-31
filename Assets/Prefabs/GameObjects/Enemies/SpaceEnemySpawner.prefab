@@ -48,3 +48,36 @@ MonoBehaviour:
   targetPlanet: {fileID: 0}
   spawnRate: 5
   maxEnemies: 5
+  spawnRateAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 10
+      inSlope: -0.4661218
+      outSlope: -0.4661218
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 13.026112
+      value: 3.9282455
+      inSlope: -0.26422977
+      outSlope: -0.26422977
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 60
+      value: 1
+      inSlope: -0.06233773
+      outSlope: -0.06233773
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

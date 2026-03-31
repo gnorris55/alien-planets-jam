@@ -206,6 +206,11 @@ public class PlayerWeapon : MonoBehaviour
         currentWeapon = unlockedWeapon;
 
         OnWeaponUnlocked?.Invoke(this, unlockedWeapon);
+        if (unlockedWeapon == WeaponType.shotgun)
+        {
+            gunSpriteRenderer.sprite = shotgunSprite;
+        }
+
     }
 
     void Update()

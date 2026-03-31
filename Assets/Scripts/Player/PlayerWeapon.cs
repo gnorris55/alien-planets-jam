@@ -154,7 +154,7 @@ public class PlayerWeapon : MonoBehaviour
             if (currentWeapon == WeaponType.pistol)
             {
                 Vector3 shootDirection = (bulletSpawnTransform.position - transform.position).normalized;
-                SpawnBullet(shootDirection, playerDamage, 6f);
+                SpawnBullet(shootDirection, playerDamage, 12f);
 
                 CameraManager.Instance.ShakeCamera(1f, 0.1f);
             }
@@ -171,7 +171,7 @@ public class PlayerWeapon : MonoBehaviour
                     Quaternion shotgunSpread = Quaternion.Euler(0, 0, spreadAngle);
 
                     Vector3 angledShootDirection = shotgunSpread * shootDirection;
-                    SpawnBullet(angledShootDirection, playerDamage / 3f, 4f, 0.5f);
+                    SpawnBullet(angledShootDirection, playerDamage / 3f, 8f, 1.0f);
                 }
 
 

@@ -9,6 +9,11 @@ public class RocketShip : PlanetObject
     public static RocketShip Instance;
 
 
+    [SerializeField] private Sprite fixedRocketShipTexture;
+    [SerializeField] private SpriteRenderer rocketShipSprite;
+    [SerializeField] private GameObject rocketShipFireParticlesGameObject;
+
+
     private bool gameWon = false;
 
     private void Awake()
@@ -30,6 +35,8 @@ public class RocketShip : PlanetObject
             if (e.currentLevel == 1)
             {
                 SetInteractable();
+                rocketShipSprite.sprite = fixedRocketShipTexture;
+                rocketShipFireParticlesGameObject.SetActive(false);
             }
             float updatedMaxHealthAmount = e.upgradeValues.healthUpgradeValues.Evaluate(e.currentLevel) * 100f;
             SetMaxHealth(updatedMaxHealthAmount);

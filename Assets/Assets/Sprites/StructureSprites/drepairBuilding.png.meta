@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 93f97bc60f3f74e4eb7f143ebcf23e4f
+guid: 75afc04bc7883f34d9dd6de5199fc382
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4795824590636334991
-    second: blue_mineral_deposit_0
+      213: 5075796109773724179
+    second: drepairBuilding_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blue_mineral_deposit_0
+      name: drepairBuilding_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 47
         y: 0
-        width: 32
-        height: 13
+        width: 36
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f8f36f94e013e8240800000000000000
-      internalID: 4795824590636334991
+      spriteID: 31a5f5b4ba9d07640800000000000000
+      internalID: 5075796109773724179
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      blue_mineral_deposit_0: 4795824590636334991
+      drepairBuilding_0: 5075796109773724179
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

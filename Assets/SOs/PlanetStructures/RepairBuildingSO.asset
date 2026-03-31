@@ -16,6 +16,6 @@ MonoBehaviour:
   structureGameObject: {fileID: -8847340864943255555, guid: 7c8504a10d10baf4e95a2474f2cc6cbb, type: 3}
   structureOutline: {fileID: 2465774899367047564, guid: cb9514b0912e60240ad81878ed65089d, type: 3}
   width: 0.33
-  height: 0.33
+  height: 0.95
   sprite: {fileID: -1050092745121943356, guid: 2e00b4a7ac0763c42ba13261e959a8e8, type: 3}
   oilPrice: 80

@@ -15,7 +15,7 @@ MonoBehaviour:
   structureName: RocketShip
   structureGameObject: {fileID: 9030314232526985600, guid: f24b448c274f5854190551d865c10fe6, type: 3}
   structureOutline: {fileID: 2465774899367047564, guid: 209b25ecfd80a2c448b3e0d03e761a71, type: 3}
-  width: 0.33
-  height: 0.33
-  sprite: {fileID: -1050092745121943356, guid: 2e00b4a7ac0763c42ba13261e959a8e8, type: 3}
+  width: 0.88
+  height: 0.83
+  sprite: {fileID: 3366549970565968309, guid: 241a71e167ae45b42aa2e3158c3991a4, type: 3}
   oilPrice: 0

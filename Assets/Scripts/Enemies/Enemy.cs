@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour, IDamagable
     [SerializeField] protected float damage;
     [SerializeField] protected Transform bulletSpawnTransform;
     [SerializeField] protected SpriteRenderer enemySpriteRenderer;   
+    [SerializeField] protected AudioSource shootingAudioSource;
 
     protected float attackFrequencyTimer;
     protected EnemyState currentState;
@@ -37,6 +38,8 @@ public class Enemy : MonoBehaviour, IDamagable
     [SerializeField] private float oilDropAmount = 20f;
     [SerializeField] private ItemVisualMovement oilGlobVisual;
     [SerializeField] private ParticleSystem DieParticleGoo;
+
+
     private float currentHealth;
 
 

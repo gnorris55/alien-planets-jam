@@ -14,6 +14,7 @@ public class MineralDeposit : PlanetObject
     [SerializeField] private float mineralAccumulationSpeed = 0.05f;
     [SerializeField] private float mineralHarvestSpeed = 100f;
     [SerializeField] private ItemVisualMovement mineralGlobVisual;
+    [SerializeField] private AudioSource mineralHarvestingSound;
 
     private float currentMineralAmount = 0;
     private bool playerIsHarvestingMineral = false;
@@ -40,12 +41,14 @@ public class MineralDeposit : PlanetObject
     public override void Interact(Player player)
     {
         playerIsHarvestingMineral = true;
+        mineralHarvestingSound.Play();
     }
 
     public override void InteractStopped()
     {
         playerIsHarvestingMineral = false;
         mineralTransferedCount = 0;
+        mineralHarvestingSound.Pause(); 
     }
 
     public override void ShowInteractable()

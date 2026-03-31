@@ -12,6 +12,7 @@ public class OilRig : PlanetObject, IOilStorageDevice
     [SerializeField] private float oilAccumulationSpeed = 0.05f;
     [SerializeField] private float oilHarvestSpeed = 100f;
     [SerializeField] private ItemVisualMovement oilGlobVisual;
+    [SerializeField] private AudioSource harvestingOilAudioSource;
 
 
     private float currentOilAmount = 0;
@@ -45,12 +46,14 @@ public class OilRig : PlanetObject, IOilStorageDevice
     public override void Interact(Player player)
     {
         playerIsHarvestingOil = true;
+        harvestingOilAudioSource.Play();
     }
 
     public override void InteractStopped()
     {
         playerIsHarvestingOil = false;
         oilTransferedCount = 0;
+        harvestingOilAudioSource.Pause();
     }
 
     public override void ShowInteractable()

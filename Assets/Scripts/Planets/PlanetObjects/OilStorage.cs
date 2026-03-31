@@ -9,6 +9,7 @@ public class OilStorage : PlanetObject, IOilStorageDevice
     [SerializeField] private float maxOilAmount = 100.0f;
     [SerializeField] private float oilHarvestSpeed = 25;
     [SerializeField] private ItemVisualMovement oilGlobVisual;
+    [SerializeField] private AudioSource oilHarvestingSound;
 
     private float currentOilAmount = 0f;
     private bool playerIsHarvestingOil = false;
@@ -47,6 +48,7 @@ public class OilStorage : PlanetObject, IOilStorageDevice
         playerIsHarvestingOil = true;
         if (currentOilAmount > 0)
         {
+            oilHarvestingSound.Play();
             isInteractable = true;
         }
     }
@@ -54,6 +56,7 @@ public class OilStorage : PlanetObject, IOilStorageDevice
     public override void InteractStopped()
     {
         playerIsHarvestingOil = false;
+        oilHarvestingSound.Pause();
     }
 
     public override void ShowInteractable()

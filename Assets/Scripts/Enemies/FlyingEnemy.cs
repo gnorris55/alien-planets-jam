@@ -123,6 +123,7 @@ public class FlyingEnemy : Enemy
         Vector3 directionToPlanetObject = (planetObjectTarget.transform.position - bulletSpawnTransform.position).normalized;
         EnemyBullet bulletInstance = Instantiate(bullet, bulletSpawnTransform.position, Quaternion.identity);
         bulletInstance.Setup(directionToPlanetObject, damage, 3);
+        shootingAudioSource.Play();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

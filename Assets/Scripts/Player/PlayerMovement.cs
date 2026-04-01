@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (OnGround())
         {
-            
+
             if (Mathf.Abs(playerMovement.x) > 0)
             {
                 if (currentMovementState != MovementStates.walking)
@@ -121,6 +121,11 @@ public class PlayerMovement : MonoBehaviour
                 currentMovementState = MovementStates.idle;
                 OnMovementStateChanged?.Invoke(this, currentMovementState);
             }
+        }
+        else
+        {
+            currentMovementState = MovementStates.idle;
+            OnMovementStateChanged?.Invoke(this, currentMovementState);
         }
         if (lastMovement.x >= 0 && playerMovement.x < 0)
         {
@@ -222,7 +227,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool OnGround()
     {
-        return Physics2D.CircleCast(transform.position, circleRadius, Vector2.down, circleCastDistance, groundLayer);
+        return Physics2D.CircleCast(transform.position, circleRadius, -transform.up, circleCastDistance, groundLayer);
 
     }
 

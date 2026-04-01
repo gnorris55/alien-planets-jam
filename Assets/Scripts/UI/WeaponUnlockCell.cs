@@ -58,7 +58,7 @@ public class WeaponUnlockCell : MonoBehaviour
 
     private void UnlockWeapon()
     {
-        if (Player.Instance.BuyUpgrade(oilCost/100f, blueMineralCost/10f, yellowMineralCost/10f, redMineralCost/10f))
+        if (Player.Instance.BuyUpgrade(oilCost, blueMineralCost, yellowMineralCost, redMineralCost))
         {
             PlayerWeapon.Instance.UnlockWeapon(weaponType);
             OnPurchaseWeapon?.Invoke(this, EventArgs.Empty);

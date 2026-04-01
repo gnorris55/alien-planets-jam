@@ -210,6 +210,10 @@ public class PlayerWeapon : MonoBehaviour
         {
             gunSpriteRenderer.sprite = shotgunSprite;
         }
+        if (unlockedWeapon == WeaponType.machinegun)
+        {
+            gunSpriteRenderer.sprite = machinegunSprite;
+        }
 
     }
 

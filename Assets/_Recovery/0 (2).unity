@@ -1178,7 +1178,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 119, y: 7.5000763}
+  m_AnchoredPosition: {x: 119, y: 7.500061}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &98103775
@@ -1532,10 +1532,6 @@ PrefabInstance:
     - target: {fileID: 560480225347302856, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2099464071723132842, guid: 95b68708ac04c0640be061913b865efb, type: 3}
-      propertyPath: m_Radius
-      value: 1.01
       objectReference: {fileID: 0}
     - target: {fileID: 3157754451680293103, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: m_Name
@@ -12909,7 +12905,7 @@ MonoBehaviour:
   neutralPlanetObjectsLayer:
     serializedVersion: 2
     m_Bits: 16384
-  infiniteResources: 1
+  infiniteResources: 0
 --- !u!82 &624801654
 AudioSource:
   m_ObjectHideFlags: 0
@@ -15904,10 +15900,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2099464071723132842, guid: 95b68708ac04c0640be061913b865efb, type: 3}
-      propertyPath: m_Radius
-      value: 1.01
-      objectReference: {fileID: 0}
     - target: {fileID: 3157754451680293103, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: m_Name
       value: Blue
@@ -17631,10 +17623,6 @@ PrefabInstance:
     - target: {fileID: 560480225347302856, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2099464071723132842, guid: 95b68708ac04c0640be061913b865efb, type: 3}
-      propertyPath: m_Radius
-      value: 1.01
       objectReference: {fileID: 0}
     - target: {fileID: 3157754451680293103, guid: 95b68708ac04c0640be061913b865efb, type: 3}
       propertyPath: m_Name
@@ -26239,10 +26227,6 @@ PrefabInstance:
     - target: {fileID: 5223354514543614088, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
       propertyPath: m_Color.r
       value: 0.8867924
-      objectReference: {fileID: 0}
-    - target: {fileID: 6065920764691126468, guid: 3bac56d2fe4d66c45b4f3c8a3d208639, type: 3}
-      propertyPath: m_Radius
-      value: 1.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

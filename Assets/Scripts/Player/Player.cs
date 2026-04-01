@@ -189,13 +189,10 @@ public class Player : MonoBehaviour
         if (CanAffordUpgrade(requiredOilAmount, requiredBlueMineral, requiredYellowMineral,requiredRedMineral))
         {
 
-            print("required blue mineral: " + requiredBlueMineral);
             UseOilToPurchase(requiredOilAmount);
             currentBlueMineralAmount -= requiredBlueMineral;
             currentYellowMineralAmount -= requiredYellowMineral;
-            print("before: " +currentRedMineralAmount);
             currentRedMineralAmount -= requiredRedMineral;
-            print("after: " + currentRedMineralAmount);
 
 
 
